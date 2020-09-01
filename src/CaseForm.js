@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Children } from 'react';
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import { Box, Card, CardContent, Divider, TextField, MenuItem, Button } from "@material-ui/core";
 import { object, string, boolean, number } from 'yup';
@@ -8,6 +8,7 @@ const InitialValues = {
     firstName: "",
     lastName: "",
     phoneNum: "",
+    email: "",
     homeAddress: "",
     city: "",
     state: "",
@@ -24,14 +25,17 @@ const InitialValues = {
     timeInHome: "",
     homeValue: "",
     homeAge: "",
-    householdSize: "",
+    householdSize: {
+        adults: "",
+        children: ""
+    },
     householdIncome: "",
-    homeDescription: "",
     numBeds: "",
     numBaths: "",
     numSqFootage: "",
-    recentRenovation: "",
-    needRenovation: ""
+    recentlyRenovated: "",
+    needRenovation: "",
+    homeDescription: ""
 };
 
 const SignupSchema = object().shape({
@@ -44,9 +48,9 @@ const SignupSchema = object().shape({
         .min(2, 'Too Short!')
         .max(50, 'Too Long!')
         .required('Required'),
-    // email: string()
-    //     .email('Invalid email')
-    //     .required('Required'),
+    email: string()
+        .email('Invalid email')
+        .required('Required'),
     phoneNum: number()
         .positive()
         .integer()
@@ -68,13 +72,13 @@ const SignupSchema = object().shape({
         .required('Required'),
     ethnicity: string()
         .required('Required'),
-    veteran: boolean()
+    veteran: string()
         .required('Required'),
-    accommodations: boolean()
+    accommodations: string()
         .required('Required'),
 
     // client questionnaire validations
-    preHomeowner: string()
+    preHomeowner: boolean()
         .required('Required'),
     ownershipOfHome: string()
         .required('Required'),
@@ -90,8 +94,16 @@ const SignupSchema = object().shape({
         .positive('Please enter a positive number')
         .integer('Please enter a whole number')
         .required('Required'),
-    householdSize: number()
-        .positive('Please enter a positive number')
+    // householdSize: number()
+    //     .positive('Please enter a positive number')
+    //     .integer('Please enter a whole number')
+    //     .required('Required'),
+    adults: number()
+        .min(0, 'Please enter a positive number')
+        .integer('Please enter a whole number')
+        .required('Required'),
+    children: number()
+        .min(0, 'Please enter a positive number')
         .integer('Please enter a whole number')
         .required('Required'),
     householdIncome: number()
@@ -109,7 +121,7 @@ const SignupSchema = object().shape({
         .positive('Please enter a positive number')
         .integer('Please enter a whole number')
         .required('Required'),
-    recentRenovation: string()
+    recentlyRenovated: string()
         .required('Required'),
     needRenovation: string()
         .required('Required'),
@@ -146,7 +158,13 @@ export default class CaseForm extends Component {
                                 <Box marginBottom={2}>
                                     <Field name="firstName" label="First Name" as={TextField} helperText={<ErrorMessage name="firstName" />} />
                                     <Field name="lastName" label="Last Name" as={TextField} helperText={<ErrorMessage name="lastName" />} />
+                                </Box>
+
+                                <Divider />
+
+                                <Box marginBottom={2}>
                                     <Field name="phoneNum" label="Phone Number" as={TextField} type="number" helperText={<ErrorMessage name="phoneNum" />} />
+                                    <Field name="email" label="Email" as={TextField} helperText={<ErrorMessage name="email" />} />
                                 </Box>
 
                                 <Divider />
@@ -228,7 +246,7 @@ export default class CaseForm extends Component {
 
                                 {/* TODO: convert this to interval drop down */}
                                 <Box marginBottom={2}>
-                                    <p>How long have you been living in the home?</p>
+                                    <p>How long have you been living in the home? (in years)</p>
                                     <Field name="timeInHome" label="Time in home" as={TextField} type="number" helperText={<ErrorMessage name="timeInHome" />} />
                                 </Box>
 
@@ -243,7 +261,7 @@ export default class CaseForm extends Component {
 
                                 {/* TODO: convert this to interval drop down */}
                                 <Box marginBottom={2}>
-                                    <p>What is the approximate age of the home?</p>
+                                    <p>What is the approximate age of the home? (in years)</p>
                                     <Field name="homeAge" label="Home Age" as={TextField} type="number" helperText={<ErrorMessage name="homeAge" />} />
                                 </Box>
 
@@ -251,7 +269,8 @@ export default class CaseForm extends Component {
 
                                 <Box marginBottom={2}>
                                     <p>How many people currently live in the home?</p>
-                                    <Field name="householdSize" label="Household Size" as={TextField} type="number" helperText={<ErrorMessage name="householdSize" />} />
+                                    <Field name="adults" label="Adults in Household" as={TextField} type="number" helperText={<ErrorMessage name="adults" />} />
+                                    <Field name="children" label="Children in Household" as={TextField} type="number" helperText={<ErrorMessage name="children" />} />
                                 </Box>
 
                                 <Divider />
@@ -259,13 +278,6 @@ export default class CaseForm extends Component {
                                 <Box marginBottom={2}>
                                     <p>What is the approximate household income?</p>
                                     <Field name="householdIncome" label="Household Income" as={TextField} type="number" helperText={<ErrorMessage name="householdIncome" />} />
-                                </Box>
-
-                                <Divider />
-
-                                <Box marginBottom={2}>
-                                    <p>Please enter a home description</p>
-                                    <Field name="homeDescription" label="Home Description" as={TextField} multiline rows={5} />
                                 </Box>
 
                                 <Divider />
@@ -293,7 +305,7 @@ export default class CaseForm extends Component {
 
                                 <Box marginBottom={2}>
                                     <p>Was the home recently renovated?</p>
-                                    <Field name="recentRenovation" label="Recently Renovated" as={TextField} select helperText={<ErrorMessage name="recentRenovation" />}>
+                                    <Field name="recentlyRenovated" label="Recently Renovated" as={TextField} select helperText={<ErrorMessage name="recentlyRenovated" />}>
                                         <MenuItem value={true}>Yes</MenuItem>
                                         <MenuItem value={false}>No</MenuItem>
                                     </Field>
@@ -307,6 +319,13 @@ export default class CaseForm extends Component {
                                         <MenuItem value={true}>Yes</MenuItem>
                                         <MenuItem value={false}>No</MenuItem>
                                     </Field>
+                                </Box>
+                                
+                                <Divider />
+
+                                <Box marginBottom={2}>
+                                    <p>Please enter a home description</p>
+                                    <Field name="homeDescription" label="Home Description" as={TextField} multiline rows={5} />
                                 </Box>
 
                                 <Divider />

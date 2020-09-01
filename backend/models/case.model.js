@@ -3,31 +3,48 @@ const Schema = mongoose.Schema;
 
 const caseSchema = new Schema({
     _caseId: {type: Schema.Types.ObjectId, required:true},
-    firstname: {type: String, required: true, trim:true},
-    lastname: {type: String, required: true, trim:true},
-    ethinicity: {type: String, required: true},
+    firstName: {type: String, required: true, trim:true},
+    lastName: {type: String, required: true, trim:true},
+    phoneNum: {type: Number, required: true},
+    email: {type: String, required: false, trim:true},
+    
+    // may or may not be be better to seperate fields for address like in front end
+    // will allow for easier filtering for later graph implementation
+    homeAddress: {type: String, required: true, trim: true},
+    city: {type: String, required: true, trim: true},
+    state: {type: String, required: true, trim: true},
+    zip: {type: String, required: true, trim: true},
+    
     gender: {type: String, required: true},
-    address: {type: String, required: true, trim: true},
-    phonenumber: {type: Number, required: true},
-    homedescription: {type: String, required: true, trim: true},
-    own: {type: Boolean, required: true},
-    rent: {type: Boolean, required: true},
-    residencystartdate: {type: Date, required: true}, //use to compute length of time in home
-    estimatedvalue: {type: Number, required: true, trim: true, min: 0},
-    ageofhome: {type: Number, required: true, trim: true, min: 0},
-    householdincome: {type: Number, required: true, trim: true, min: 0},
-    numberofresidents: {
+    race: {type: String, required: true},
+    ethnicity: {type: String, required: true},
+    veteran: {type: String, required: true},
+    accommodations: {type: String, required: true, trim: true},
+    preHomeowner: {type: Boolean, required: true},
+    
+    // can simplify two objects into one
+    ownershipOfHome: {type: String, required: true, trim: true},
+    // own: {type: Boolean, required: true},
+    // rent: {type: Boolean, required: true},
+
+    // might be simpler to let the client give an estimate of how many years they've lived in home
+    // i imagine older residents might struggle to provide a date
+    timeInHome: {type: Number, required: true, trim: true, min: 0},
+    // residencystartdate: {type: Date, required: true}, //use to compute length of time in home
+    
+    homeValue: {type: Number, required: true, trim: true, min: 0},
+    homeAge: {type: Number, required: true, trim: true, min: 0},
+    householdSize: {
         adults: {type: Number, required: true, trim: true, min: 0},
         children: {type: Number, required: true, trim: true, min: 0},
     },
-    bedrooms: {type: Number, required: true, trim: true, min: 0},
-    baths: {type: Number, required: true, trim: true, min: 0},
-    squarefootage: {type: Number, required: true, trim: true, min: 0},
-    recentlyrenovated: {type: Boolean, required: true},
-    needsrenovation: {type: Boolean, required: true},
-    previoushomeowner: {type: Boolean, required: true},
-    veteran: {type: Boolean, required: true},
-    accomodations: {type: String, required: true, trim: true},
+    householdIncome: {type: Number, required: true, trim: true, min: 0},
+    numBeds: {type: Number, required: true, trim: true, min: 0},
+    numBaths: {type: Number, required: true, trim: true, min: 0},
+    numSqFootage: {type: Number, required: true, trim: true, min: 0},
+    recentlyRenovated: {type: Boolean, required: true},
+    needRenovation: {type: Boolean, required: true},
+    homeDescription: {type: String, required: true, trim: true},
 }, { timestamps: true });
 
 const Case = mongoose.model('Case', caseSchema);
