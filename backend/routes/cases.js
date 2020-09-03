@@ -84,6 +84,7 @@ router.route('/add').post((req, res) => {
     const ethnicity = req.body.ethnicity;
     const veteran = req.body.veteran;
     const accommodations = req.body.accommodations;
+    
     const preHomeowner = req.body.preHomeowner;
     const ownershipOfHome = req.body.ownershipOfHome;
     const timeInHome = Number(req.body.timeInHome);
