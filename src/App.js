@@ -5,6 +5,7 @@ import HJETpic from './HJETpic.png';
 import LoginBox from './LoginBox.js';
 import CaseForm from './CaseForm.js';
 import CaseEdit from './components/CaseEdit/CaseEdit';
+import CaseView from './components/CaseView/CaseView';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       </header>
       {/* temporary preview until we have routes set up */}
       {/* <CaseForm /> */}
-      <CaseEdit/>
+      {/* <CaseEdit/> */}
+      <CaseView/>
     </div>
   );
 }
