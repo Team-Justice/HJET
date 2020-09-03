@@ -89,10 +89,8 @@ router.route('/add').post((req, res) => {
     const timeInHome = Number(req.body.timeInHome);
     const homeValue = Number(req.body.homeValue);
     const homeAge = Number(req.body.homeAge);
-    const householdSize = {
-        adults: Number(req.body.householdSize.adults),
-        children: Number(req.body.householdSize.children),
-    }
+    const householdAdults = Number(req.body.householdAdults);
+    const householdChildren = Number(req.body.householdChildren);
     const householdIncome = Number(req.body.householdIncome);
     const numBeds = Number(req.body.numBeds);
     const numBaths = Number(req.body.numBaths);
@@ -119,8 +117,9 @@ router.route('/add').post((req, res) => {
         ownershipOfHome,
         timeInHome,
         homeValue,
-        homeAge, 
-        householdSize,
+        homeAge,
+        householdAdults,
+        householdChildren,
         householdIncome, 
         numBeds,
         numBaths,

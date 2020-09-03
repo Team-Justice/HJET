@@ -34,10 +34,8 @@ const caseSchema = new Schema({
     
     homeValue: {type: Number, required: true, trim: true, min: 0},
     homeAge: {type: Number, required: true, trim: true, min: 0},
-    householdSize: {
-        adults: {type: Number, required: true, trim: true, min: 0},
-        children: {type: Number, required: true, trim: true, min: 0},
-    },
+    householdAdults: {type: Number, required: true, trim: true, min: 0},
+    householdChildren: {type: Number, required: true, trim: true, min: 0},
     householdIncome: {type: Number, required: true, trim: true, min: 0},
     numBeds: {type: Number, required: true, trim: true, min: 0},
     numBaths: {type: Number, required: true, trim: true, min: 0},

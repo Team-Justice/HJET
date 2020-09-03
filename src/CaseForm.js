@@ -2,6 +2,7 @@ import React, { Component, Children } from 'react';
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import { Box, Card, CardContent, Divider, TextField, MenuItem, Button } from "@material-ui/core";
 import { object, string, boolean, number } from 'yup';
+import axios from 'axios';
 
 const InitialValues = {
     // client personal info
@@ -25,10 +26,8 @@ const InitialValues = {
     timeInHome: "",
     homeValue: "",
     homeAge: "",
-    householdSize: {
-        adults: "",
-        children: ""
-    },
+    householdAdults: "",
+    householdChildren: "",
     householdIncome: "",
     numBeds: "",
     numBaths: "",
@@ -94,15 +93,11 @@ const SignupSchema = object().shape({
         .positive('Please enter a positive number')
         .integer('Please enter a whole number')
         .required('Required'),
-    // householdSize: number()
-    //     .positive('Please enter a positive number')
-    //     .integer('Please enter a whole number')
-    //     .required('Required'),
-    adults: number()
+    householdAdults: number()
         .min(0, 'Please enter a positive number')
         .integer('Please enter a whole number')
         .required('Required'),
-    children: number()
+    householdChildren: number()
         .min(0, 'Please enter a positive number')
         .integer('Please enter a whole number')
         .required('Required'),
@@ -127,6 +122,7 @@ const SignupSchema = object().shape({
         .required('Required'),
 });
 
+
 export default class CaseForm extends Component {
     render() {
         return (
@@ -142,14 +138,22 @@ export default class CaseForm extends Component {
                         // logic to send form data to the backend
                         onSubmit={(values, formikHelpers) => {
                             // disables submit button for 3 seconds
-                            return new Promise(res => {
-                                setTimeout(() => {
-                                    console.log(values);
-                                    console.log(formikHelpers);
-                                    console.log('----------------------');
-                                    res();
-                                }, 3000);
+                            
+
+                            axios.post('http://localhost:5000/cases/add', values)
+                            .then(res => {
+                                console.log(res);
+                                console.log(res.data);
                             })
+                            
+                            // return new Promise(res => {
+                            //     setTimeout(() => {
+                            //         console.log(values);
+                            //         console.log(formikHelpers);
+                            //         console.log('----------------------');
+                            //         res();
+                            //     }, 3000);
+                            // })
                         }}>
 
                         {({ values, errors, isSubmitting, isValidating }) => (
@@ -226,7 +230,7 @@ export default class CaseForm extends Component {
                                 {/* Client Questionnaire */}
                                 <Box marginBottom={2}>
                                     <p>Are you a previous homeowner or own a home in another location?</p>
-                                    <Field name="preHomeowner" label="Previous Homeowner" as={TextField} select helperText={<ErrorMessage name="preHomeowner" />} >
+                                    <Field name="preHomeowner" label="Previous Homeowner" as={TextField} type="boolean" select helperText={<ErrorMessage name="preHomeowner" />} >
                                         <MenuItem value={true}>Yes</MenuItem>
                                         <MenuItem value={false}>No</MenuItem>
                                     </Field>
@@ -269,8 +273,8 @@ export default class CaseForm extends Component {
 
                                 <Box marginBottom={2}>
                                     <p>How many people currently live in the home?</p>
-                                    <Field name="adults" label="Adults in Household" as={TextField} type="number" helperText={<ErrorMessage name="adults" />} />
-                                    <Field name="children" label="Children in Household" as={TextField} type="number" helperText={<ErrorMessage name="children" />} />
+                                    <Field name="householdAdults" label="Adults in Household" as={TextField} type="number" helperText={<ErrorMessage name="householdAdults" />} />
+                                    <Field name="householdChildren" label="Children in Household" as={TextField} type="number" helperText={<ErrorMessage name="householdChildren" />} />
                                 </Box>
 
                                 <Divider />
@@ -330,7 +334,7 @@ export default class CaseForm extends Component {
 
                                 <Divider />
 
-                                <Button type="submit" disabled={isSubmitting || isValidating}>submit</Button>
+                                <Button type="submit" disabled={isValidating}>submit</Button>
 
                                 {/* allows us to see state of errors in form for validation debugging */}
                                 <pre>{JSON.stringify(errors, null, 4)}</pre>
