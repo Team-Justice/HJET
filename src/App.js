@@ -3,11 +3,8 @@ import React from 'react';
 import './App.css';
 import HJETpic from './HJETpic.png';
 import LoginBox from './LoginBox.js';
-<<<<<<< HEAD
 import CaseForm from './CaseForm.js';
-=======
 import CaseEdit from './components/CaseEdit/CaseEdit';
->>>>>>> setting up edit case page
 
 function App() {
   return (
@@ -15,17 +12,10 @@ function App() {
       {/* <header className="App-header">
         <img src={HJETpic} />
         <LoginBox />
-<<<<<<< HEAD
       </header>
-    
       {/* temporary preview until we have routes set up */}
-      <div>
-        <CaseForm />
-      </div>
-=======
-      </header> */}
+      {/* <CaseForm /> */}
       <CaseEdit/>
->>>>>>> setting up edit case page
     </div>
   );
 }
