@@ -82,7 +82,6 @@ router.route('/add').post((req, res) => {
     const ethnicity = req.body.ethnicity;
     const veteran = req.body.veteran;
     const accommodations = req.body.accommodations;
-    
     const preHomeowner = req.body.preHomeowner;
     const ownershipOfHome = req.body.ownershipOfHome;
     const timeInHome = Number(req.body.timeInHome);
@@ -110,6 +109,7 @@ router.route('/add').post((req, res) => {
         gender, 
         race, 
         ethnicity,
+
         veteran, 
         accommodations, 
         preHomeowner,
@@ -149,29 +149,33 @@ router.route('/:id').get((req, res) => {
 router.route('/update/:id').post((req, res) => {
     Case.findById(req.params.id)
         .then(outDatedCase => {
-            outDatedCase.firstname = req.body.firstname;
-            outDatedCase.lastname = req.body.lastname; 
-            outDatedCase.ethinicity = req.body.ethinicity;
-            outDatedCase.gender = req.body.gender; 
-            outDatedCase.address = req.body.address;
-            outDatedCase.phonenumber = Number(req.body.phonenumber); 
-            outDatedCase.homedescription = req.body.homedescription; 
-            outDatedCase.own = Boolean(req.body.own); 
-            outDatedCase.rent = Boolean(req.body.rent);
-            outDatedCase.residencystartdate = Date.parse(req.body.residencystartdate); 
-            outDatedCase.estimatedvalue = Number(req.body.estimatedvalue);
-            outDatedCase.ageofhome = Number(req.body.ageofhome);
-            outDatedCase.householdincome = Number(req.body.householdincome); 
-            outDatedCase.numberofresidents.adults = Number(req.body.numberofresidents.adults);
-            outDatedCase.numberofresidents.children = Number(req.body.numberofresidents.children);
-            outDatedCase.bedrooms = Number(req.body.bedrooms); 
-            outDatedCase.baths = Number(req.body.baths); 
-            outDatedCase.squarefootage = Number(req.body.squarefootage); 
-            outDatedCase.recentlyrenovated = Boolean(req.body.recentlyrenovated);
-            outDatedCase.needsrenovation = Boolean(req.body.needsrenovation);
-            outDatedCase.previoushomeowner = Boolean(req.body.previoushomeowner); 
-            outDatedCase.veteran = Boolean(req.body.veteran); 
-            outDatedCase.accomodations = req.body.accomodations;
+            outDatedCase.firstName = req.body.firstName;
+            outDatedCase.lastName = req.body.lastName;
+            outDatedCase.phoneNum = Number(req.body.phoneNum);
+            outDatedCase.email = req.body.email;
+            outDatedCase.homeAddress = req.body.homeAddress;
+            outDatedCase.city = req.body.city;
+            outDatedCase.state = req.body.state;
+            outDatedCase.zip = req.body.zip;
+            outDatedCase.gender = req.body.gender;
+            outDatedCase.race = req.body.race;
+            outDatedCase.ethnicity = req.body.ethnicity;
+            outDatedCase.veteran = req.body.veteran;
+            outDatedCase.accommodations = req.body.accommodations;
+            outDatedCase.preHomeowner = req.body.preHomeowner;
+            outDatedCase.ownershipOfHome = req.body.ownershipOfHome;
+            outDatedCase.timeInHome = Number(req.body.timeInHome);
+            outDatedCase.homeValue = Number(req.body.homeValue);
+            outDatedCase.homeAge = Number(req.body.homeAge);
+            outDatedCase.householdAdults = Number(req.body.householdAdults);
+            outDatedCase.householdChildren = Number(req.body.householdChildren);
+            outDatedCase.householdIncome = Number(req.body.householdIncome);
+            outDatedCase.numBeds = Number(req.body.numBeds);
+            outDatedCase.numBaths = Number(req.body.numBaths);
+            outDatedCase.numSqFootage = Number(req.body.numSqFootage);
+            outDatedCase.recentlyRenovated = Boolean(req.body.recentlyRenovated);
+            outDatedCase.needRenovation = Boolean(req.body.needRenovation);
+            outDatedCase.homeDescription = req.body.homeDescription;
 
             outDatedCase.save()
                 .then(() => res.json('Case updated!'))
