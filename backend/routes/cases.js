@@ -73,9 +73,12 @@ router.route('/add').post((req, res) => {
     //const caseId = mongoose.Types.ObjectId(req.body.caseId);
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
-    const ethinicity = req.body.ethinicity;
+    const ethnicity = req.body.ethnicity;
     const gender = req.body.gender;
     const address = req.body.address;
+    const city = req.body.city;
+    const state = req.body.state;
+    const zipcode = req.body.zipcode;
     const phonenumber = Number(req.body.phonenumber);
     const homedescription = req.body.homedescription;
     const own = Boolean(req.body.own);
@@ -84,25 +87,26 @@ router.route('/add').post((req, res) => {
     const estimatedvalue = Number(req.body.estimatedvalue);
     const ageofhome = Number(req.body.ageofhome);
     const householdincome = Number(req.body.householdincome);
-    const numberofresidents = {
-        adults: Number(req.body.numberofresidents.adults),
-        children: Number(req.body.numberofresidents.children),
-    }
+    const numberofadults = Number(req.body.numberofresidents.adults);
+    const numberofchildren = Number(req.body.numberofresidents.children);
     const bedrooms = Number(req.body.bedrooms);
     const baths = Number(req.body.baths);
     const squarefootage = Number(req.body.squarefootage);
     const recentlyrenovated = Boolean(req.body.recentlyrenovated);
     const needsrenovation = Boolean(req.body.needsrenovation);
     const previoushomeowner = Boolean(req.body.previoushomeowner);
-    const veteran = Boolean(req.body.veteran);
+    const veteran = req.body.veteran;
     const accomodations = req.body.accomodations;
 
     const newCase = new Case({
         firstname, 
         lastname, 
-        ethinicity, 
+        ethnicity, 
         gender, 
         address, 
+        state,
+        city,
+        zipcode,
         phonenumber, 
         homedescription, 
         own, 
