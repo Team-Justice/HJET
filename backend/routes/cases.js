@@ -69,7 +69,6 @@ router.route('/').get((req, res) => {
 //add new case 
 router.route('/add').post((req, res) => {
     //const caseId = mongoose.Types.ObjectId(req.body.caseId);
-<<<<<<< HEAD
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const phoneNum = Number(req.body.phoneNum);
@@ -110,59 +109,7 @@ router.route('/add').post((req, res) => {
         gender, 
         race, 
         ethnicity,
-=======
-    const firstname = req.body.firstname;
-    const lastname = req.body.lastname;
-    const ethnicity = req.body.ethnicity;
-    const gender = req.body.gender;
-    const address = req.body.address;
-    const city = req.body.city;
-    const state = req.body.state;
-    const zipcode = req.body.zipcode;
-    const phonenumber = Number(req.body.phonenumber);
-    const homedescription = req.body.homedescription;
-    const own = Boolean(req.body.own);
-    const rent = Boolean(req.body.rent);
-    const residencystartdate = Date.parse(req.body.residencystartdate);
-    const estimatedvalue = Number(req.body.estimatedvalue);
-    const ageofhome = Number(req.body.ageofhome);
-    const householdincome = Number(req.body.householdincome);
-    const numberofadults = Number(req.body.numberofresidents.adults);
-    const numberofchildren = Number(req.body.numberofresidents.children);
-    const bedrooms = Number(req.body.bedrooms);
-    const baths = Number(req.body.baths);
-    const squarefootage = Number(req.body.squarefootage);
-    const recentlyrenovated = Boolean(req.body.recentlyrenovated);
-    const needsrenovation = Boolean(req.body.needsrenovation);
-    const previoushomeowner = Boolean(req.body.previoushomeowner);
-    const veteran = req.body.veteran;
-    const accomodations = req.body.accomodations;
 
-    const newCase = new Case({
-        firstname, 
-        lastname, 
-        ethnicity, 
-        gender, 
-        address, 
-        state,
-        city,
-        zipcode,
-        phonenumber, 
-        homedescription, 
-        own, 
-        rent, 
-        residencystartdate, 
-        estimatedvalue,
-        ageofhome, 
-        householdincome, 
-        numberofresidents, 
-        bedrooms, 
-        baths, 
-        squarefootage, 
-        recentlyrenovated,
-        needsrenovation, 
-        previoushomeowner, 
->>>>>>> c332816f131d48066341c86cd2b7010f89f5ef74
         veteran, 
         accommodations, 
         preHomeowner,

@@ -130,10 +130,8 @@ export default class CaseEdit extends Component {
   }
    
   componentDidMount() {
-
-    axios.get('http://localhost:5000/cases/') // add object id param
+    axios.get('http://localhost:5000/cases/') // TODO: add object id param
     .then(response => {
-      console.log("data", response.data[0]);
       this.setState({
         // client personal info
         firstName: response.data[0].firstName,
@@ -174,26 +172,6 @@ export default class CaseEdit extends Component {
     
 
   }
-  
-  // onSubmit(e) { 
-  //   console.log("onsubmit calles");
-
-  //   e.preventDefault();
-
-  //   const caseId = "5f4c0f14e697a6084407d2ac";
-  //   const editedCase = {
-  //     firstName: this.state.firstName,
-  //     lastName: this.state.lastName,
-  //   }
-    
-  //   axios.post('http://localhost:5000/cases/update/' + caseId, editedCase)
-  //     .then(
-  //       console.log("Update made")
-  //     )
-  //     .catch(error => {
-  //       console.log("Error: ", error);
-  //     })
-  // }
 
   render() {
     return (

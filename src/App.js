@@ -14,8 +14,8 @@ function App() {
         <LoginBox />
       </header>
       {/* temporary preview until we have routes set up */}
-      <CaseForm />
-      {/* <CaseEdit/> */}
+      {/* <CaseForm /> */}
+      <CaseEdit/>
     </div>
   );
 }
