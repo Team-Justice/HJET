@@ -1,6 +1,5 @@
 const router = require('express').Router();
 let Case = require('../models/case.model');
-var mongoose = require('mongoose');
 
 //returns all of the cases or specified based on parameters 
 router.route('/').get((req, res) => {
@@ -66,7 +65,6 @@ router.route('/').get((req, res) => {
     .then(cases => res.json(cases))
     .catch(err => res.status(400).json(err));
 })
-
 
 //add new case 
 router.route('/add').post((req, res) => {
@@ -141,12 +139,45 @@ router.route('/:id').get((req, res) => {
         if (err) { 
             console.log(err); 
         } 
-        else{ 
+        else { 
             res.json(docs)
         } 
     })
 })
 
+// update
+router.route('/update/:id').post((req, res) => {
+    Case.findById(req.params.id)
+        .then(outDatedCase => {
+            outDatedCase.firstname = req.body.firstname;
+            outDatedCase.lastname = req.body.lastname; 
+            outDatedCase.ethinicity = req.body.ethinicity;
+            outDatedCase.gender = req.body.gender; 
+            outDatedCase.address = req.body.address;
+            outDatedCase.phonenumber = Number(req.body.phonenumber); 
+            outDatedCase.homedescription = req.body.homedescription; 
+            outDatedCase.own = Boolean(req.body.own); 
+            outDatedCase.rent = Boolean(req.body.rent);
+            outDatedCase.residencystartdate = Date.parse(req.body.residencystartdate); 
+            outDatedCase.estimatedvalue = Number(req.body.estimatedvalue);
+            outDatedCase.ageofhome = Number(req.body.ageofhome);
+            outDatedCase.householdincome = Number(req.body.householdincome); 
+            outDatedCase.numberofresidents.adults = Number(req.body.numberofresidents.adults);
+            outDatedCase.numberofresidents.children = Number(req.body.numberofresidents.children);
+            outDatedCase.bedrooms = Number(req.body.bedrooms); 
+            outDatedCase.baths = Number(req.body.baths); 
+            outDatedCase.squarefootage = Number(req.body.squarefootage); 
+            outDatedCase.recentlyrenovated = Boolean(req.body.recentlyrenovated);
+            outDatedCase.needsrenovation = Boolean(req.body.needsrenovation);
+            outDatedCase.previoushomeowner = Boolean(req.body.previoushomeowner); 
+            outDatedCase.veteran = Boolean(req.body.veteran); 
+            outDatedCase.accomodations = req.body.accomodations;
+
+            outDatedCase.save()
+                .then(() => res.json('Case updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+});
 
 //delete
 router.route('/:id').delete((req, res) => {
