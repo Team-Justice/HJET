@@ -3,9 +3,11 @@ import React from 'react';
 import './App.css';
 import HJETpic from './HJETpic.png';
 import LoginBox from './LoginBox.js';
-import CaseForm from './components/CaseForm/CaseForm.js';
+// import CaseForm from './components/CaseForm/CaseForm.js';
 import CaseEdit from './components/CaseEdit/CaseEdit';
 import CaseView from './components/CaseView/CaseView';
+import MainMenu from './components/MainMenu/MainMenu';
+import Cases from './components/Cases/Cases';
 
 function App() {
   return (
@@ -14,8 +16,10 @@ function App() {
         <img src={HJETpic} />
         <LoginBox />
       </header>
+      {/* <MainMenu /> */}
+      {/* <Cases/> */}
       {/* temporary preview until we have routes set up */}
-      <CaseForm />
+      {/* <CaseForm /> */}
       {/* <CaseEdit/> */}
       <CaseView/>
     </div>

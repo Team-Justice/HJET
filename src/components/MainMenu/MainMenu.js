@@ -47,23 +47,11 @@ export default function SpacingGrid() {
         <Grid item xs={6}> 
           <Grid container justify="left">
 
-          {/* <div
-            style={{
-                margin: 'auto', left: '50%', top: '50%',
-                transform: 'translate(-50%, -50%)'
-            }}
-            >
-
-              <BusinessCenterIcon style={{ fontSize: 300 }} />
-              <p>Cases</p>  
-              <AssessmentOutlinedIcon style={{ fontSize: 300 }} />
-              <p>Analysis</p> 
-
-          </div> */}
-
-
-          <div style = {{display: 'flex', justifyContent: "center",
-          alignItems: "center", margin: 'auto'}}>
+          <div style={{
+            position: 'absolute', left: '50%', top: '50%',
+            transform: 'translate(-50%, -50%)', display: 'flex', justifyContent: "center",
+            alignItems: "center", margin: 'auto'
+          }}>
             <div>
               <BusinessCenterIcon style={{ fontSize: 300 }} />
               <p>Cases</p>   

@@ -38,8 +38,11 @@ export default function SpacingGrid() {
         <h1> Cases </h1>
       </Box>
 
-      <div style = {{display: 'flex', justifyContent: "center",
-      alignItems: "center", margin: 'auto'}}>
+      <div style={{
+        position: 'absolute', left: '50%', top: '50%',
+        transform: 'translate(-50%, -50%)', display: 'flex', justifyContent: "center",
+        alignItems: "center", margin: 'auto'
+      }}>
         <div>
           <AddIcon style={{ fontSize: 300 }} />
           <p>New Cases </p>   
