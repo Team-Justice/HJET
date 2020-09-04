@@ -1,0 +1,37 @@
+.greContainer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+.genderRaceEthnicity {
+    margin-right: 50px !important;
+    min-width: 100px !important;
+}
+
+.vetStatus {
+    min-width: 130px !important;
+}
+
+.accommodations {
+    min-width: 200px !important;
+}
+
+.prevHomeowner {
+    min-width: 180px !important;
+}
+
+.homeOwnership {
+    min-width: 170px !important;
+}
+
+.sqFootage {
+    min-width: 210px !important;
+}
+
+.recentlyRenovated {
+    min-width: 170px !important;
+}
+
+.needRenovation {
+    min-width: 150px !important;
+}
