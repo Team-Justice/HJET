@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactTable from "react-table-6";
 import "react-table-6/react-table.css";
+import {Link} from 'react-router-dom';
+
 
 
 class CaseSearch extends React.Component {
@@ -34,6 +36,14 @@ class CaseSearch extends React.Component {
     filterMethod = (filter, row, column) => {
         const id = filter.pivotId || filter.id
         return row[id] !== undefined ? String(row[id].toLowerCase()).startsWith(filter.value.toLowerCase()) : true
+    }
+
+    handleEdit(id) {
+
+    }
+
+    handleView(id) {
+
     }
 
     render() {
@@ -75,6 +85,17 @@ class CaseSearch extends React.Component {
                 accessor: "createdAt",
                 sortable: false
             },
+            {
+                Header: "",
+                accessor: "_id",
+                width: 200,
+                Cell: row => (
+                    <div className="viewEditButtons">
+                        <Link to={"/caseView/" + row.original._id} className="btn btn-primary">View</Link>
+                        <Link to={"/caseEdit/" + row.original._id} className="btn btn-primary">Edit</Link>
+                    </div>
+                )
+            }
         ]
 
         return (

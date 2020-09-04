@@ -6,18 +6,21 @@ import LoginBox from './LoginBox.js';
 import CaseForm from './CaseForm.js';
 import CaseEdit from './components/CaseEdit/CaseEdit';
 import CaseView from './components/CaseView/CaseView';
+import CaseSearch from './CaseSearch';
+import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
+
 
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={HJETpic} />
-        <LoginBox />
-      </header>
-      {/* temporary preview until we have routes set up */}
-      {/* <CaseForm /> */}
-      {/* <CaseEdit/> */}
-      <CaseView/>
+      <Router>
+        <Switch>
+          <Route path="/" exact component ={CaseSearch} />  {/*this line should be changed to homepage later*/}
+          <Route path="/caseForm" exact component={CaseForm} />
+          <Route path="/caseEdit/:id" component = {CaseEdit}/>
+          <Route path="/caseView/:id" exact component={CaseView} />
+        </Switch>
+      </Router>
     </div>
   );
 }

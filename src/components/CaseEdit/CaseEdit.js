@@ -96,6 +96,9 @@ export default class CaseEdit extends Component {
     super(props);
 
     this.state = {
+
+    //id
+    id:"",
       // client personal info
     firstName: "",
     lastName: "",
@@ -130,40 +133,45 @@ export default class CaseEdit extends Component {
   }
    
   componentDidMount() {
-    axios.get('http://localhost:5000/cases/') // TODO: add object id param
+    console.log(this.props);
+    const {id} = this.props.match.params;
+    console.log(id);
+    axios.get('http://localhost:5000/cases/' + id) // TODO: add object id param
     .then(response => {
+        console.log(response);
       this.setState({
+        id: id,
         // client personal info
-        firstName: response.data[0].firstName,
-        lastName: response.data[0].lastName,
-        phoneNum: response.data[0].phoneNum,
-        email: response.data[0].email,
-        homeAddress: response.data[0].homeAddress,
-        city: response.data[0].city,
-        state: response.data[0].state,
-        zip: response.data[0].zip,
+        firstName: response.data.firstName,
+        lastName: response.data.lastName,
+        phoneNum: response.data.phoneNum,
+        email: response.data.email,
+        homeAddress: response.data.homeAddress,
+        city: response.data.city,
+        state: response.data.state,
+        zip: response.data.zip,
 
-        gender: response.data[0].gender,
-        race: response.data[0].race,
-        ethnicity: response.data[0].ethnicity,
-        veteran: response.data[0].veteran,
-        accommodations: response.data[0].accommodations,
+        gender: response.data.gender,
+        race: response.data.race,
+        ethnicity: response.data.ethnicity,
+        veteran: response.data.veteran,
+        accommodations: response.data.accommodations,
 
         // client questionnaire responses
-        preHomeowner: response.data[0].preHomeowner,
-        ownershipOfHome:response.data[0].ownershipOfHome,
-        timeInHome: response.data[0].timeInHome,
-        homeValue: response.data[0].homeValue,
-        homeAge: response.data[0].homeAge,
-        householdAdults: response.data[0].householdAdults,
-        householdChildren: response.data[0].householdChildren,
-        householdIncome: response.data[0].householdIncome,
-        numBeds: response.data[0].numBeds,
-        numBaths: response.data[0].numBaths,
-        numSqFootage: response.data[0].numSqFootage,
-        recentlyRenovated: response.data[0].recentlyRenovated,
-        needRenovation: response.data[0].needRenovation,
-        homeDescription: response.data[0].homeDescription,
+        preHomeowner: response.data.preHomeowner,
+        ownershipOfHome:response.data.ownershipOfHome,
+        timeInHome: response.data.timeInHome,
+        homeValue: response.data.homeValue,
+        homeAge: response.data.homeAge,
+        householdAdults: response.data.householdAdults,
+        householdChildren: response.data.householdChildren,
+        householdIncome: response.data.householdIncome,
+        numBeds: response.data.numBeds,
+        numBaths: response.data.numBaths,
+        numSqFootage: response.data.numSqFootage,
+        recentlyRenovated: response.data.recentlyRenovated,
+        needRenovation: response.data.needRenovation,
+        homeDescription: response.data.homeDescription,
       })
     })
     .catch(error => {
@@ -174,6 +182,7 @@ export default class CaseEdit extends Component {
   }
 
   render() {
+    const id2 = this.state.id;
     return (
         <Card>
             <CardContent>
@@ -185,8 +194,8 @@ export default class CaseEdit extends Component {
                     // initiate form values
                     initialValues={this.state}
                     // logic to send form data to the backend
-                    onSubmit={(values, formikHelpers) => {                      
-                        axios.post('http://localhost:5000/cases/update/5f510c51b75bd424ac82c721', values)                    
+                    onSubmit={(values, formikHelpers) => {                    
+                        axios.post(('http://localhost:5000/cases/update/' + id2), values)                    
                         .then(res => {
                             console.log(res);
                             console.log(res.data);
