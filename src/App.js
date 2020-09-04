@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import HJETpic from './HJETpic.png';
 import LoginBox from './LoginBox.js';
-import CaseForm from './CaseForm.js';
+import CaseForm from './components/CaseForm/CaseForm.js';
 import CaseEdit from './components/CaseEdit/CaseEdit';
 import CaseView from './components/CaseView/CaseView';
 
@@ -15,7 +15,7 @@ function App() {
         <LoginBox />
       </header>
       {/* temporary preview until we have routes set up */}
-      {/* <CaseForm /> */}
+      <CaseForm />
       {/* <CaseEdit/> */}
       <CaseView/>
     </div>
