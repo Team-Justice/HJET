@@ -3,25 +3,24 @@ import React from 'react';
 import './App.css';
 import HJETpic from './HJETpic.png';
 import LoginBox from './LoginBox.js';
-// import CaseForm from './components/CaseForm/CaseForm.js';
+import CaseForm from './components/CaseForm/CaseForm.js';
 import CaseEdit from './components/CaseEdit/CaseEdit';
 import CaseView from './components/CaseView/CaseView';
-import MainMenu from './components/MainMenu/MainMenu';
-import Cases from './components/Cases/Cases';
+import CaseSearch from './CaseSearch';
+import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
+
 
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={HJETpic} />
-        <LoginBox />
-      </header>
-      {/* <MainMenu /> */}
-      {/* <Cases/> */}
-      {/* temporary preview until we have routes set up */}
-      {/* <CaseForm /> */}
-      {/* <CaseEdit/> */}
-      <CaseView/>
+      <Router>
+        <Switch>
+          <Route path="/" exact component ={CaseSearch} />  {/*this line should be changed to homepage later*/}
+          <Route path="/caseForm" exact component={CaseForm} />
+          <Route path="/caseEdit/:id" component = {CaseEdit}/>
+          <Route path="/caseView/:id" exact component={CaseView} />
+        </Switch>
+      </Router>
     </div>
   );
 }
