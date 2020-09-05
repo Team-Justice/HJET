@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Box from '@material-ui/core/Box';
 import AddIcon from '@material-ui/icons/Add';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
+import {Link} from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,13 +46,17 @@ export default function SpacingGrid() {
         alignItems: "center", margin: 'auto'
       }}>
         <div>
-          <AddIcon style={{ fontSize: 300 }} />
-          <p>New Cases </p>   
+          <Link to="/caseForm">
+            <AddIcon style={{ fontSize: 300 }} />
+            <p>New Cases </p>  
+          </Link>  
         </div>
       
         <div>
-          <FindInPageIcon style={{ fontSize: 300 }} />
-          <p>Search</p>
+          <Link to="/caseSearch">
+            <FindInPageIcon style={{ fontSize: 300 }} />
+            <p>Search</p>
+          </Link>
         </div>
       </div>
       
