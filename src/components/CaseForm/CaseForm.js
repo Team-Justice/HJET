@@ -4,6 +4,8 @@ import { Box, Card, CardContent, Divider, TextField, MenuItem, Button } from "@m
 import { object, string, boolean, number } from 'yup';
 import axios from 'axios';
 import './CaseForm.css';
+import {Link} from 'react-router-dom';
+
 
 const InitialValues = {
     // client personal info
@@ -338,13 +340,17 @@ export default class CaseForm extends Component {
 
                                 <Divider />
 
-                                <Button type="submit" disabled={isValidating}>submit</Button>
+                                <Link to="/cases">
+                                    <Button type="submit" disabled={isValidating}>submit</Button>
+                                </Link>
 
+                                
                                 {/* allows us to see state of errors in form for validation debugging */}
-                                <pre>{JSON.stringify(errors, null, 4)}</pre>
+                                {/*<pre>{JSON.stringify(errors, null, 4)}</pre> */}
 
                                 {/* allows us to see the state of the form for debugging */}
-                                <pre>{JSON.stringify(values, null, 4)}</pre>
+                                {/*<pre>{JSON.stringify(values, null, 4)}</pre>*/}
+                                
                             </Form>
                         )}
                     </Formik>

@@ -7,6 +7,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import "bootstrap/dist/css/bootstrap.min.css";
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
+import {Link} from 'react-router-dom';
 
 
 import Box from '@material-ui/core/Box';
@@ -53,13 +54,17 @@ export default function SpacingGrid() {
             alignItems: "center", margin: 'auto'
           }}>
             <div>
-              <BusinessCenterIcon style={{ fontSize: 300 }} />
-              <p>Cases</p>   
+              <Link to="/cases">
+                <BusinessCenterIcon style={{ fontSize: 300 }} />
+                <p>Cases</p> 
+              </Link>
             </div>
           
             <div>
-              <AssessmentOutlinedIcon style={{ fontSize: 300 }} />
-              <p>Analysis</p>
+              <Link to="/">
+                <AssessmentOutlinedIcon style={{ fontSize: 300 }} />
+                <p>Analysis</p>
+              </Link>
             </div>
           </div>
 
