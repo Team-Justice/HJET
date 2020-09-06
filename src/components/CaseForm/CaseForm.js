@@ -346,10 +346,10 @@ export default class CaseForm extends Component {
 
                                 
                                 {/* allows us to see state of errors in form for validation debugging */}
-                                {/*<pre>{JSON.stringify(errors, null, 4)}</pre> */}
+                                <pre>{JSON.stringify(errors, null, 4)}</pre>
 
                                 {/* allows us to see the state of the form for debugging */}
-                                {/*<pre>{JSON.stringify(values, null, 4)}</pre>*/}
+                                <pre>{JSON.stringify(values, null, 4)}</pre>
                                 
                             </Form>
                         )}
