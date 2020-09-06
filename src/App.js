@@ -10,12 +10,14 @@ import CaseSearch from './CaseSearch';
 import MainMenu from './components/MainMenu/MainMenu';
 import Cases from './components/Cases/Cases';
 import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
+import NavBar from './components/NavBar/NavBar';
 
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <NavBar/>
         <Switch>
           <Route path="/" exact component ={MainMenu} /> 
           <Route path="/caseForm" exact component={CaseForm} />
