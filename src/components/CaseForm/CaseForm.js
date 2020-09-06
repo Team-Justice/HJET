@@ -302,7 +302,6 @@ export default class CaseForm extends Component {
                                             <MenuItem value={false}>No</MenuItem>
                                         </Field>
                                     </Box>
-
                                     <Divider />
 
                                     <Box marginBottom={2}>
@@ -418,6 +417,7 @@ export default class CaseForm extends Component {
                     </CardContent>
                 </Card>
             </>
+
         );
     }
 }
