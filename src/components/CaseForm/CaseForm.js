@@ -134,33 +134,34 @@ export default class CaseForm extends Component {
             unsuccessfulSubmit: false,
             showSuccess: false,
         }
-        this.setUnsuccessfulSubmit = this.setUnsuccessfulSubmit.bind(this);
+        this.checkUnsuccessfulSubmit = this.checkUnsuccessfulSubmit.bind(this);
         this.close = this.close.bind(this);
     }
 
-    setUnsuccessfulSubmit() {
-        this.setState({
-            unsuccessfulSubmit: true
-        })
-        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    checkUnsuccessfulSubmit() {
+        if (this.state.showSuccess === false) {
+            this.setState({
+                unsuccessfulSubmit: true
+            });
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
+        }  
 
     }
 
-    close(change) {
+    close() {
         this.setState({
-            unsuccessfulSubmit: change
+            unsuccessfulSubmit: false
         })
     }
 
 
     
       
-    //   render(<AlertDismissible />);
 
     render() {
         return (
-            <>
-                <Alert show={this.state.showSuccess} onClose={this.close} variant="success">
+            <div>
+                <Alert show={this.state.showSuccess} variant="success">
 					<Alert.Heading>Your Case Went Through!</Alert.Heading>
 					<p>
 						You can now return back home by pressing the button below. 
@@ -181,10 +182,7 @@ export default class CaseForm extends Component {
   				</p>
 				</Alert>
 
-
-
                 <Card>
-                    {alert}
                     <CardContent>
                         <h4>Client Screening</h4>
 
@@ -203,8 +201,8 @@ export default class CaseForm extends Component {
                                         console.log(res);
                                         console.log(res.data);
                                         this.setState({
+                                            unsuccessfulSubmit: false,
                                             showSuccess: true,
-                                            unsuccessfulSubmit: false
                                         });
                                         document.body.scrollTop = document.documentElement.scrollTop = 0;
 
@@ -401,7 +399,7 @@ export default class CaseForm extends Component {
                                     <Divider />
 
                                     {/* <Link to="/cases"> */}
-                                    <Button onClick={this.setUnsuccessfulSubmit} type="submit" disabled={isValidating}>submit</Button>
+                                    <Button onClick={this.checkUnsuccessfulSubmit} type="submit" disabled={isValidating}>submit</Button>
                                     {/* </Link> */}
 
 
@@ -416,8 +414,7 @@ export default class CaseForm extends Component {
                         </Formik>
                     </CardContent>
                 </Card>
-            </>
-
+            </div>
         );
     }
 }
