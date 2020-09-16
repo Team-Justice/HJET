@@ -124,6 +124,7 @@ const SignupSchema = object().shape({
         .required('Required'),
     needRenovation: string()
         .required('Required'),
+    homeDescription: string(),
 });
 
 
@@ -155,8 +156,6 @@ export default class CaseForm extends Component {
     }
 
 
-    
-      
 
     render() {
         return (
@@ -404,10 +403,10 @@ export default class CaseForm extends Component {
 
 
                                     {/* allows us to see state of errors in form for validation debugging */}
-                                    {/*<pre>{JSON.stringify(errors, null, 4)}</pre> */}
+                                    {/* <pre>{JSON.stringify(errors, null, 4)}</pre> */}
 
                                     {/* allows us to see the state of the form for debugging */}
-                                    {/*<pre>{JSON.stringify(values, null, 4)}</pre>*/}
+                                    {/* <pre>{JSON.stringify(values, null, 4)}</pre> */}
 
                                 </Form>
                             )}
