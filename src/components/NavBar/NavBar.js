@@ -2,28 +2,45 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from './HJETpiclogo.png';
 import {Link} from 'react-router-dom';
+import './NavBar.css';
 
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import { IconButton } from '@material-ui/core';
+
+const useStyles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+
+  title: {
+    margin: '0 5rem',
+
+  }
+});
 
 class NavBar extends React.Component {
 
     render() {
+      const { classes } = this.props;
         return (
-            <Navbar bg="dark">
-            <Navbar.Brand href="#home">
-              <Link to="/">
-              <img
-                src={logo}
-                width="30"
-                height="30"
-                className="d-inline-block align-top"
-                alt="HJET logo"
-              />
-              </Link>
-            </Navbar.Brand>
-          </Navbar>
+          <div class="nav" className={classes.root}>
+            <AppBar className={classes.appbar} position="static" color="transparent">
+              <Toolbar>
+                  <IconButton href="/">
+                    <img src={logo} width="30rem" height="30rem" className="d-inline-block align-top" alt="HJET logo"/>
+                  </IconButton>
+                  <Button variant="link" href="/" color="inherit">Back To Home</Button>
+               
+                <Typography className={classes.title} variant="h6">Welcome to the Housing Justice Evaluation Tool!</Typography>
+              </Toolbar>
+            </AppBar>
+          </div>
         )
     }
-    
 }
 
-export default NavBar;
+export default withStyles(useStyles) (NavBar);
