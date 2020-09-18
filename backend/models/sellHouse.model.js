@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const sellHouseSchema = new Schema({
+    caseID: {type: mongoose.Types.ObjectId, required: true},
     wantHomeWealthGenerationCourse: {type: Boolean, required: true},
     wantFirstTimeBuyersCourse: {type: Boolean, required: true},
     wantToSellToInvestor: {type: Boolean, required: true}, 
