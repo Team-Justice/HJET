@@ -30,7 +30,7 @@ const caseSchema = new Schema({
     numSqFootage: {type: Number, required: true, trim: true, min: 0},
     recentlyRenovated: {type: Boolean, required: true},
     needRenovation: {type: Boolean, required: true},
-    homeDescription: {type: String, required: true, trim: true},
+    homeDescription: {type: String, required: false, trim: true},
 }, { timestamps: true });
 
 const Case = mongoose.model('Case', caseSchema);

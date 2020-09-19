@@ -16,6 +16,7 @@ import AssessmentOutlinedIcon from '@material-ui/icons/AssessmentOutlined';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    textAlign: "center"
   },
   paper: {
     height: 140,
@@ -39,10 +40,6 @@ export default function SpacingGrid() {
     <Grid container className={classes.root} spacing={0}>
       
       <React.Fragment>
-        <Box textAlign="left">
-          <h1> Housing Justice Evaluation Tool </h1>
-          <h4> Username: </h4>
-        </Box>
 
         {/* Grid system = 12 for full length; 12total/2items = 6 --> 6 for 2 items */}
         <Grid item xs={6}> 
@@ -71,8 +68,6 @@ export default function SpacingGrid() {
           </Grid>
         </Grid>
     </React.Fragment>
-
-        
       
     </Grid>
   );
