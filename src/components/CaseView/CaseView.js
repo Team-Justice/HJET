@@ -10,6 +10,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button'
+import {Link} from 'react-router-dom';
 
 
 const useStyles = makeStyles({
@@ -74,24 +76,29 @@ export default class CaseView extends Component {
 
   render() {
     return (
-      <div>
-        <h4>View Case</h4>
-      <TableContainer component={Paper}>
-      <Table aria-label="simple table">
-        
-        <TableBody>
-          {this.rows.map((row) => (
-            <TableRow >
-              <TableCell align="left">{row.field}</TableCell>
-              <TableCell component="th" scope="row">{row.value}</TableCell>
-          
-            </TableRow>
-          ))}
-        </TableBody>
+      <div className="viewDT-container">
+        <div className="viewDT-content">
+          <h4>View Case</h4>
+          <TableContainer component={Paper}>
+            <Table aria-label="simple table">
 
-      </Table>
-    </TableContainer>
-    </div>
+              <TableBody>
+                {this.rows.map((row) => (
+                  <TableRow >
+                    <TableCell align="left">{row.field}</TableCell>
+                    <TableCell component="th" scope="row">{row.value}</TableCell>
+
+                  </TableRow>
+                ))}
+              </TableBody>
+
+            </Table>
+          </TableContainer>
+          <div className="button-container">
+            <Link to='/decisionTreeCategories'><Button variant="outline-secondary" className="addDT-button">Add a Decision Tree</Button></Link>
+          </div>
+        </div>
+      </div>
     );
   }
 

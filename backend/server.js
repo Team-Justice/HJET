@@ -19,10 +19,10 @@ connection.once('open', () => {
 
 // Routes
 const casesRouter = require('./routes/cases');
-const decisionTreeRouter = require('./routes/decisiontrees')
+// const decisionTreeRouter = require('./routes/decisiontrees')
 
 app.use('/cases', casesRouter);
-ap.use('/decision-trees, decisionTreesRouter');
+// app.use('/decision-trees, decisionTreesRouter');
 
 // Server
 app.listen(port, () => {

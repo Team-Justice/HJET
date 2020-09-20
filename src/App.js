@@ -8,6 +8,11 @@ import MainMenu from './components/MainMenu/MainMenu';
 import Cases from './components/Cases/Cases';
 import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
+import DTCategories from './components/DTCategories/DTCategories';
+import LegacyDT from './components/LegacyDecisionTree/LegacyDecisionTree';
+import MaintainDT from './components/MaintainHouseDecisionTree/MaintainHouseDecisionTree';
+import SellDT from './components//SellDecisionTree/SellDecisionTree';
+
 
 
 function App() {
@@ -16,12 +21,16 @@ function App() {
       <NavBar/>
       <Router>
           <Switch>
-            <Route path="/" exact component ={MainMenu} /> 
-            <Route path="/caseForm" exact component={CaseForm} />
+            <Route path="/" exact component ={MainMenu}/> 
+            <Route path="/caseForm" exact component={CaseForm}/>
             <Route path="/caseEdit/:id" component = {CaseEdit}/>
-            <Route path="/caseView/:id" exact component={CaseView} />
-            <Route path="/caseSearch" exact component = {CaseSearch} />
-            <Route path="/cases" exact component = {Cases} />
+            <Route path="/caseView/:id" exact component={CaseView}/>
+            <Route path="/caseSearch" exact component = {CaseSearch}/>
+            <Route path="/cases" exact component = {Cases}/>
+            <Route path="/decisionTreeCategories" exact component = {DTCategories}/>
+            <Route path="/decisionTreeCategories/legacy" exact component = {LegacyDT}/>
+            <Route path="/decisionTreeCategories/maintain" exact component = {MaintainDT}/>
+            <Route path="/decisionTreeCategories/sell" exact component = {SellDT}/>
           </Switch>
 
       </Router>
