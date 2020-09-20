@@ -1,1 +1,30 @@
 .CaseView {}
+
+.viewDT-container {
+    width: 100%;
+    overflow-y: hidden;
+    
+}
+
+.viewDT-content {
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    padding-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button-container Button{
+    margin: 15px auto;
+    text-decoration: none;
+    color: black;
+    outline: black;
+}
