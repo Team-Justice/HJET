@@ -25,4 +25,4 @@ const sellHouseSchema = new Schema({
 })
 
 const sellHouse = mongoose.model('sellHouse', sellHouseSchema);
-module.exports = sellHouseSchema;
+module.exports = sellHouse;
