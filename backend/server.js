@@ -19,7 +19,9 @@ connection.once('open', () => {
 
 // Routers
 const casesRouter = require('./routes/cases');
-const decisionTreeRouter = require('./routes/decisionTrees')
+const legacyWealthBuildingRouter = require('./routes/legacyWealthBuilding');
+const maintainCurrentHomeRouter = require('./routes/maintainCurrentHome');
+const sellHouseRouter = require('./routes/sellHouse');
 
 app.use('/cases', casesRouter);
 app.use('/legacy-wealth-building', legacyWealthBuildingRouter);
