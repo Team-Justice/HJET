@@ -17,12 +17,14 @@ connection.once('open', () => {
     console.log("MongoDB connected successfully!");
 });
 
-// Routes
+// Routers
 const casesRouter = require('./routes/cases');
-// const decisionTreeRouter = require('./routes/decisiontrees')
+const decisionTreeRouter = require('./routes/decisionTrees')
 
 app.use('/cases', casesRouter);
-// app.use('/decision-trees, decisionTreesRouter');
+app.use('/legacy-wealth-building', legacyWealthBuildingRouter);
+app.use('/maintain-current-home', maintainCurrentHomeRouter);
+app.use('/sell-House', sellHouseRouter);
 
 // Server
 app.listen(port, () => {
