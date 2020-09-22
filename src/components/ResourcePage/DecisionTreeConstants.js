@@ -1,7 +1,10 @@
 
+//how its set up
+//each answer has the Title to display on the page, and the Answer/Resource to display on the page.
+
 //LEGACY 
-export const needHomeRenovationAnswer = "TBD need home renovation";
-export const wantToAttendWealthSeminarAnswer = "TBD wealth seminar";
+export const needHomeRenovationAnswer = ["Home Renovation", "TBD need home renovation"];
+export const wantToAttendWealthSeminarAnswer = ["Wealth Seminar", "TBD wealth seminar"];
 export const haveReverseMortgageAnswer =  "TBD have Reverse Mortgage";
 export const needMortgageOrDeedTransferAnswer = "TBD morgage or deed transfer";
 export const wantFirstTimeBuyersCourseAnswer = "TBD first time buyers course";
@@ -14,6 +17,12 @@ export const knowAboutHUDAssistanceAnswer = "TBD know about HUB assistance";
 export const haveOwnershipNeedsAnswer = "TBD have ownership needs";
 export const haveFamilySuccessivePlanAnswer = "TBD have family successive plan";
 export const needFinancialCounselingAnswer = "TBD need financial counseling";
+export const legacyDecisionTree = {needHomeRenovation: needHomeRenovationAnswer, wantToAttendWealthSeminar: wantToAttendWealthSeminarAnswer,
+haveReverseMortgage: haveReverseMortgageAnswer, needMortgageOrDeedTransfer: needMortgageOrDeedTransferAnswer, wantFirstTimeBuyersCourse: wantFirstTimeBuyersCourseAnswer, 
+needHealthyHomeInspection: needHealthyHomeInspectionAnswer, needEnergyEfficiencyInspection: needEnergyEfficiencyInspectionAnswer, planToAbandonHome: planToAbandonHomeAnswer,
+needFinancialAssistanceAnswer, needEmploymentAssistanceAnswer, knowAboutHUDAssistanceAnswer, 
+haveOwnershipNeeds: haveOwnershipNeedsAnswer, haveFamilySuccessivePlan: haveFamilySuccessivePlanAnswer, needFinancialCounseling: needFinancialCounselingAnswer};
+
 
 //MAINTAIN
 export const needSignificantRepairsAnswer = "TBD need significant repairs";
