@@ -9,20 +9,20 @@ import { withStyles } from '@material-ui/core/styles'
 
 const InitialValues = {
     caseID: "1111",
-    needHomeRenovation: false,
-    wantToAttendWealthSeminar: false,
-    haveReverseMortgage: false,
-    needMortgageOrDeedTransfer: false,
-    wantFirstTimeBuyersCourse: false,
-    needHealthyHomeInspection: false,
-    needEnergyEfficiencyInspection: false,
-    planToAbandonHome: false,
-    needFinancialAssistance: false,
-    needEmploymentAssistance: false,
-    knowAboutHUDAssistance: false,
-    haveOwnershipNeeds: false,
-    haveFamilySuccessivePlan: false,
-    needFinancialCounseling: false
+    needHomeRenovation: "",
+    wantToAttendWealthSeminar: "",
+    haveReverseMortgage: "",
+    needMortgageOrDeedTransfer: "",
+    wantFirstTimeBuyersCourse: "",
+    needHealthyHomeInspection: "",
+    needEnergyEfficiencyInspection: "",
+    planToAbandonHome: "",
+    needFinancialAssistance: "",
+    needEmploymentAssistance: "",
+    knowAboutHUDAssistance: "",
+    haveOwnershipNeeds: "",
+    haveFamilySuccessivePlan: "",
+    needFinancialCounseling: ""
 };
 
 const SignupSchema = object().shape({
@@ -142,11 +142,11 @@ export default class LegacyDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needHomeRenovation" value={true} />
+                        <Field type="radio" as={Radio} name="needHomeRenovation" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needHomeRenovation" value={false} />
+                        <Field type="radio" as={Radio} name="needHomeRenovation" value="false" />
                         No
                       </label>
                     </div>
@@ -161,11 +161,11 @@ export default class LegacyDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="wantToAttendWealthSeminar" value={true} />
+                        <Field type="radio" as={Radio} name="wantToAttendWealthSeminar" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="wantToAttendWealthSeminar" value={false} />
+                        <Field type="radio" as={Radio} name="wantToAttendWealthSeminar" value="false" />
                         No
                       </label>
                     </div>
@@ -180,11 +180,11 @@ export default class LegacyDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="haveReverseMortgage" value={true} />
+                        <Field type="radio" as={Radio} name="haveReverseMortgage" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="haveReverseMortgage" value={false} />
+                        <Field type="radio" as={Radio} name="haveReverseMortgage" value="false" />
                         No
                       </label>
                     </div>
@@ -199,11 +199,11 @@ export default class LegacyDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needMortgageOrDeedTransfer" value={true} />
+                        <Field type="radio" as={Radio} name="needMortgageOrDeedTransfer" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needMortgageOrDeedTransfer" value={false} />
+                        <Field type="radio" as={Radio} name="needMortgageOrDeedTransfer" value="false" />
                         No
                       </label>
                     </div>
@@ -218,11 +218,11 @@ export default class LegacyDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="wantFirstTimeBuyersCourse" value={true} />
+                        <Field type="radio" as={Radio} name="wantFirstTimeBuyersCourse" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="wantFirstTimeBuyersCourse" value={false} />
+                        <Field type="radio" as={Radio} name="wantFirstTimeBuyersCourse" value="false" />
                         No
                       </label>
                     </div>
@@ -237,11 +237,11 @@ export default class LegacyDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needHealthyHomeInspection" value={true} />
+                        <Field type="radio" as={Radio} name="needHealthyHomeInspection" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needHealthyHomeInspection" value={false} />
+                        <Field type="radio" as={Radio} name="needHealthyHomeInspection" value="false" />
                         No
                       </label>
                     </div>
@@ -256,11 +256,11 @@ export default class LegacyDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needEnergyEfficiencyInspection" value={true} />
+                        <Field type="radio" as={Radio} name="needEnergyEfficiencyInspection" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needEnergyEfficiencyInspection" value={false} />
+                        <Field type="radio" as={Radio} name="needEnergyEfficiencyInspection" value="false" />
                         No
                       </label>
                     </div>
@@ -275,11 +275,11 @@ export default class LegacyDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="planToAbandonHome" value={true} />
+                        <Field type="radio" as={Radio} name="planToAbandonHome" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="planToAbandonHome" value={false} />
+                        <Field type="radio" as={Radio} name="planToAbandonHome" value="false" />
                         No
                       </label>
                     </div>
@@ -294,11 +294,11 @@ export default class LegacyDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needFinancialAssistance" value={true} />
+                        <Field type="radio" as={Radio} name="needFinancialAssistance" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needFinancialAssistance" value={false} />
+                        <Field type="radio" as={Radio} name="needFinancialAssistance" value="false" />
                         No
                       </label>
                     </div>
@@ -313,11 +313,11 @@ export default class LegacyDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needEmploymentAssistance" value={true} />
+                        <Field type="radio" as={Radio} name="needEmploymentAssistance" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needEmploymentAssistance" value={false} />
+                        <Field type="radio" as={Radio} name="needEmploymentAssistance" value="false" />
                         No
                       </label>
                     </div>
@@ -332,11 +332,11 @@ export default class LegacyDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="knowAboutHUDAssistance" value={true} />
+                        <Field type="radio" as={Radio} name="knowAboutHUDAssistance" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="knowAboutHUDAssistance" value={false} />
+                        <Field type="radio" as={Radio} name="knowAboutHUDAssistance" value="false" />
                         No
                       </label>
                     </div>
@@ -351,11 +351,11 @@ export default class LegacyDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="haveOwnershipNeeds" value={true} />
+                        <Field type="radio" as={Radio} name="haveOwnershipNeeds" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="haveOwnershipNeeds" value={false} />
+                        <Field type="radio" as={Radio} name="haveOwnershipNeeds" value="false" />
                         No
                       </label>
                     </div>
@@ -370,11 +370,11 @@ export default class LegacyDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="haveFamilySuccessivePlan" value={true} />
+                        <Field type="radio" as={Radio} name="haveFamilySuccessivePlan" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="haveFamilySuccessivePlan" value={false} />
+                        <Field type="radio" as={Radio} name="haveFamilySuccessivePlan" value="false" />
                         No
                       </label>
                     </div>
@@ -389,11 +389,11 @@ export default class LegacyDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needFinancialCounseling" value={true} />
+                        <Field type="radio" as={Radio} name="needFinancialCounseling" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needFinancialCounseling" value={false} />
+                        <Field type="radio" as={Radio} name="needFinancialCounseling" value="false" />
                         No
                       </label>
                     </div>

@@ -9,25 +9,25 @@ import { withStyles } from '@material-ui/core/styles'
 
 const InitialValues = {
   caseID: "1111",
-  wantHomeWealthGenerationCourse: null,
-  wantFirstTimeBuyersCourse: null,
-  wantToSellToInvestor: null,
-  wantToUseBroker: null,
-  needFinancialAssistance: null,
-  needFinancialCounseling: null,
-  needHomeRenovation: null,
-  needKnowledgeOfSellingOptions: null,
-  needManagingAssistance: null,
-  needProfessionalCounselor: null,
-  needHealthyHomeInspection: null,
-  needEnergyEfficiencyInspection: null,
-  oweBackTaxes: null,
-  usedHUDCounselor: null,
+  wantHomeWealthGenerationCourse: "",
+  wantFirstTimeBuyersCourse: "",
+  wantToSellToInvestor: "",
+  wantToUseBroker: "",
+  needFinancialAssistance: "",
+  needFinancialCounseling: "",
+  needHomeRenovation: "",
+  needKnowledgeOfSellingOptions: "",
+  needManagingAssistance: "",
+  needProfessionalCounselor: "",
+  needHealthyHomeInspection: "",
+  needEnergyEfficiencyInspection: "",
+  oweBackTaxes: "",
+  usedHUDCounselor: "",
   sellingHouseReason: "",
-  familyWillingToTakeOver: null,
-  haveReverseMortgage: null,
-  houseDegradationBeyondRepair: null,
-  needSignificantRepairs: null,
+  familyWillingToTakeOver: "",
+  haveReverseMortgage: "",
+  houseDegradationBeyondRepair: "",
+  needSignificantRepairs: "",
 };
 
 const SignupSchema = object().shape({
@@ -152,11 +152,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="wantHomeWealthGenerationCourse" value={true} />
+                        <Field type="radio" as={Radio} name="wantHomeWealthGenerationCourse" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="wantHomeWealthGenerationCourse" value={false} />
+                        <Field type="radio" as={Radio} name="wantHomeWealthGenerationCourse" value="false" />
                         No
                       </label>
                     </div>
@@ -171,11 +171,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="wantFirstTimeBuyersCourse" value={true} />
+                        <Field type="radio" as={Radio} name="wantFirstTimeBuyersCourse" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="wantFirstTimeBuyersCourse" value={false} />
+                        <Field type="radio" as={Radio} name="wantFirstTimeBuyersCourse" value="false" />
                         No
                       </label>
                     </div>
@@ -190,11 +190,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="wantToSellToInvestor" value={true} />
+                        <Field type="radio" as={Radio} name="wantToSellToInvestor" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="wantToSellToInvestor" value={false} />
+                        <Field type="radio" as={Radio} name="wantToSellToInvestor" value="false" />
                         No
                       </label>
                     </div>
@@ -209,11 +209,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="wantToUseBroker" value={true} />
+                        <Field type="radio" as={Radio} name="wantToUseBroker" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="wantToUseBroker" value={false} />
+                        <Field type="radio" as={Radio} name="wantToUseBroker" value="false" />
                         No
                       </label>
                     </div>
@@ -228,11 +228,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needFinancialAssistance" value={true} />
+                        <Field type="radio" as={Radio} name="needFinancialAssistance" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needFinancialAssistance" value={false} />
+                        <Field type="radio" as={Radio} name="needFinancialAssistance" value="false" />
                         No
                       </label>
                     </div>
@@ -247,11 +247,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needFinancialCounseling" value={true} />
+                        <Field type="radio" as={Radio} name="needFinancialCounseling" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needFinancialCounseling" value={false} />
+                        <Field type="radio" as={Radio} name="needFinancialCounseling" value="false" />
                         No
                       </label>
                     </div>
@@ -266,11 +266,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needHomeRenovation" value={true} />
+                        <Field type="radio" as={Radio} name="needHomeRenovation" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needHomeRenovation" value={false} />
+                        <Field type="radio" as={Radio} name="needHomeRenovation" value="false" />
                         No
                       </label>
                     </div>
@@ -285,11 +285,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needKnowledgeOfSellingOptions" value={true} />
+                        <Field type="radio" as={Radio} name="needKnowledgeOfSellingOptions" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needKnowledgeOfSellingOptions" value={false} />
+                        <Field type="radio" as={Radio} name="needKnowledgeOfSellingOptions" value="false" />
                         No
                       </label>
                     </div>
@@ -304,11 +304,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needManagingAssistance" value={true} />
+                        <Field type="radio" as={Radio} name="needManagingAssistance" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needManagingAssistance" value={false} />
+                        <Field type="radio" as={Radio} name="needManagingAssistance" value="false" />
                         No
                       </label>
                     </div>
@@ -323,11 +323,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needProfessionalCounselor" value={true} />
+                        <Field type="radio" as={Radio} name="needProfessionalCounselor" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needProfessionalCounselor" value={false} />
+                        <Field type="radio" as={Radio} name="needProfessionalCounselor" value="false" />
                         No
                       </label>
                     </div>
@@ -342,11 +342,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needHealthyHomeInspection" value={true} />
+                        <Field type="radio" as={Radio} name="needHealthyHomeInspection" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needHealthyHomeInspection" value={false} />
+                        <Field type="radio" as={Radio} name="needHealthyHomeInspection" value="false" />
                         No
                       </label>
                     </div>
@@ -361,11 +361,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needEnergyEfficiencyInspection" value={true} />
+                        <Field type="radio" as={Radio} name="needEnergyEfficiencyInspection" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needEnergyEfficiencyInspection" value={false} />
+                        <Field type="radio" as={Radio} name="needEnergyEfficiencyInspection" value="false" />
                         No
                       </label>
                     </div>
@@ -380,11 +380,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="oweBackTaxes" value={true} />
+                        <Field type="radio" as={Radio} name="oweBackTaxes" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="oweBackTaxes" value={false} />
+                        <Field type="radio" as={Radio} name="oweBackTaxes" value="false" />
                         No
                       </label>
                     </div>
@@ -399,11 +399,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="usedHUDCounselor" value={true} />
+                        <Field type="radio" as={Radio} name="usedHUDCounselor" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="usedHUDCounselor" value={false} />
+                        <Field type="radio" as={Radio} name="usedHUDCounselor" value="false" />
                         No
                       </label>
                     </div>
@@ -434,11 +434,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="familyWillingToTakeOver" value={true} />
+                        <Field type="radio" as={Radio} name="familyWillingToTakeOver" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="familyWillingToTakeOver" value={false} />
+                        <Field type="radio" as={Radio} name="familyWillingToTakeOver" value="false" />
                         No
                       </label>
                     </div>
@@ -453,11 +453,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="haveReverseMortgage" value={true} />
+                        <Field type="radio" as={Radio} name="haveReverseMortgage" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="haveReverseMortgage" value={false} />
+                        <Field type="radio" as={Radio} name="haveReverseMortgage" value="false" />
                         No
                       </label>
                     </div>
@@ -472,11 +472,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="houseDegradationBeyondRepair" value={true} />
+                        <Field type="radio" as={Radio} name="houseDegradationBeyondRepair" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="houseDegradationBeyondRepair" value={false} />
+                        <Field type="radio" as={Radio} name="houseDegradationBeyondRepair" value="false" />
                         No
                       </label>
                     </div>
@@ -491,11 +491,11 @@ export default class SellDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needSignificantRepairs" value={true} />
+                        <Field type="radio" as={Radio} name="needSignificantRepairs" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needSignificantRepairs" value={false} />
+                        <Field type="radio" as={Radio} name="needSignificantRepairs" value="false" />
                         No
                       </label>
                     </div>

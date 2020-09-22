@@ -9,19 +9,19 @@ import { withStyles } from '@material-ui/core/styles'
 
 const InitialValues = {
   caseID: "1111",
-  needSignificantRepairs: false,
-  needHealthyHomeAudit: false,
-  needEnergyEfficiencyAudit: false,
-  needRenovationResources: false,
-  needFinancingAssistance: false,
-  needFinancialAssistance: false,
-  needFinancialCounseling: false,
-  needEmploymentCounseling: false,
-  soleHomeowner: false,
-  oweBackTaxes: false,
-  reverseMortgage: false,
-  comfortableInCommunity: false,
-  timeInCommunity: 0
+  needSignificantRepairs: "",
+  needHealthyHomeAudit: "",
+  needEnergyEfficiencyAudit: "",
+  needRenovationResources: "",
+  needFinancingAssistance: "",
+  needFinancialAssistance: "",
+  needFinancialCounseling: "",
+  needEmploymentCounseling: "",
+  soleHomeowner: "",
+  oweBackTaxes: "",
+  reverseMortgage: "",
+  comfortableInCommunity: "",
+  timeInCommunity: ""
 };
 
 const SignupSchema = object().shape({
@@ -139,11 +139,11 @@ export default class MaintainHouseDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needSignificantRepairs" value={true} />
+                        <Field type="radio" as={Radio} name="needSignificantRepairs" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needSignificantRepairs" value={false} />
+                        <Field type="radio" as={Radio} name="needSignificantRepairs" value="false" />
                         No
                       </label>
                     </div>
@@ -158,11 +158,11 @@ export default class MaintainHouseDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needHealthyHomeAudit" value={true} />
+                        <Field type="radio" as={Radio} name="needHealthyHomeAudit" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needHealthyHomeAudit" value={false} />
+                        <Field type="radio" as={Radio} name="needHealthyHomeAudit" value="false" />
                         No
                       </label>
                     </div>
@@ -177,11 +177,11 @@ export default class MaintainHouseDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needEnergyEfficiencyAudit" value={true} />
+                        <Field type="radio" as={Radio} name="needEnergyEfficiencyAudit" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needEnergyEfficiencyAudit" value={false} />
+                        <Field type="radio" as={Radio} name="needEnergyEfficiencyAudit" value="false" />
                         No
                       </label>
                     </div>
@@ -196,11 +196,11 @@ export default class MaintainHouseDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needRenovationResources" value={true} />
+                        <Field type="radio" as={Radio} name="needRenovationResources" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needRenovationResources" value={false} />
+                        <Field type="radio" as={Radio} name="needRenovationResources" value="false" />
                         No
                       </label>
                     </div>
@@ -215,11 +215,11 @@ export default class MaintainHouseDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needFinancingAssistance" value={true} />
+                        <Field type="radio" as={Radio} name="needFinancingAssistance" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needFinancingAssistance" value={false} />
+                        <Field type="radio" as={Radio} name="needFinancingAssistance" value="false" />
                         No
                       </label>
                     </div>
@@ -234,11 +234,11 @@ export default class MaintainHouseDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needFinancialAssistance" value={true} />
+                        <Field type="radio" as={Radio} name="needFinancialAssistance" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needFinancialAssistance" value={false} />
+                        <Field type="radio" as={Radio} name="needFinancialAssistance" value="false" />
                         No
                       </label>
                     </div>
@@ -253,11 +253,11 @@ export default class MaintainHouseDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needFinancialCounseling" value={true} />
+                        <Field type="radio" as={Radio} name="needFinancialCounseling" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needFinancialCounseling" value={false} />
+                        <Field type="radio" as={Radio} name="needFinancialCounseling" value="false" />
                         No
                       </label>
                     </div>
@@ -272,11 +272,11 @@ export default class MaintainHouseDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="needEmploymentCounseling" value={true} />
+                        <Field type="radio" as={Radio} name="needEmploymentCounseling" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="needEmploymentCounseling" value={false} />
+                        <Field type="radio" as={Radio} name="needEmploymentCounseling" value="false" />
                         No
                       </label>
                     </div>
@@ -291,11 +291,11 @@ export default class MaintainHouseDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="soleHomeowner" value={true} />
+                        <Field type="radio" as={Radio} name="soleHomeowner" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="soleHomeowner" value={false} />
+                        <Field type="radio" as={Radio} name="soleHomeowner" value="false" />
                         No
                       </label>
                     </div>
@@ -310,11 +310,11 @@ export default class MaintainHouseDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="oweBackTaxes" value={true} />
+                        <Field type="radio" as={Radio} name="oweBackTaxes" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="oweBackTaxes" value={false} />
+                        <Field type="radio" as={Radio} name="oweBackTaxes" value="false" />
                         No
                       </label>
                     </div>
@@ -329,11 +329,11 @@ export default class MaintainHouseDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="reverseMortgage" value={true} />
+                        <Field type="radio" as={Radio} name="reverseMortgage" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="reverseMortgage" value={false} />
+                        <Field type="radio" as={Radio} name="reverseMortgage" value="false" />
                         No
                       </label>
                     </div>
@@ -348,11 +348,11 @@ export default class MaintainHouseDecisionTree extends Component {
                     </div>
                     <div role="group" aria-labelledby="my-radio-group">
                       <label>
-                        <Field type="radio" as={Radio} name="comfortableInCommunity" value={true} />
+                        <Field type="radio" as={Radio} name="comfortableInCommunity" value="true" />
                         Yes
                       </label>
                       <label>
-                        <Field type="radio" as={Radio} name="comfortableInCommunity" value={false} />
+                        <Field type="radio" as={Radio} name="comfortableInCommunity" value="false" />
                         No
                       </label>
                     </div>
@@ -364,11 +364,11 @@ export default class MaintainHouseDecisionTree extends Component {
                   <Box marginBottom={2}>
                     <p>Question 13. How many years have you lived in this community?</p>
                     <Field className="vetStatus" name="timeInCommunity" label="Reason" as={TextField} select variant="outlined" helperText={<ErrorMessage name="timeInCommunity"/>} error={touched.timeInCommunity && Boolean(errors.timeInCommunity)} >
-                        <MenuItem value={0}>0-10</MenuItem>
-                        <MenuItem value={11}>11 - 20</MenuItem>
-                        <MenuItem value={21}>21 - 30</MenuItem>
-                        <MenuItem value={31}>31 - 40</MenuItem>
-                        <MenuItem value={41}>41+</MenuItem>
+                        <MenuItem value="0-10">0-10</MenuItem>
+                        <MenuItem value="11-20">11 - 20</MenuItem>
+                        <MenuItem value="21-30">21 - 30</MenuItem>
+                        <MenuItem value="31-40">31 - 40</MenuItem>
+                        <MenuItem value="41+">41+</MenuItem>
                     </Field>
                   </Box>
 
@@ -383,10 +383,10 @@ export default class MaintainHouseDecisionTree extends Component {
                   </Button>
 
                   {/* allows us to see state of errors in form for validation debugging */}
-                  {/* <pre>{JSON.stringify(errors, null, 4)}</pre> */}
+                   <pre>{JSON.stringify(errors, null, 4)}</pre> 
 
                   {/* allows us to see the state of the form for debugging */}
-                  {/* <pre>{JSON.stringify(values, null, 4)}</pre> */}
+                   <pre>{JSON.stringify(values, null, 4)}</pre> 
                 </Form>
               )}
             </Formik>
