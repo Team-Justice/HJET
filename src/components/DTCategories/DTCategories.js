@@ -22,7 +22,7 @@ class DTCategories extends React.Component {
                     <div className="dt-buttons">
                         <Link to={'/decisionTreeCategories/legacy/' + this.caseID}><Button variant="outline-secondary">Legacy Wealth Building Scheme</Button></Link>
                         <Link to={'/decisionTreeCategories/maintain/' + this.caseID}><Button variant="outline-secondary">Maintain Current Home</Button></Link>
-                        <Link to={'/decisionTreeCategories/sell' + this.caseID}><Button variant="outline-secondary">Sell the House</Button></Link>    
+                        <Link to={'/decisionTreeCategories/sell/' + this.caseID}><Button variant="outline-secondary">Sell the House</Button></Link>    
                     </div>
                 </div>
             </div>

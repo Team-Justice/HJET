@@ -29,8 +29,8 @@ function App() {
             <Route path="/cases" exact component = {Cases}/>
             <Route path="/decisionTreeCategories/:id" exact component = {DTCategories}/>
             <Route path="/decisionTreeCategories/legacy/:id" exact component = {LegacyDT}/>
-            <Route path="/decisionTreeCategories/maintain" exact component = {MaintainDT}/>
-            <Route path="/decisionTreeCategories/sell" exact component = {SellDT}/>
+            <Route path="/decisionTreeCategories/maintain/:id" exact component = {MaintainDT}/>
+            <Route path="/decisionTreeCategories/sell/:id" exact component = {SellDT}/>
           </Switch>
 
       </Router>
