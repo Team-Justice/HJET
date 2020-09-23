@@ -63,4 +63,16 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json(err));
 })
 
+//get specific decision by id 
+router.route('/:id').get((req, res) => {
+    LegacyWealthBuilding.findById(req.params.id, function (err, docs) { 
+        if (err) { 
+            console.log(err); 
+        } 
+        else { 
+            res.json(docs)
+        } 
+    })
+})
+
 module.exports = router;
