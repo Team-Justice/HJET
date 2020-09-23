@@ -8,6 +8,7 @@ import Alert from "react-bootstrap/Alert";
 import { withStyles } from '@material-ui/core/styles'
 
 const InitialValues = {
+  caseID: "1111",
   needSignificantRepairs: "",
   needHealthyHomeAudit: "",
   needEnergyEfficiencyAudit: "",
@@ -48,6 +49,7 @@ const StyledFormHelperText = withStyles({
 export default class MaintainHouseDecisionTree extends Component {
   constructor(props) {
     super(props);
+    this.caseID = "";
     this.state = {
       unsuccessfulSubmit: false,
       showSuccess: false,
@@ -56,6 +58,11 @@ export default class MaintainHouseDecisionTree extends Component {
     this.close = this.close.bind(this);
   }
 
+  componentDidMount() {
+    const {id} = this.props.match.params;
+    this.caseID = id;
+  }
+  
   checkUnsuccessfulSubmit() {
     if (this.state.showSuccess === false) {
       this.setState({
@@ -110,16 +117,20 @@ export default class MaintainHouseDecisionTree extends Component {
               initialValues={InitialValues}
               // logic to send form data to the backend
               onSubmit={(values, formikHelpers) => {
-                return new Promise((res) => {
-                  setTimeout(() => {
-                    console.log(values);
-                    console.log(formikHelpers);
-                    console.log("----------------------");
-                    res();
-                  }, 3000);
-                });
-              }}
-            >
+                values.caseID = this.caseID;
+                console.log(values);
+                axios.put('http://localhost:5000/maintain-current-home/add', values)
+                                    .then(res => {
+                                        console.log(res);
+                                        console.log(res.data);
+                                        this.setState({
+                                            unsuccessfulSubmit: false,
+                                            showSuccess: true,
+                                        });
+                                        document.body.scrollTop = document.documentElement.scrollTop = 0;
+
+                                    })
+              }}>
               {({ values, errors, isSubmitting, isValidating, touched }) => (
                 <Form>
                   <Box marginBottom={2}>
@@ -354,9 +365,9 @@ export default class MaintainHouseDecisionTree extends Component {
                     <p>Question 13. How many years have you lived in this community?</p>
                     <Field className="vetStatus" name="timeInCommunity" label="Reason" as={TextField} select variant="outlined" helperText={<ErrorMessage name="timeInCommunity"/>} error={touched.timeInCommunity && Boolean(errors.timeInCommunity)} >
                         <MenuItem value="0-10">0-10</MenuItem>
-                        <MenuItem value="11 - 20">11 - 20</MenuItem>
-                        <MenuItem value="21 - 30">21 - 30</MenuItem>
-                        <MenuItem value="31 - 40">31 - 40</MenuItem>
+                        <MenuItem value="11-20">11 - 20</MenuItem>
+                        <MenuItem value="21-30">21 - 30</MenuItem>
+                        <MenuItem value="31-40">31 - 40</MenuItem>
                         <MenuItem value="41+">41+</MenuItem>
                     </Field>
                   </Box>
@@ -372,10 +383,10 @@ export default class MaintainHouseDecisionTree extends Component {
                   </Button>
 
                   {/* allows us to see state of errors in form for validation debugging */}
-                  {/* <pre>{JSON.stringify(errors, null, 4)}</pre> */}
+                   <pre>{JSON.stringify(errors, null, 4)}</pre> 
 
                   {/* allows us to see the state of the form for debugging */}
-                  {/* <pre>{JSON.stringify(values, null, 4)}</pre> */}
+                   <pre>{JSON.stringify(values, null, 4)}</pre> 
                 </Form>
               )}
             </Formik>

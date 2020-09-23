@@ -8,6 +8,7 @@ import Alert from "react-bootstrap/Alert";
 import { withStyles } from '@material-ui/core/styles'
 
 const InitialValues = {
+  caseID: "1111",
   wantHomeWealthGenerationCourse: "",
   wantFirstTimeBuyersCourse: "",
   wantToSellToInvestor: "",
@@ -61,12 +62,18 @@ const StyledFormHelperText = withStyles({
 export default class SellDecisionTree extends Component {
   constructor(props) {
     super(props);
+    this.caseID = "";
     this.state = {
       unsuccessfulSubmit: false,
       showSuccess: false,
     };
     this.checkUnsuccessfulSubmit = this.checkUnsuccessfulSubmit.bind(this);
     this.close = this.close.bind(this);
+  }
+
+  componentDidMount() {
+    const {id} = this.props.match.params;
+    this.caseID = id;
   }
 
   checkUnsuccessfulSubmit() {
@@ -123,16 +130,20 @@ export default class SellDecisionTree extends Component {
               initialValues={InitialValues}
               // logic to send form data to the backend
               onSubmit={(values, formikHelpers) => {
-                return new Promise((res) => {
-                  setTimeout(() => {
-                    console.log(values);
-                    console.log(formikHelpers);
-                    console.log("----------------------");
-                    res();
-                  }, 3000);
-                });
-              }}
-            >
+                values.caseID = this.caseID;
+                console.log(values);
+                axios.put('http://localhost:5000/sell-House/add', values)
+                                    .then(res => {
+                                        console.log(res);
+                                        console.log(res.data);
+                                        this.setState({
+                                            unsuccessfulSubmit: false,
+                                            showSuccess: true,
+                                        });
+                                        document.body.scrollTop = document.documentElement.scrollTop = 0;
+
+                                    })
+              }} >
               {({ values, errors, isSubmitting, isValidating, touched }) => (
                 <Form>
                   <Box marginBottom={2}>

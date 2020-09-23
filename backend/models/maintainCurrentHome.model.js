@@ -15,7 +15,7 @@ const maintainCurrentHouseSchema = new Schema({
     oweBackTaxes: {type: Boolean, required: true},
     reverseMortgage: {type: Boolean, required: true},
     comfortableInCommunity: {type: Boolean, required: true},
-    timeInCommunity: {type: Number, required: true},
+    timeInCommunity: {type: String, required: true},
 })
 
 const maintainCurrentHouse = mongoose.model('maintainCurrentHouse', maintainCurrentHouseSchema);

@@ -16,7 +16,7 @@ router.route('/add').put((req,res) => {
     const oweBackTaxes = Boolean(req.body.oweBackTaxes);
     const reverseMortgage = Boolean(req.body.reverseMortgage);
     const comfortableInCommunity = Boolean(req.body.comfortableInCommunity);
-    const timeInCommunity = Number(req.body.comfortableInCommunity);
+    const timeInCommunity = req.body.comfortableInCommunity;
     
     const newMaintainCurrentHomeDecisionTree = new MaintainCurrentHome({
         caseID,
