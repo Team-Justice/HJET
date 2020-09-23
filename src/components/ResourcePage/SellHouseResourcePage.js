@@ -1,4 +1,4 @@
-import React from React;
+import React from 'react';
 import * as resources from "./DecisionTreeConstants";
 import axios from 'axios';
 import {TitleResourceInfo} from './TitleResourceInfo';
@@ -7,7 +7,7 @@ function createData(field, value) {
     return {field: value};
 }
 
-export default class LegacyWealthResourcePage extends Component {
+export default class LegacyWealthResourcePage extends React.Component {
     constructor(props) {
         super(props);
         this.decisionTreeRows = [];

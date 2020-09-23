@@ -11,17 +11,17 @@ export const wantFirstTimeBuyersCourseAnswer = {title: "First Time Buyers Course
 export const needHealthyHomeInspectionAnswer = {title : "Healthy Home Inspection", answer: "TBD healthy home inspection"};
 export const needEnergyEfficiencyInspectionAnswer = {title: "Energy Efficiency Inspection", answer: "TBD need energy efficiency inspection"};
 export const planToAbandonHomeAnswer = {title: "Abandon Home", answer: "TBD plan to abandon home"};
-export const needFinancialAssistanceAnswer = {title: "Financial Assistance", answer: "TBD need financial assistance"};
+export const needFinancialAssistanceLegacyAnswer = {title: "Financial Assistance", answer: "TBD need financial assistance"};
 export const needEmploymentAssistanceAnswer = {title: "Employment Assistance", answer: "TBD need employment assistance"};
 export const knowAboutHUDAssistanceAnswer = {title: "HUD Assistance", answer: "TBD know about HUB assistance"};
 export const haveOwnershipNeedsAnswer = {title : "Ownership Needs", answer: "TBD have ownership needs"};
 export const haveFamilySuccessivePlanAnswer = {title: "Family Successive Plan", answer: "TBD have family successive plan"};
-export const needFinancialCounselingAnswer = {title: "Financial Counseling", answer: "TBD need financial counseling"};
+export const needFinancialCounselingLegacyAnswer = {title: "Financial Counseling", answer: "TBD need financial counseling"};
 export const legacyDecisionTree = {needHomeRenovation: needHomeRenovationAnswer, wantToAttendWealthSeminar: wantToAttendWealthSeminarAnswer,
 haveReverseMortgage: haveReverseMortgageAnswer, needMortgageOrDeedTransfer: needMortgageOrDeedTransferAnswer, wantFirstTimeBuyersCourse: wantFirstTimeBuyersCourseAnswer, 
 needHealthyHomeInspection: needHealthyHomeInspectionAnswer, needEnergyEfficiencyInspection: needEnergyEfficiencyInspectionAnswer, planToAbandonHome: planToAbandonHomeAnswer,
-needFinancialAssistanceAnswer, needEmploymentAssistanceAnswer, knowAboutHUDAssistanceAnswer, 
-haveOwnershipNeeds: haveOwnershipNeedsAnswer, haveFamilySuccessivePlan: haveFamilySuccessivePlanAnswer, needFinancialCounseling: needFinancialCounselingAnswer};
+needFinancialAssistance: needFinancialAssistanceLegacyAnswer, needEmploymentAssistance: needEmploymentAssistanceAnswer, knowAboutHUDAssistance: knowAboutHUDAssistanceAnswer, 
+haveOwnershipNeeds: haveOwnershipNeedsAnswer, haveFamilySuccessivePlan: haveFamilySuccessivePlanAnswer, needFinancialCounseling: needFinancialCounselingLegacyAnswer};
 
 
 //MAINTAIN
@@ -44,27 +44,27 @@ soleHomeowner: soleHomeownerAnswer, oweBackTaxes: oweBackTaxesAnswer, reverseMor
 
 //SELL
 export const wantHomeWealthGenerationCourseAnswer = {title: "Health Wealth Generation Course", answer: "TBD home wealth generation course"};
-export const wantFirstTimeBuyersCourseAnswer = {title: "First Time Buyers Course", answer: "TBD first time buyers course"};
+export const wantFirstTimeBuyersCourseSellAnswer = {title: "First Time Buyers Course", answer: "TBD first time buyers course"};
 export const wantToSellToInvestorAnswer = {title: "Sell to Investor", answer: "TBD sell to investor"};
 export const wantToUseBrokerAnswer = {title: "Use Broker", answer: "TBD use broker"};
-export const needFinancialAssistanceAnswer = {title: "Financial Assistance", answer: "TBD financial assistance"};
-export const needFinancialCounselingAnswer = {title: "Financial Counseling", answer: "TBD financial counseling"};
-export const needHomeRenovationAnswer = {title: "Home Renovation", answer: "TBD home renovation"};
+export const needFinancialAssistanceSellAnswer = {title: "Financial Assistance", answer: "TBD financial assistance"};
+export const needFinancialCounselingSellAnswer = {title: "Financial Counseling", answer: "TBD financial counseling"};
+export const needHomeRenovationSellAnswer = {title: "Home Renovation", answer: "TBD home renovation"};
 export const needKnowledgeOfSellingOptionsAnswer = {title: "Selling Options", answer: "TBD knowledge of selling options"};
 export const needManagingAssistanceAnswer = {title: "Managing Assistance", answer: "TBD managing assistance"};
 export const needProfessionalCounselorAnswer = {title: "Professional Counselor", answer: "TBD professional counselor"};
-export const needHealthyHomeInspectionAnswer = {title: "Health Home Inspection", answer: "TBD healthy home inspection"};
-export const needEnergyEfficiencyInspectionAnswer = {title: "Energy Efficiency Inspection", answer: "TBD energy efficiency inspection"};
-export const oweBackTaxesAnswer = {title: "Owe Back Taxes", answer: "TBD owe back taxes"};
+export const needHealthyHomeInspectionSellAnswer = {title: "Health Home Inspection", answer: "TBD healthy home inspection"};
+export const needEnergyEfficiencyInspectionSellAnswer = {title: "Energy Efficiency Inspection", answer: "TBD energy efficiency inspection"};
+export const oweBackTaxesSellAnswer = {title: "Owe Back Taxes", answer: "TBD owe back taxes"};
 export const usedHUDCounselorAnswer = {title: "Used HUD Counselor", answer: "TBD HUD counselor"};
 export const sellingHouseReasonAnswer = {title: "Selling House Reason", answer: "TBD selling house reason"};
 export const familyWillingToTakeOverAnswer = {title: "Family Taking Over", answer: "TBD willing to take over"};
-export const haveReverseMortgageAnswer = {title: "Reverse Mortgage", answer: "TBD reverse mortgage"};
+export const haveReverseMortgageSellAnswer = {title: "Reverse Mortgage", answer: "TBD reverse mortgage"};
 export const houseDegradationBeyondRepairAnswer = {title: "House Degradation", answer: "TBD degradation beyong repair"};
-export const needSignificantRepairsAnswer = {title: "Significant Repairs", answer: "TBD significant repairs"};
-export const SellDecisionTree = {wantHomeWealthGenerationCourse: wantHomeWealthGenerationCourseAnswer, wantFirstTimeBuyersCourse: wantFirstTimeBuyersCourseAnswer, wantToSellToInvestor: wantToSellToInvestorAnswer,
-wantToUseBroker: wantToUseBrokerAnswer, needFinancialAssistance: needFinancialAssistanceAnswer, needFinancialCounseling: needFinancialCounselingAnswer, needHomeRenovation: needHomeRenovationAnswer,
+export const needSignificantRepairsSellAnswer = {title: "Significant Repairs", answer: "TBD significant repairs"};
+export const SellDecisionTree = {wantHomeWealthGenerationCourse: wantHomeWealthGenerationCourseAnswer, wantFirstTimeBuyersCourse: wantFirstTimeBuyersCourseSellAnswer, wantToSellToInvestor: wantToSellToInvestorAnswer,
+wantToUseBroker: wantToUseBrokerAnswer, needFinancialAssistance: needFinancialAssistanceSellAnswer, needFinancialCounseling: needFinancialCounselingSellAnswer, needHomeRenovation: needHomeRenovationSellAnswer,
 needKnowledgeOfSellingOptionsAnswer, needManagingAssistanceAnswer, needProfessionalCounselorAnswer,
-needHealthyHomeInspection: needHealthyHomeInspectionAnswer, needEnergyEfficiencyInspection: needEnergyEfficiencyInspectionAnswer, oweBackTaxes: oweBackTaxesAnswer, usedHUDCounselor: usedHUDCounselorAnswer,
-sellingHouseReason: sellingHouseReasonAnswer, familyWillingToTakeOver: familyWillingToTakeOverAnswer, haveReverseMortgage: haveReverseMortgageAnswer, houseDegredationBeyondRepair: houseDegradationBeyondRepairAnswer,
-needSignificantRepairs: needSignificantRepairsAnswer};
+needHealthyHomeInspection: needHealthyHomeInspectionSellAnswer, needEnergyEfficiencyInspection: needEnergyEfficiencyInspectionSellAnswer, oweBackTaxes: oweBackTaxesSellAnswer, usedHUDCounselor: usedHUDCounselorAnswer,
+sellingHouseReason: sellingHouseReasonAnswer, familyWillingToTakeOver: familyWillingToTakeOverAnswer, haveReverseMortgage: haveReverseMortgageSellAnswer, houseDegredationBeyondRepair: houseDegradationBeyondRepairAnswer,
+needSignificantRepairs: needSignificantRepairsSellAnswer};

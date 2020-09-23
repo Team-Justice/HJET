@@ -1,6 +1,6 @@
 import React from 'react';
 
-class TitleResourceInfo extends React.Component {
+export class TitleResourceInfo extends React.Component {
     
     constructor(props) {
         super(props);
