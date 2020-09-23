@@ -60,5 +60,38 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json(err));
 })
 
+//get specific decision tree by id 
+router.route('/:id').get((req, res) => {
+    MaintainCurrentHome.findById(req.params.id, function (err, docs) { 
+        if (err) { 
+            console.log(err); 
+        } 
+        else { 
+            res.json(docs)
+        } 
+    })
+})
+
+//get specific decision tree by case id 
+router.route('/case/:id').get((req, res) => {
+    if (req.body.caseID) {
+        MaintainCurrentHome.find( {
+            caseID: mongoose.Types.ObjectId(req.body.caseID)
+        }
+        , function(err, docs) {
+            if (err) {
+                res.status(404).json(err)
+            } else {
+                res.status(200).json(docs)
+            }
+        })
+    }
+
+    MaintainCurrentHome.find()
+    .then(cases => res.json(cases))
+    .catch(err => res.status(400).json(err));
+})
+
+
 
 module.exports = router;
