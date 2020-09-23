@@ -28,10 +28,14 @@ export default class CaseView extends Component {
   constructor(props) {
     super(props);
     this.rows = []
+    this.caseID = "";
   }
    
   componentDidMount() {
     const {id} = this.props.match.params;
+    this.caseID = id;
+    console.log("constant id is " + id);
+    console.log("CaseID is " + this.caseID);
     axios.get('http://localhost:5000/cases/' + id) // TODO: add object id param
     .then(response => {
       this.rows= [
@@ -95,7 +99,7 @@ export default class CaseView extends Component {
             </Table>
           </TableContainer>
           <div className="button-container">
-            <Link to='/decisionTreeCategories'><Button variant="outline-secondary" className="addDT-button">Add a Decision Tree</Button></Link>
+            <Link to={'/decisionTreeCategories/' + this.caseID}><Button variant="outline-secondary" className="addDT-button">Add a Decision Tree</Button></Link>
           </div>
         </div>
       </div>

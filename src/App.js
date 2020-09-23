@@ -27,10 +27,10 @@ function App() {
             <Route path="/caseView/:id" exact component={CaseView}/>
             <Route path="/caseSearch" exact component = {CaseSearch}/>
             <Route path="/cases" exact component = {Cases}/>
-            <Route path="/decisionTreeCategories" exact component = {DTCategories}/>
-            <Route path="/decisionTreeCategories/legacy" exact component = {LegacyDT}/>
-            <Route path="/decisionTreeCategories/maintain" exact component = {MaintainDT}/>
-            <Route path="/decisionTreeCategories/sell" exact component = {SellDT}/>
+            <Route path="/decisionTreeCategories/:id" exact component = {DTCategories}/>
+            <Route path="/decisionTreeCategories/legacy/:id" exact component = {LegacyDT}/>
+            <Route path="/decisionTreeCategories/maintain/:id" exact component = {MaintainDT}/>
+            <Route path="/decisionTreeCategories/sell/:id" exact component = {SellDT}/>
           </Switch>
 
       </Router>
