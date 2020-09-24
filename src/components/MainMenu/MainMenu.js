@@ -43,7 +43,7 @@ export default function SpacingGrid() {
 
         {/* Grid system = 12 for full length; 12total/2items = 6 --> 6 for 2 items */}
         <Grid item xs={6}> 
-          <Grid container justify="left">
+          <Grid container>
 
           <div style={{
             position: 'absolute', left: '50%', top: '50%',
