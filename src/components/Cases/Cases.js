@@ -29,12 +29,6 @@ export default function SpacingGrid() {
   };
 
   return (
-    // <Box textAlign="center">
-    //   <div>Hello World</div>
-    //   <h1>Hello World</h1>
-    // </Box>
-    // <BusinessCenterIcon style={{ fontSize: 300 }} />
-
     <React.Fragment>
       <Box textAlign="center">
         <h1> Cases </h1>
@@ -43,7 +37,7 @@ export default function SpacingGrid() {
       <div style={{
         position: 'absolute', left: '50%', top: '50%',
         transform: 'translate(-50%, -50%)', display: 'flex', justifyContent: "center",
-        alignItems: "center", margin: 'auto'
+        alignItems: "center", margin: 'auto', textAlign:"center"
       }}>
         <div>
           <Link to="/caseForm">

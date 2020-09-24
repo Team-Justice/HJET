@@ -27,13 +27,13 @@ class NavBar extends React.Component {
     render() {
       const { classes } = this.props;
         return (
-          <div class="nav" className={classes.root}>
+          <div className={classes.root}>
             <AppBar className={classes.appbar} position="static" color="transparent">
               <Toolbar>
                   <IconButton href="/">
                     <img src={logo} width="30rem" height="30rem" className="d-inline-block align-top" alt="HJET logo"/>
                   </IconButton>
-                  <Button variant="link" href="/" color="inherit">Back To Home</Button>
+                  <Button href="/" color="inherit">Back To Home</Button>
                
                 <Typography className={classes.title} variant="h6">Welcome to the Housing Justice Evaluation Tool!</Typography>
               </Toolbar>
