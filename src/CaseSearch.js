@@ -3,12 +3,8 @@ import axios from 'axios';
 import ReactTable from "react-table-6";
 import "react-table-6/react-table.css";
 import {Link} from 'react-router-dom';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
-import Button from '@material-ui/core/Button';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
+
+
 
 class CaseSearch extends React.Component {
 
@@ -16,23 +12,11 @@ class CaseSearch extends React.Component {
         super();
         this.state = {
             cases: [],
-            search: '',
-            caseDeleteId: '',
-            deleteDialogOpen: false
+            search: ''
         };
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/cases/')
-            .then(response => {
-                this.setState({cases: response.data});
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }
-
-    componentDidUpdate() {
         axios.get('http://localhost:5000/cases/')
             .then(response => {
                 this.setState({cases: response.data});
@@ -54,29 +38,13 @@ class CaseSearch extends React.Component {
         return row[id] !== undefined ? String(row[id].toLowerCase()).startsWith(filter.value.toLowerCase()) : true
     }
 
-    // brings up the delete dialog
-    handleDelete(id) {
-        this.setState({
-            deleteDialogOpen: true,
-            caseDeleteId: id
-        })
-        
+    handleEdit(id) {
+
     }
 
-    deleteCase() {
-        axios.delete('http://localhost:5000/cases/' + this.state.caseDeleteId)
-            .then(res => {
-                this.handleClose();
-            })
-    }
+    handleView(id) {
 
-    handleClose() {
-        this.setState({
-            deleteDialogOpen: false,
-            caseDeleteId: '',
-        })
     }
-
 
     render() {
 
@@ -125,7 +93,6 @@ class CaseSearch extends React.Component {
                     <div className="viewEditButtons">
                         <Link to={"/caseView/" + row.original._id} className="btn btn-primary">View</Link>
                         <Link to={"/caseEdit/" + row.original._id} className="btn btn-primary">Edit</Link>
-                        <Link  className="btn btn-danger" onClick={() => this.handleDelete(row.original._id)}>Delete</Link>
                     </div>
                 )
             }
@@ -143,6 +110,7 @@ class CaseSearch extends React.Component {
                 {/*    onChange={this.updateSearch.bind(this)}*/}
                 {/*/>*/}
 
+
                 <ReactTable
                     data = {Cases}
                     columns={columns}
@@ -150,29 +118,6 @@ class CaseSearch extends React.Component {
                     pageSize={Cases.length}
                     defaultFilterMethod={this.filterMethod}
                 />
-
-                <Dialog
-                    open={this.state.deleteDialogOpen}
-                    onClose={() => this.handleClose()}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                >
-                    <DialogTitle id="alert-dialog-title">Are you sure you want to delete this case?</DialogTitle>
-                    <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        This action is irreversible.
-                    </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                    <Button onClick={() => this.handleClose()} color="grey">
-                        Cancel
-                    </Button>
-                    <Button onClick={() => this.deleteCase()} color="secondary" autoFocus>
-                        Delete
-                    </Button>
-                    </DialogActions>
-                </Dialog>
-
             </div>
         );
     }
