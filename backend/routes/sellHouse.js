@@ -73,4 +73,37 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json(err));
 })
 
+//get specific decision tree by case id 
+router.route('/case/:id').get((req, res) => {
+    if (req.params.id) {
+        SellHouse.find( {
+            caseID: mongoose.Types.ObjectId(req.params.id)
+        }
+        , function(err, docs) {
+            if (err) {
+                res.status(404).json(err)
+            } else {
+                res.status(200).json(docs)
+            }
+        })
+    }
+
+    SellHouse.find()
+    .then(decisiontrees => res.json(decisiontrees))
+    .catch(err => res.status(400).json(err));
+})
+
+
+//get specific decision tree by id 
+router.route('/:id').get((req, res) => {
+    SellHouse.findById(req.params.id, function (err, docs) { 
+        if (err) { 
+            console.log(err); 
+        } 
+        else { 
+            res.json(docs)
+        } 
+    })
+})
+
 module.exports = router;
