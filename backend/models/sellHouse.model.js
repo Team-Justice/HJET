@@ -22,7 +22,7 @@ const sellHouseSchema = new Schema({
     haveReverseMortgage: {type: Boolean, required: true},
     houseDegradationBeyondRepair: {type: Boolean, required: true},
     needSignificantRepairs: {type: Boolean, required: true}
-})
+}, { timestamps: true });
 
 const sellHouse = mongoose.model('sellHouse', sellHouseSchema);
 module.exports = sellHouse;

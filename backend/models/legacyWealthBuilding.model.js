@@ -17,7 +17,7 @@ const legacyWealthBuildingSchema = new Schema({
     haveOwnershipNeeds: {type: Boolean, required: true},
     haveFamilySuccessivePlan: {type: Boolean, required: true},
     needFinancialCounseling: {type: Boolean, required: true}
-})
+}, { timestamps: true });
 
 const legacyWealthBuilding = mongoose.model('legacyWealthBuilding', legacyWealthBuildingSchema);
 module.exports = legacyWealthBuilding;

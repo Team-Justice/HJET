@@ -16,7 +16,7 @@ const maintainCurrentHouseSchema = new Schema({
     reverseMortgage: {type: Boolean, required: true},
     comfortableInCommunity: {type: Boolean, required: true},
     timeInCommunity: {type: String, required: true},
-})
+}, { timestamps: true});
 
 const maintainCurrentHouse = mongoose.model('maintainCurrentHouse', maintainCurrentHouseSchema);
 module.exports = maintainCurrentHouse;
