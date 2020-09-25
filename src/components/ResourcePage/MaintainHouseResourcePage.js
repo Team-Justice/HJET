@@ -77,8 +77,7 @@ export default class MaintainHouseResourcePage extends React.Component {
     render() {
         return (
             <div>
-                <h1>Resource Page</h1>
-                <h2>Test</h2>
+                <h1>Resource Page: Maintain House</h1>
                 <Test resources={this.state.resourcesToRenderState} />
             </div>
         );
