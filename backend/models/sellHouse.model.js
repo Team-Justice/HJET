@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const sellHouseSchema = new Schema({
     caseID: {type: mongoose.Types.ObjectId, required: true},
+    type: {type: String, default: 'Sell House'},
     wantHomeWealthGenerationCourse: {type: Boolean, required: true},
     wantFirstTimeBuyersCourse: {type: Boolean, required: true},
     wantToSellToInvestor: {type: Boolean, required: true}, 

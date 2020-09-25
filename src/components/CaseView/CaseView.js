@@ -92,8 +92,8 @@ export default class CaseView extends Component {
     // Decision tree 
     axios.get('http://localhost:5000/legacy-wealth-building/case/' + this.caseID)
       .then(response => {
+        console.log(response)
         this.setState({legacy: response.data});
-        console.log("1st response", response.data)
       })
       .catch(error => {
         console.log("Error: ", error);
@@ -101,17 +101,8 @@ export default class CaseView extends Component {
     
     axios.get('http://localhost:5000/maintain-current-home/case/' + this.caseID)
       .then(response => {
+        console.log(response)
         this.setState({maintainCurrHomeData: response.data});
-        // this.state.maintainCurrHomeData.forEach(
-        //   c => c.name = if (c.caseID == '5f6ca143adcdde1cc35879e6') {
-        //     console.log("hi1")
-        //   }
-        // );
-        if (this.state.maintainCurrHomeData.forEach.caseID == "5f6ca143adcdde1cc35879e6") { // matching caseID with maintain
-          console.log("hi2")
-        }
-        console.log("maintainCurrHomeData", this.state.maintainCurrHomeData)
-        console.log("2nd response", response)
       })
       .catch(error => {
         console.log("Error: ", error);
@@ -119,8 +110,8 @@ export default class CaseView extends Component {
 
     axios.get('http://localhost:5000/sell-House/case/' + this.caseID)
       .then(response => {
+        console.log(response)
         this.setState({sellHouse: response.data});
-        console.log("3rd response", response)
       })
       .catch(error => {
         console.log("Error: ", error);
@@ -128,8 +119,9 @@ export default class CaseView extends Component {
     }
 
   render() {
+
     
-    const decisionTrees = this.state.maintainCurrHomeData
+    const decisionTrees = this.state.legacy.concat(this.state.maintainCurrHomeData).concat(this.state.sellHouse);
 
     const columns = [
       {
