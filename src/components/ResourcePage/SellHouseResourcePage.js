@@ -1,18 +1,33 @@
 import React from 'react';
 import * as resources from "./DecisionTreeConstants";
 import axios from 'axios';
-import {TitleResourceInfo} from './TitleResourceInfo';
 
 function createData(field, value) {
-    return {field: value};
-}
+    return { field, value };
+  }
+
+  const Test = ({resources}) => (
+    <div>
+      {resources.map(re => (
+        <div>
+        <div className="title" key={re.title}>{re.title}</div>
+        <div className="answer" key={re.answer}>{re.answer}</div>
+        </div>
+      ))}
+    </div>
+  ); 
 
 export default class LegacyWealthResourcePage extends React.Component {
     constructor(props) {
         super(props);
         this.decisionTreeRows = [];
         this.decisionTreeResources = resources.SellDecisionTree;
-        this.resourcesToRender = [];
+        this.newResources = [];
+
+        this.state = {
+            resourcesToRenderState : []
+        }
+
     }
 
     componentDidMount() {
@@ -42,24 +57,35 @@ export default class LegacyWealthResourcePage extends React.Component {
                 createData("houseDegredationBeyondRepair", response.data.houseDegredationBeyondRepair),
                 createData("needSignificantRepairs", response.data.needSignificantRepairs)
             ];
-        });
+            this.setState({
+                decisionTreeRowsState : this.decisionTreeRows,
+            });
+            this.createListOfResources();
+        })
+        .catch(error => {
+            console.log("Error: ", error);
+          });
     }
 
     createListOfResources() {
-        for (const [keyHere, value] of Object.entries(this.decisionTreeResources)) {
-            let key2 = keyHere;
+        for (const [keyHere, value] of Object.entries(this.decisionTreeRows)) {
             let value2 = value;
-            let individualResourceTrue = this.decisionTreeRows.find(i => i[key2] == true);
-            if (individualResourceTrue != null) {
-                this.resourcesToRender.push(<TitleResourceInfo title={value2.title} resource={value2.answer} />);
+            if (value2.value == true) {
+                let specificResource = this.decisionTreeResources[value2.field];
+                this.newResources.push(specificResource);
             }
         }
+        this.setState({
+            resourcesToRenderState : this.newResources,
+        })
     }
 
     render() {
         return (
             <div>
-                {this.resourcesToRender}
+                <h1>Resource Page</h1>
+                <h2>Test</h2>
+                <Test resources={this.state.resourcesToRenderState} />
             </div>
         );
     }

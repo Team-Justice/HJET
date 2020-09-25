@@ -33,9 +33,9 @@ function App() {
             <Route path="/decisionTreeCategories/legacy/:id" exact component = {LegacyDT}/>
             <Route path="/decisionTreeCategories/maintain/:id" exact component = {MaintainDT}/>
             <Route path="/decisionTreeCategories/sell/:id" exact component = {SellDT}/>
-            <Route path="/resources/Legacy%20Wealth%20Building/:id" exact component = {LegacyWealthResourcePage} />
-            <Route path="/resources/Maintain%20Current%20Home/:id" exact component = {MaintainHouseResourcePage} />
-            <Route path="/resources/Sell%20House/:id" exact component = {SellHouseResourcePage} />
+            <Route path="/resources/Legacy Wealth Building/:id" exact component = {LegacyWealthResourcePage} />
+            <Route path="/resources/Maintain Current Home/:id" exact component = {MaintainHouseResourcePage} />
+            <Route path="/resources/Sell House/:id" exact component = {SellHouseResourcePage} />
           </Switch>
 
       </Router>

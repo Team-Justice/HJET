@@ -1,26 +1,42 @@
 import React from 'react';
 import * as resources from "./DecisionTreeConstants";
 import axios from 'axios';
-import {TitleResourceInfo} from './TitleResourceInfo';
 
 function createData(field, value) {
-    return {field: value};
-}
+    return { field, value };
+  }
+
+
+  const Test = ({resources}) => (
+    <div>
+      {resources.map(re => (
+        <div>
+        <div className="title" key={re.title}>{re.title}</div>
+        <div className="answer" key={re.answer}>{re.answer}</div>
+        </div>
+      ))}
+    </div>
+  ); 
 
 export default class LegacyWealthResourcePage extends React.Component {
     constructor(props) {
         super(props);
         this.decisionTreeRows = [];
         this.decisionTreeResources = resources.legacyDecisionTree;
-        this.resourcesToRender = [];
+        this.newResources = [];
+
+        this.state = {
+            resourcesToRenderState : []
+        }
+
     }
 
     componentDidMount() {
         const {id} = this.props.match.params;
-        console.log ("ID IS " + id);
         // get case info for that decision tree
         axios.get("http://localhost:5000/legacy-wealth-building/" + id)
         .then(response => {
+            console.log(response);
             this.decisionTreeRows = [
                 createData("needHomeRenovation", response.data.needHomeRenovation),
                 createData("wantToAttendWealthSeminar", response.data.wantToAttendWealthSeminar),
@@ -37,41 +53,34 @@ export default class LegacyWealthResourcePage extends React.Component {
                 createData("haveFamilySuccessivePlan", response.data.haveFamilySuccessivePlan),
                 createData("needFinancialCounseling", response.data.needFinancialCounseling)
             ];
-        });
-        console.log(this.decisionTreeRows);
-        //create data will look like "schema" : "true"
-        //{"_id":"5f68b5a59229462710460108","caseID":"5f510c51b75bd424ac82c721","needHomeRenovation":true,
-        //"wantToAttendWealthSeminar":true,"haveReverseMortgage":true,"needMortgageOrDeedTransfer":true,
-        //"wantFirstTimeBuyersCourse":true,"needHealthyHomeInspection":true,"needEnergyEfficiencyInspection":true,
-        //"planToAbandonHome":true,"needFinancialAssistance":true,"needEmploymentAssistance":true,"knowAboutHUDAssistance":true,
-        //"haveOwnershipNeeds":true,"haveFamilySuccessivePlan":true,"needFinancialCounseling":true,"__v":0},
+            this.createListOfResources();
+        })
+        .catch(error => {
+            console.log("Error: ", error);
+          });
 
-        //plan
-        //for each item in legacy decision tree,
-        //if  query.item == true
-        //post title and answer
-        ///how to do this 
-            /// worse case : create boolean state values and conditionally render each
-            //  best case: create another component, then create those components while iterating and add them to list
-            // then render that list!
     }
 
     createListOfResources() {
-        for (const [keyHere, value] of Object.entries(this.decisionTreeResources)) {
-            let key2 = keyHere;
+        for (const [keyHere, value] of Object.entries(this.decisionTreeRows)) {
             let value2 = value;
-            let individualResourceTrue = this.decisionTreeRows.find(i => i[key2] == true);
-            if (individualResourceTrue != null) {
-                this.resourcesToRender.push(<TitleResourceInfo title={value2.title} resource={value2.answer} />);
+            if (value2.value == true) {
+                let specificResource = this.decisionTreeResources[value2.field];
+                this.newResources.push(specificResource);
             }
         }
-        console.log(this.resourcesToRender);
+        this.setState({
+            resourcesToRenderState : this.newResources,
+        })
     }
+
 
     render() {
         return (
             <div>
-                {this.resourcesToRender}
+                <h1>Resource Page</h1>
+                <h2>Test</h2>
+                <Test resources={this.state.resourcesToRenderState} />
             </div>
         );
     }
