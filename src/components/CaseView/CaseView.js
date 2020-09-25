@@ -126,7 +126,7 @@ export default class CaseView extends Component {
     const columns = [
       {
           Header: "Tree Type",
-          accessor: "caseID",
+          accessor: "type",
           filterable: true
       },
       {
