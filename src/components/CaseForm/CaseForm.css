@@ -1,5 +1,4 @@
 .greContainer {
-    width: 100vw;
     display: flex;
     justify-content: center;
 }
@@ -9,10 +8,13 @@
 }
 
 .vetStatus {
+    justify-content: center;
     min-width: 130px !important;
 }
 
 .accommodations {
+    display: flex;
+    justify-content: center;
     min-width: 200px !important;
 }
 

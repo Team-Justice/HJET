@@ -183,7 +183,7 @@ export default class CaseForm extends Component {
 
                 <Card>
                     <CardContent>
-                        <h4>Client Screening</h4>
+                        <h4 className="greContainer">Client Screening</h4>
 
                         <Formik
                             // add form validation through Yup api
@@ -220,27 +220,33 @@ export default class CaseForm extends Component {
                             {({ values, errors, isSubmitting, isValidating }) => (
                                 <Form>
                                     {/* Client personal info */}
-                                    <Box marginBottom={2}>
-                                        <Field name="firstName" label="First Name" as={TextField} helperText={<ErrorMessage name="firstName" />} />
-                                        <Field name="lastName" label="Last Name" as={TextField} helperText={<ErrorMessage name="lastName" />} />
-                                    </Box>
+                                    <div className="greContainer">
+                                        <Box marginBottom={2}>
+                                            <Field name="firstName" label="First Name" as={TextField} helperText={<ErrorMessage name="firstName" />} />
+                                            <Field name="lastName" label="Last Name" as={TextField} helperText={<ErrorMessage name="lastName" />} />
+                                        </Box>
+                                    </div>
 
                                     <Divider />
 
-                                    <Box marginBottom={2}>
-                                        <Field name="phoneNum" label="Phone Number" as={TextField} type="number" helperText={<ErrorMessage name="phoneNum" />} />
-                                        <Field name="email" label="Email" as={TextField} helperText={<ErrorMessage name="email" />} />
-                                    </Box>
+                                    <div className="greContainer">
+                                        <Box marginBottom={2}>
+                                            <Field name="phoneNum" label="Phone Number" as={TextField} type="number" helperText={<ErrorMessage name="phoneNum" />} />
+                                            <Field name="email" label="Email" as={TextField} helperText={<ErrorMessage name="email" />} />
+                                        </Box>
+                                    </div>
 
                                     <Divider />
 
                                     {/* TODO: Implement street address validation to prefill boxes */}
-                                    <Box marginBottom={2}>
-                                        <Field name="homeAddress" label="Home Address" as={TextField} helperText={<ErrorMessage name="homeAddress" />} />
-                                        <Field name="city" label="City" as={TextField} helperText={<ErrorMessage name="city" />} />
-                                        <Field name="state" label="State" as={TextField} helperText={<ErrorMessage name="state" />} />
-                                        <Field name="zip" label="Zipcode" as={TextField} helperText={<ErrorMessage name="zip" />} />
-                                    </Box>
+                                    <div className="greContainer">
+                                        <Box marginBottom={2}>
+                                            <Field name="homeAddress" label="Home Address" as={TextField} helperText={<ErrorMessage name="homeAddress" />} />
+                                            <Field name="city" label="City" as={TextField} helperText={<ErrorMessage name="city" />} />
+                                            <Field name="state" label="State" as={TextField} helperText={<ErrorMessage name="state" />} />
+                                            <Field name="zip" label="Zipcode" as={TextField} helperText={<ErrorMessage name="zip" />} />
+                                        </Box>
+                                    </div>
 
                                     <Divider />
 
@@ -269,136 +275,172 @@ export default class CaseForm extends Component {
 
                                     <Divider />
 
-                                    <Box marginBottom={2}>
-                                        <p>Are you a veteran?</p>
-                                        <Field className='vetStatus' name="veteran" label="Veteran Status" as={TextField} select helperText={<ErrorMessage name="veteran" />} >
-                                            <MenuItem value={true}>Yes</MenuItem>
-                                            <MenuItem value={false}>No</MenuItem>
-                                            <MenuItem value={"Prefer not to say"}>Prefer not to say</MenuItem>
-                                        </Field>
-                                    </Box>
+                                    <div className="greContainer">
+                                        <Box marginBottom={2}>
+                                            <p className="greContainer">Are you a veteran?</p>
+                                            <div className="greContainer">
+                                                <Field className='vetStatus' name="veteran" label="Veteran Status" as={TextField} select helperText={<ErrorMessage name="veteran" />} >
+                                                    <MenuItem value={true}>Yes</MenuItem>
+                                                    <MenuItem value={false}>No</MenuItem>
+                                                    <MenuItem value={"Prefer not to say"}>Prefer not to say</MenuItem>
+                                                </Field>
+                                            </div>
+                                        </Box>
+                                    </div>
 
                                     <Divider />
 
                                     <Box marginBottom={2}>
-                                        <p>Do you require accommodations?</p>
-                                        <Field className='accommodations' name="accommodations" label="Accommodations Status" as={TextField} select helperText={<ErrorMessage name="accommodations" />} >
-                                            <MenuItem value={true}>Yes</MenuItem>
-                                            <MenuItem value={false}>No</MenuItem>
-                                            <MenuItem value={"Prefer not to say"}>Prefer not to say</MenuItem>
-                                        </Field>
+                                        <p className="greContainer">Do you require accommodations?</p>
+                                        <div className="greContainer">
+                                            <Field className='accommodations' name="accommodations" label="Accommodations Status" as={TextField} select helperText={<ErrorMessage name="accommodations" />} >
+                                                <MenuItem value={true}>Yes</MenuItem>
+                                                <MenuItem value={false}>No</MenuItem>
+                                                <MenuItem value={"Prefer not to say"}>Prefer not to say</MenuItem>
+                                            </Field>
+                                        </div>
                                     </Box>
 
                                     <Divider />
 
                                     {/* Client Questionnaire */}
+
                                     <Box marginBottom={2}>
-                                        <p>Are you a previous homeowner or own a home in another location?</p>
-                                        <Field className='prevHomeowner' name="preHomeowner" label="Previous Homeowner" as={TextField} type="boolean" select helperText={<ErrorMessage name="preHomeowner" />} >
-                                            <MenuItem value={true}>Yes</MenuItem>
-                                            <MenuItem value={false}>No</MenuItem>
-                                        </Field>
+                                        <p className="greContainer">Are you a previous homeowner or own a home in another location?</p>
+                                        <div className="greContainer">
+                                            <Field className='prevHomeowner' name="preHomeowner" label="Previous Homeowner" as={TextField} type="boolean" select helperText={<ErrorMessage name="preHomeowner" />} >
+                                                <MenuItem value={true}>Yes</MenuItem>
+                                                <MenuItem value={false}>No</MenuItem>
+                                            </Field>
+                                        </div>
                                     </Box>
                                     <Divider />
 
                                     <Box marginBottom={2}>
-                                        <p>Are you a renter or an owner of the home?</p>
-                                        <Field className="homeOwnership" name="ownershipOfHome" label="Ownership of home" as={TextField} select helperText={<ErrorMessage name="ownershipOfHome" />} >
-                                            <MenuItem value={"Renter"}>Renter</MenuItem>
-                                            <MenuItem value={"Owner"}>Owner</MenuItem>
-                                        </Field>
-                                    </Box>
-
-                                    <Divider />
-
-                                    {/* TODO: convert this to interval drop down */}
-                                    <Box marginBottom={2}>
-                                        <p>How long have you been living in the home? (in years)</p>
-                                        <Field name="timeInHome" label="Time in home" as={TextField} type="number" helperText={<ErrorMessage name="timeInHome" />} />
-                                    </Box>
-
-                                    <Divider />
-
-                                    <Box marginBottom={2}>
-                                        <p>What is the estimate current value of the home?</p>
-                                        <Field name="homeValue" label="Home Value" as={TextField} type="number" helperText={<ErrorMessage name="homeValue" />} />
+                                        <p className="greContainer">Are you a renter or an owner of the home?</p>
+                                        <div className="greContainer">
+                                            <Field className="homeOwnership" name="ownershipOfHome" label="Ownership of home" as={TextField} select helperText={<ErrorMessage name="ownershipOfHome" />} >
+                                                <MenuItem value={"Renter"}>Renter</MenuItem>
+                                                <MenuItem value={"Owner"}>Owner</MenuItem>
+                                            </Field>
+                                        </div>
                                     </Box>
 
                                     <Divider />
 
                                     {/* TODO: convert this to interval drop down */}
                                     <Box marginBottom={2}>
-                                        <p>What is the approximate age of the home? (in years)</p>
-                                        <Field name="homeAge" label="Home Age" as={TextField} type="number" helperText={<ErrorMessage name="homeAge" />} />
+                                        <p className="greContainer">How long have you been living in the home? (in years)</p>
+                                        <div className="greContainer">
+                                            <Field name="timeInHome" label="Time in home" as={TextField} type="number" helperText={<ErrorMessage name="timeInHome" />} />
+                                        </div>
                                     </Box>
 
                                     <Divider />
 
                                     <Box marginBottom={2}>
-                                        <p>How many people currently live in the home?</p>
-                                        <Field name="householdAdults" label="Adults in Household" as={TextField} type="number" helperText={<ErrorMessage name="householdAdults" />} />
-                                        <Field name="householdChildren" label="Children in Household" as={TextField} type="number" helperText={<ErrorMessage name="householdChildren" />} />
+                                        <p className="greContainer">What is the estimate current value of the home?</p>
+                                        <div className="greContainer">
+                                            <Field name="homeValue" label="Home Value" as={TextField} type="number" helperText={<ErrorMessage name="homeValue" />} />
+                                        </div>
+                                    </Box>
+
+                                    <Divider />
+
+                                    {/* TODO: convert this to interval drop down */}
+                                    <Box marginBottom={2}>
+                                        <p className="greContainer">What is the approximate age of the home? (in years)</p>
+                                        <div className="greContainer">
+                                            <Field name="homeAge" label="Home Age" as={TextField} type="number" helperText={<ErrorMessage name="homeAge" />} />
+                                        </div>
                                     </Box>
 
                                     <Divider />
 
                                     <Box marginBottom={2}>
-                                        <p>What is the approximate household income?</p>
-                                        <Field name="householdIncome" label="Household Income" as={TextField} type="number" helperText={<ErrorMessage name="householdIncome" />} />
+                                        <p className="greContainer">How many people currently live in the home?</p>
+                                        <div className="greContainer">
+                                            <Field name="householdAdults" label="Adults in Household" as={TextField} type="number" helperText={<ErrorMessage name="householdAdults" />} />
+                                            <Field name="householdChildren" label="Children in Household" as={TextField} type="number" helperText={<ErrorMessage name="householdChildren" />} />
+                                        </div>
                                     </Box>
 
                                     <Divider />
 
                                     <Box marginBottom={2}>
-                                        <p>How many bedrooms does the house have?</p>
-                                        <Field name="numBeds" label="Number of Bedrooms" as={TextField} type="number" helperText={<ErrorMessage name="numBeds" />} />
+                                        <p className="greContainer">What is the approximate household income?</p>
+                                        <div className="greContainer">
+                                            <Field name="householdIncome" label="Household Income" as={TextField} type="number" helperText={<ErrorMessage name="householdIncome" />} />
+                                        </div>
                                     </Box>
 
                                     <Divider />
 
                                     <Box marginBottom={2}>
-                                        <p>How many bathrooms does the house have?</p>
-                                        <Field name="numBaths" label="Number of Bathrooms" as={TextField} type="number" helperText={<ErrorMessage name="numBaths" />} />
+                                        <p className="greContainer">How many bedrooms does the house have?</p>
+                                        <div className="greContainer">
+                                            <Field name="numBeds" label="Number of Bedrooms" as={TextField} type="number" helperText={<ErrorMessage name="numBeds" />} />
+                                        </div>
                                     </Box>
 
                                     <Divider />
 
                                     <Box marginBottom={2}>
-                                        <p>What is the approximate square footage of the home?</p>
-                                        <Field className='sqFootage' name="numSqFootage" label="Number of Square Footage" as={TextField} type="number" helperText={<ErrorMessage name="numSqFootage" />} />
+                                        <p className="greContainer">How many bathrooms does the house have?</p>
+                                        <div className="greContainer">
+                                            <Field name="numBaths" label="Number of Bathrooms" as={TextField} type="number" helperText={<ErrorMessage name="numBaths" />} />
+                                        </div>
                                     </Box>
 
                                     <Divider />
 
                                     <Box marginBottom={2}>
-                                        <p>Was the home recently renovated?</p>
-                                        <Field className="recentlyRenovated" name="recentlyRenovated" label="Recently Renovated" as={TextField} select helperText={<ErrorMessage name="recentlyRenovated" />}>
-                                            <MenuItem value={true}>Yes</MenuItem>
-                                            <MenuItem value={false}>No</MenuItem>
-                                        </Field>
+                                        <p className="greContainer">What is the approximate square footage of the home?</p>
+                                        <div className="greContainer">
+                                            <Field className='sqFootage' name="numSqFootage" label="Number of Square Footage" as={TextField} type="number" helperText={<ErrorMessage name="numSqFootage" />} />
+                                        </div>
                                     </Box>
 
                                     <Divider />
 
                                     <Box marginBottom={2}>
-                                        <p>Does the home need renovations?</p>
-                                        <Field className="needRenovation" name="needRenovation" label="Need Renovation" as={TextField} select helperText={<ErrorMessage name="needRenovation" />}>
-                                            <MenuItem value={true}>Yes</MenuItem>
-                                            <MenuItem value={false}>No</MenuItem>
-                                        </Field>
+                                        <p className="greContainer">Was the home recently renovated?</p>
+                                        <div className="greContainer">
+                                            <Field className="recentlyRenovated" name="recentlyRenovated" label="Recently Renovated" as={TextField} select helperText={<ErrorMessage name="recentlyRenovated" />}>
+                                                <MenuItem value={true}>Yes</MenuItem>
+                                                <MenuItem value={false}>No</MenuItem>
+                                            </Field>
+                                        </div>
                                     </Box>
 
                                     <Divider />
 
                                     <Box marginBottom={2}>
-                                        <p>Please enter a home description</p>
-                                        <Field name="homeDescription" label="Home Description" as={TextField} multiline rows={5} />
+                                        <p className="greContainer">Does the home need renovations?</p>
+                                        <div className="greContainer">
+                                            <Field className="needRenovation" name="needRenovation" label="Need Renovation" as={TextField} select helperText={<ErrorMessage name="needRenovation" />}>
+                                                <MenuItem value={true}>Yes</MenuItem>
+                                                <MenuItem value={false}>No</MenuItem>
+                                            </Field>
+                                        </div>
+                                    </Box>
+
+                                    <Divider />
+
+                                    <Box marginBottom={2}>
+                                        <p className="greContainer">Please enter a home description</p>
+                                        <div className="greContainer">
+                                            <Field name="homeDescription" label="Home Description" as={TextField} multiline rows={5} />
+                                        </div>
                                     </Box>
 
                                     <Divider />
 
                                     {/* <Link to="/cases"> */}
-                                    <Button onClick={this.checkUnsuccessfulSubmit} type="submit" disabled={isValidating}>submit</Button>
+                                    <div className="greContainer">
+                                        <Button onClick={this.checkUnsuccessfulSubmit} type="submit" disabled={isValidating}>submit</Button>
+                                    </div>
+
                                     {/* </Link> */}
 
 

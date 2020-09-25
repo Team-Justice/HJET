@@ -63,7 +63,28 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json(err));
 })
 
-//get specific decision by id 
+//get specific decision tree by case id 
+router.route('/case/:id').get((req, res) => {
+    if (req.params.id) {
+        LegacyWealthBuilding.find( {
+            caseID: mongoose.Types.ObjectId(req.params.id)
+        }
+        , function(err, docs) {
+            if (err) {
+                res.status(404).json(err)
+            } else {
+                res.status(200).json(docs)
+            }
+        })
+    }
+
+    LegacyWealthBuilding.find()
+    .then(decisiontrees => res.json(decisiontrees))
+    .catch(err => res.status(400).json(err));
+})
+
+
+//get specific decision tree by id 
 router.route('/:id').get((req, res) => {
     LegacyWealthBuilding.findById(req.params.id, function (err, docs) { 
         if (err) { 
