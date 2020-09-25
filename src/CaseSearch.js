@@ -14,8 +14,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 
 class CaseSearch extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             cases: [],
             search: '',
@@ -107,11 +107,12 @@ class CaseSearch extends React.Component {
             {
                 Header: "",
                 accessor: "_id",
-                width: 200,
+                width: 360,
                 Cell: row => (
                     <div className="viewEditButtons">
                         <Link to={"/caseView/" + row.original._id} className="btn btn-primary">View</Link>
                         <Link to={"/caseEdit/" + row.original._id} className="btn btn-primary">Edit</Link>
+                        <Link to={'/decisionTreeCategories/' + row.original._id} className="btn btn-primary">Add a Decision Tree</Link>
                         <Link className="btn btn-danger" onClick={() => this.handleDelete(row.original._id)}>Delete</Link>
                     </div>
                 )
