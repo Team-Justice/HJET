@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const legacyWealthBuildingSchema = new Schema({
     caseID: {type: mongoose.Types.ObjectId, required: true},
+    type: {type: String, default: 'Legacy Wealth Building'},
     needHomeRenovation: {type: Boolean, required: true},
     wantToAttendWealthSeminar: {type: Boolean, required: true},
     haveReverseMortgage: {type: Boolean, required: true},
@@ -17,7 +18,7 @@ const legacyWealthBuildingSchema = new Schema({
     haveOwnershipNeeds: {type: Boolean, required: true},
     haveFamilySuccessivePlan: {type: Boolean, required: true},
     needFinancialCounseling: {type: Boolean, required: true}
-})
+}, { timestamps: true });
 
 const legacyWealthBuilding = mongoose.model('legacyWealthBuilding', legacyWealthBuildingSchema);
 module.exports = legacyWealthBuilding;

@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const sellHouseSchema = new Schema({
     caseID: {type: mongoose.Types.ObjectId, required: true},
+    type: {type: String, default: 'Sell House'},
     wantHomeWealthGenerationCourse: {type: Boolean, required: true},
     wantFirstTimeBuyersCourse: {type: Boolean, required: true},
     wantToSellToInvestor: {type: Boolean, required: true}, 
@@ -22,7 +23,7 @@ const sellHouseSchema = new Schema({
     haveReverseMortgage: {type: Boolean, required: true},
     houseDegradationBeyondRepair: {type: Boolean, required: true},
     needSignificantRepairs: {type: Boolean, required: true}
-})
+}, { timestamps: true });
 
 const sellHouse = mongoose.model('sellHouse', sellHouseSchema);
 module.exports = sellHouse;

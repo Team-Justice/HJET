@@ -12,6 +12,8 @@ import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button'
 import {Link} from 'react-router-dom';
+import ReactTable from "react-table-6";
+import "react-table-6/react-table.css";
 
 
 const useStyles = makeStyles({
@@ -29,6 +31,19 @@ export default class CaseView extends Component {
     super(props);
     this.rows = []
     this.caseID = "";
+    this.treeType = {
+      a: "Legacy"
+    }
+    this.state = {
+      legacy: [],
+      maintainCurrHomeData: [],
+      sellHouse: []
+    };
+  }
+
+  filterMethod = (filter, row, column) => {
+    const id = filter.pivotId || filter.id
+    return row[id] !== undefined ? String(row[id].toLowerCase()).startsWith(filter.value.toLowerCase()) : true
   }
    
   componentDidMount() {
@@ -66,19 +81,70 @@ export default class CaseView extends Component {
         createData("Recently Renovated", response.data.recentlyRenovated),
         createData("Needs Renevation", response.data.needRenovation),
         createData("Home Description", response.data.homeDescription),
-
-
       ]
       console.log("updateing rown", this.rows)
-      this.setState({}) // TODO: figure out why we can't get rid of this line
+      console.log("response.data", response.data)
     })
     .catch(error => {
       console.log("Error: ", error);
     })
+
+    // Decision tree 
+    axios.get('http://localhost:5000/legacy-wealth-building/case/' + this.caseID)
+      .then(response => {
+        console.log(response)
+        this.setState({legacy: response.data});
+      })
+      .catch(error => {
+        console.log("Error: ", error);
+      })
     
-  }
+    axios.get('http://localhost:5000/maintain-current-home/case/' + this.caseID)
+      .then(response => {
+        console.log(response)
+        this.setState({maintainCurrHomeData: response.data});
+      })
+      .catch(error => {
+        console.log("Error: ", error);
+      })
+
+    axios.get('http://localhost:5000/sell-House/case/' + this.caseID)
+      .then(response => {
+        console.log(response)
+        this.setState({sellHouse: response.data});
+      })
+      .catch(error => {
+        console.log("Error: ", error);
+      })
+    }
 
   render() {
+
+    
+    const decisionTrees = this.state.legacy.concat(this.state.maintainCurrHomeData).concat(this.state.sellHouse);
+
+    const columns = [
+      {
+          Header: "Tree Type",
+          accessor: "type",
+          filterable: true
+      },
+      {
+          Header: "Date Created",
+          accessor: "createdAt",
+          sortable: false
+      },
+      {
+          Header: "",
+          accessor: "_id",
+          width: 200,
+          Cell: row => (
+              <div className="viewEditButtons">
+                  <Link to={"/resources/" + row.original._id} className="btn btn-primary">Resources</Link>
+              </div>
+          )
+      }
+    ]
     return (
       <div className="viewDT-container">
         <div className="viewDT-content">
@@ -101,7 +167,14 @@ export default class CaseView extends Component {
           <div className="button-container">
             <Link to={'/decisionTreeCategories/' + this.caseID}><Button variant="outline-secondary" className="addDT-button">Add a Decision Tree</Button></Link>
           </div>
-        </div>
+          <ReactTable
+            data = {decisionTrees}
+            columns={columns}
+            showPagination={false}
+            pageSize={decisionTrees.length}
+            defaultFilterMethod={this.filterMethod}
+          />
+          </div>
       </div>
     );
   }
