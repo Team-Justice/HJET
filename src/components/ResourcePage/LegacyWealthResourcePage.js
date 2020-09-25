@@ -17,7 +17,7 @@ export default class LegacyWealthResourcePage extends React.Component {
 
     componentDidMount() {
         const {id} = this.props.match.params;
-
+        console.log ("ID IS " + id);
         // get case info for that decision tree
         axios.get("http://localhost:5000/legacy-wealth-building/" + id)
         .then(response => {
@@ -38,6 +38,7 @@ export default class LegacyWealthResourcePage extends React.Component {
                 createData("needFinancialCounseling", response.data.needFinancialCounseling)
             ];
         });
+        console.log(this.decisionTreeRows);
         //create data will look like "schema" : "true"
         //{"_id":"5f68b5a59229462710460108","caseID":"5f510c51b75bd424ac82c721","needHomeRenovation":true,
         //"wantToAttendWealthSeminar":true,"haveReverseMortgage":true,"needMortgageOrDeedTransfer":true,
@@ -64,6 +65,7 @@ export default class LegacyWealthResourcePage extends React.Component {
                 this.resourcesToRender.push(<TitleResourceInfo title={value2.title} resource={value2.answer} />);
             }
         }
+        console.log(this.resourcesToRender);
     }
 
     render() {

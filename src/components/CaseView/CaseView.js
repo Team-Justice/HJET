@@ -140,7 +140,7 @@ export default class CaseView extends Component {
           width: 200,
           Cell: row => (
               <div className="viewEditButtons">
-                  <Link to={"/resources/" + row.original._id} className="btn btn-primary">Resources</Link>
+                  <Link to={"/resources/" + row.original.type + "/" + row.original._id} className="btn btn-primary">Resources</Link>
               </div>
           )
       }
