@@ -11,8 +11,8 @@ function createData(field, value) {
     <div>
       {resources.map(re => (
         <div>
-        <div className="title" key={re.title}>{re.title}</div>
-        <div className="answer" key={re.answer}>{re.answer}</div>
+        <div className="title" key={re.title}><h2>{re.title}</h2></div>
+        <div className="answer" key={re.answer}><p1>{re.answer}</p1></div>
         </div>
       ))}
     </div>
