@@ -48,15 +48,13 @@ router.route('/').get((req, res) => {
         }
         , function(err, docs) {
             if (err) {
-                res.status(404).json(err)
-            } else {
-                res.status(200).json(docs)
+                return res.status(404).json(err)
             }
         })
     }
 
     MaintainCurrentHome.find()
-    .then(cases => res.json(cases))
+    .then(cases => res.status(200).json(cases))
     .catch(err => res.status(400).json(err));
 })
 
@@ -68,15 +66,13 @@ router.route('/case/:id').get((req, res) => {
         }
         , function(err, docs) {
             if (err) {
-                res.status(404).json(err)
-            } else {
-                res.status(200).json(docs)
+                return res.status(404).json(err)
             }
         })
     }
 
     MaintainCurrentHome.find()
-    .then(decisiontrees => res.json(decisiontrees))
+    .then(decisiontrees => res.status(200).json(decisiontrees))
     .catch(err => res.status(400).json(err));
 })
 
