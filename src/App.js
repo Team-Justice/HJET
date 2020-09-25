@@ -12,7 +12,9 @@ import DTCategories from './components/DTCategories/DTCategories';
 import LegacyDT from './components/LegacyDecisionTree/LegacyDecisionTree';
 import MaintainDT from './components/MaintainHouseDecisionTree/MaintainHouseDecisionTree';
 import SellDT from './components//SellDecisionTree/SellDecisionTree';
-
+import LegacyWealthResourcePage from './components/ResourcePage/LegacyWealthResourcePage';
+import MaintainHouseResourcePage from './components/ResourcePage/MaintainHouseResourcePage';
+import SellHouseResourcePage from './components/ResourcePage/SellHouseResourcePage';
 
 
 function App() {
@@ -31,6 +33,9 @@ function App() {
             <Route path="/decisionTreeCategories/legacy/:id" exact component = {LegacyDT}/>
             <Route path="/decisionTreeCategories/maintain/:id" exact component = {MaintainDT}/>
             <Route path="/decisionTreeCategories/sell/:id" exact component = {SellDT}/>
+            <Route path="/resources/Legacy Wealth Building/:id" exact component = {LegacyWealthResourcePage} />
+            <Route path="/resources/Maintain Current Home/:id" exact component = {MaintainHouseResourcePage} />
+            <Route path="/resources/Sell House/:id" exact component = {SellHouseResourcePage} />
           </Switch>
 
       </Router>

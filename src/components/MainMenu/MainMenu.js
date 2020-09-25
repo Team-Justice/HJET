@@ -58,7 +58,7 @@ export default function SpacingGrid() {
             </div>
           
             <div>
-              <Link to="/">
+              <Link to="/">  {/*/resources/Legacy%20Wealth%20Building/5f6d3adde34d452908b1c071/*/}
                 <AssessmentOutlinedIcon style={{ fontSize: 300 }} />
                 <p>Analysis</p>
               </Link>
