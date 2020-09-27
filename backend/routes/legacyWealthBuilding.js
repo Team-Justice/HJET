@@ -70,13 +70,15 @@ router.route('/case/:id').get((req, res) => {
         , function(err, docs) {
             if (err) {
                 return res.status(404).json(err)
-            }
+            } else { 
+                res.json(docs)
+            } 
         })
     }
 
-    LegacyWealthBuilding.find()
-    .then(decisiontrees => res.status(200).json(decisiontrees))
-    .catch(err => res.status(400).json(err));
+    // LegacyWealthBuilding.find()
+    // .then(decisiontrees => res.status(200).json(decisiontrees))
+    // .catch(err => res.status(400).json(err));
 })
 
 
