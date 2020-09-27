@@ -3,7 +3,7 @@ import './App.css';
 import CaseForm from './components/CaseForm/CaseForm.js';
 import CaseEdit from './components/CaseEdit/CaseEdit';
 import CaseView from './components/CaseView/CaseView';
-import CaseSearch from './CaseSearch';
+import CaseSearch from './components/CaseSearch/CaseSearch';
 import MainMenu from './components/MainMenu/MainMenu';
 import Cases from './components/Cases/Cases';
 import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
