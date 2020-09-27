@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import './CaseSearch.css';
 
 
 class CaseSearch extends React.Component {
@@ -107,7 +108,7 @@ class CaseSearch extends React.Component {
             {
                 Header: "",
                 accessor: "_id",
-                width: 360,
+                width: 400,
                 Cell: row => (
                     <div className="viewEditButtons">
                         <Link to={"/caseView/" + row.original._id} className="btn btn-primary">View</Link>
