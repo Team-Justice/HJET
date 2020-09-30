@@ -15,6 +15,10 @@ import SellDT from './components//SellDecisionTree/SellDecisionTree';
 import LegacyWealthResourcePage from './components/ResourcePage/LegacyWealthResourcePage';
 import MaintainHouseResourcePage from './components/ResourcePage/MaintainHouseResourcePage';
 import SellHouseResourcePage from './components/ResourcePage/SellHouseResourcePage';
+import AnalysisMenu from './components/AnalysisMenu/AnalysisMenu';
+import BarGraph from './components/BarGraph/BarGraph';
+import TimeseriesGraph from './components/TimeseriesGraph/TimeseriesGraph';
+
 
 
 function App() {
@@ -22,7 +26,8 @@ function App() {
     <div>
       <NavBar/>
       <Router>
-          <Switch>
+        <div id="route-container">
+        <Switch>
             <Route path="/" exact component ={MainMenu}/> 
             <Route path="/caseForm" exact component={CaseForm}/>
             <Route path="/caseEdit/:id" component = {CaseEdit}/>
@@ -36,8 +41,11 @@ function App() {
             <Route path="/resources/Legacy Wealth Building/:id" exact component = {LegacyWealthResourcePage} />
             <Route path="/resources/Maintain Current Home/:id" exact component = {MaintainHouseResourcePage} />
             <Route path="/resources/Sell House/:id" exact component = {SellHouseResourcePage} />
+            <Route path="/analysis" exact component = {AnalysisMenu} />
+            <Route path="/timeAnalysis" exact component = {TimeseriesGraph} />
+            <Route path="/categoryAnalysis" exact component = {BarGraph} />
           </Switch>
-
+        </div>
       </Router>
     </div>
 
