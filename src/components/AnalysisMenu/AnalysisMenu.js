@@ -6,7 +6,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import "bootstrap/dist/css/bootstrap.min.css";
-import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
+import BarChart from '@material-ui/icons/BarChart';
+import Timeline from '@material-ui/icons/Timeline';
+
 import {Link} from 'react-router-dom';
 
 
@@ -51,16 +53,16 @@ export default function SpacingGrid() {
             alignItems: "center", margin: 'auto'
           }}>
             <div>
-              <Link to="/cases">
-                <BusinessCenterIcon style={{ fontSize: 300 }} />
-                <p>Cases</p> 
+              <Link to="/timeAnalysis">
+                <Timeline style={{ fontSize: 300 }} />
+                <p>Time Analysis</p> 
               </Link>
             </div>
           
             <div>
-              <Link to="/analysis">  {/*/resources/Legacy%20Wealth%20Building/5f6d3adde34d452908b1c071/*/}
-                <AssessmentOutlinedIcon style={{ fontSize: 300 }} />
-                <p>Analysis</p>
+              <Link to="/categoryAnalysis">  
+                <BarChart style={{ fontSize: 300 }} />
+                <p>Category Analysis</p>
               </Link>
             </div>
           </div>
