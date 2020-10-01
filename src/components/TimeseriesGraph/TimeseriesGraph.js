@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { CartesianGrid, LineChart, XAxis, YAxis, Tooltip, Legend, Line } from 'recharts';
 import {Dropdown, DropdownButton} from 'react-bootstrap';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 const dropDownOptions = ['Legacy Wealth', 'Maintain Home', 'Sell Home'];
 
@@ -19,7 +21,9 @@ class TimeseriesGraph extends React.Component {
             {
                 date: '09/2020', number: 250 
             }],
-            categorySelected: dropDownOptions[0]
+            categorySelected: dropDownOptions[0],
+            startDate: new Date(),
+            endDate: new Date()
         };
     }
 
@@ -31,6 +35,17 @@ class TimeseriesGraph extends React.Component {
         this.setState({ categorySelected: dropDownOptions[index]});
       }
 
+    handleStartDateChange(event) {
+        this.setState({
+            startDate: event
+        });
+    }
+
+    handleEndDateChange(event) {
+        this.setState({
+            endDate: event
+        });
+    }
 
     render() {
 
@@ -56,6 +71,24 @@ class TimeseriesGraph extends React.Component {
                     </Dropdown.Item>
                     ))}
                 </DropdownButton>
+                <div>
+                    <label> Start Date</label>
+                    <DatePicker
+                    selected={ this.state.startDate }
+                    onChange={ this.handleStartDateChange.bind(this) }
+                    name="startDate"
+                    dateFormat="MM/dd/yyyy"
+                    />
+                </div>
+                <div>
+                    <label> End Date</label>
+                    <DatePicker
+                    selected={ this.state.endDate }
+                    onChange={ this.handleEndDateChange.bind(this) }
+                    name="endDate"
+                    dateFormat="MM/dd/yyyy"
+                    />
+                </div>
             </div>
         );
     }
