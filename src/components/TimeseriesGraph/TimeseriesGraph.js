@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { CartesianGrid, LineChart, XAxis, YAxis, Tooltip, Legend, Line } from 'recharts';
+import {Dropdown, DropdownButton} from 'react-bootstrap';
+
+const dropDownOptions = ['Legacy Wealth', 'Maintain Home', 'Sell Home'];
 
 class TimeseriesGraph extends React.Component {
 
@@ -15,9 +18,20 @@ class TimeseriesGraph extends React.Component {
             },
             {
                 date: '09/2020', number: 250 
-            }]
-        }
+            }],
+            categorySelected: dropDownOptions[0]
+        };
     }
+
+    handleSelect(eventKey, event) {
+        var index = eventKey;
+        if (eventKey == null) {
+            index = 0;
+        }
+        this.setState({ categorySelected: dropDownOptions[index]});
+      }
+
+
     render() {
 
         return (
@@ -31,6 +45,17 @@ class TimeseriesGraph extends React.Component {
                     <Legend />
                     <Line type="monotone" dataKey="number" stroke="#82ca9d" />
                 </LineChart>
+                <DropdownButton
+                    title={this.state.categorySelected}
+                    id="document-type"
+                    onSelect={this.handleSelect.bind(this)}
+                >
+                    {dropDownOptions.map((opt, i) => (
+                    <Dropdown.Item key={i} eventKey={i}>
+                        {opt}
+                    </Dropdown.Item>
+                    ))}
+                </DropdownButton>
             </div>
         );
     }
