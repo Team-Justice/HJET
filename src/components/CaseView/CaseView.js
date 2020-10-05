@@ -164,9 +164,6 @@ export default class CaseView extends Component {
 
             </Table>
           </TableContainer>
-          <div className="button-container">
-            <Link to={'/decisionTreeCategories/' + this.caseID}><Button variant="outline-secondary" className="addDT-button">Add a Decision Tree</Button></Link>
-          </div>
           <ReactTable
             data = {decisionTrees}
             columns={columns}
@@ -174,6 +171,9 @@ export default class CaseView extends Component {
             pageSize={decisionTrees.length}
             defaultFilterMethod={this.filterMethod}
           />
+          <div className="button-container">
+            <Link to={'/decisionTreeCategories/' + this.caseID}><Button variant="outline-secondary" className="addDT-button">Add a Decision Tree</Button></Link>
+          </div>
           </div>
       </div>
     );
