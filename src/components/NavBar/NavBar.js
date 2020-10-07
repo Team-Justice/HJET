@@ -12,10 +12,6 @@ import Button from '@material-ui/core/Button';
 import { IconButton } from '@material-ui/core';
 
 const useStyles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-
   title: {
     margin: '0 5rem',
 

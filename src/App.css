@@ -2,7 +2,14 @@
   text-align: center;
 }
 
+#container {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
 #route-container {
   margin: 5rem;
   margin-bottom: 0;
+  flex-grow: 1;
 }

@@ -23,7 +23,7 @@ import TimeseriesGraph from './components/TimeseriesGraph/TimeseriesGraph';
 
 function App() {
   return (
-    <div>
+    <div id="container">
       <NavBar/>
       <Router>
         <div id="route-container">
