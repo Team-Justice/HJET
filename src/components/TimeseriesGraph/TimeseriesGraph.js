@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { CartesianGrid, LineChart, XAxis, YAxis, Tooltip, Legend, Line } from 'recharts';
-import {Dropdown, DropdownButton} from 'react-bootstrap';
+import { CartesianGrid, LineChart, XAxis, YAxis, Tooltip, Legend, Line, ResponsiveContainer } from 'recharts';
+import { Container, Row, Dropdown, DropdownButton, Col} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
@@ -179,10 +179,7 @@ class TimeseriesGraph extends React.Component {
             }
         }
     
-        
-
         return bins;
-
     }
 
     async handleStartDateChange(event) {
@@ -201,44 +198,61 @@ class TimeseriesGraph extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Time Analysis</h1>
-                <LineChart width={500} height={300} data={this.state.data} margin= {{top:5, right:30, left:20, bottom:5,}}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey = "date" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="number" stroke="#82ca9d" />
-                </LineChart>
-                <DropdownButton
-                    title={this.state.categorySelected}
-                    id="document-type"
-                    onSelect={this.handleSelect.bind(this)}
-                >
-                    {dropDownOptions.map((opt, i) => (
-                    <Dropdown.Item key={i} eventKey={i}>
-                        {opt}
-                    </Dropdown.Item>
-                    ))}
-                </DropdownButton>
+            <div style={{height:'100%', width:'80%'}}>
+                <h1> Time Analysis</h1>
+                <ResponsiveContainer width="100%" height="70%">
+                    <LineChart data={this.state.data} margin= {{top:100, right:30, left:20, bottom:50,}}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey = "date" label={{ value: "Month of Year", dy: 10}}/>
+                        <YAxis label={{ value: "Number of Cases", angle: -90, dx: -20}} />
+                        <Tooltip />
+                        <Line type="monotone" dataKey="number" stroke="#82ca9d" />
+                    </LineChart>
+                </ResponsiveContainer>
+                <Container height="30%">
+                    <Row>
+                        <Col>
+                            <h4>Choose category:</h4>
+                            <DropdownButton
+                                variant="secondary"
+                                title={this.state.categorySelected}
+                                id="document-type"
+                                onSelect={this.handleSelect.bind(this)}
+                            >
+                                {dropDownOptions.map((opt, i) => (
+                                <Dropdown.Item key={i} eventKey={i}>
+                                    {opt}
+                                </Dropdown.Item>
+                                ))}
+                            </DropdownButton>
+                        </Col>  
+
+                        <Col>
+                            <h4>Choose time interval:</h4>
+                            <label> Start Date</label>
+                            <DatePicker
+                            selected={this.state.startDate}
+                            onChange={this.handleStartDateChange.bind(this) }
+                            name="startDate"
+                            dateFormat="MM/dd/yyyy"
+                            /> <br></br>
+
+                            <label> End Date</label>
+                            <DatePicker
+                            selected={ this.state.endDate }
+                            onChange={ this.handleEndDateChange.bind(this) }
+                            name="endDate"
+                            dateFormat="MM/dd/yyyy"
+                            />
+                        </Col>
+                    </Row>
+                </Container>
+    
+                
                 <div>
-                    <label> Start Date</label>
-                    <DatePicker
-                    selected={this.state.startDate}
-                    onChange={this.handleStartDateChange.bind(this) }
-                    name="startDate"
-                    dateFormat="MM/dd/yyyy"
-                    />
-                </div>
-                <div>
-                    <label> End Date</label>
-                    <DatePicker
-                    selected={ this.state.endDate }
-                    onChange={ this.handleEndDateChange.bind(this) }
-                    name="endDate"
-                    dateFormat="MM/dd/yyyy"
-                    />
+                        
+                
+                    
                 </div>
                 
             </div>
