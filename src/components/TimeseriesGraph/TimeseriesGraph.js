@@ -4,6 +4,7 @@ import {Dropdown, DropdownButton} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
+import { number } from 'yup';
 
 const dropDownOptions = ['Legacy Wealth', 'Maintain Home', 'Sell Home'];
 
@@ -34,6 +35,7 @@ class TimeseriesGraph extends React.Component {
         };
 
         this.updateData = this.updateData.bind(this);
+        this.generateBins = this.generateBins.bind(this);
     }
 
 
@@ -90,7 +92,96 @@ class TimeseriesGraph extends React.Component {
             return decisionTreeNewDate >= this.state.startDate && decisionTreeNewDate <= this.state.endDate;
         });
 
-        console.log(filteredDataArray);
+        var bins = await this.generateBins(this.state.startDate, this.state.endDate);
+        filteredDataArray.forEach(decisionTree => {
+            var decisionTreeDate = decisionTree.createdAt;
+            var date = decisionTreeDate.split("-");
+            var dateYear = date[0];
+            var dateMonth = date[1];
+            var monthYearString = dateMonth + '/' + dateYear;
+            console.log(monthYearString);
+            const binInd = bins.findIndex(bin => bin.date == monthYearString);
+            console.log(binInd);
+            if(binInd != -1) {
+                bins[binInd].number += 1;
+            }
+            
+
+        })
+
+        this.setState({
+            data: bins
+        })
+
+        console.log(bins);
+    }
+
+    generateBins(startDate, endDate) {
+        var startMonth = Math.round(startDate.getMonth()) + 1; 
+        var startYear = Math.round(startDate.getFullYear());
+        var endMonth = Math.round(endDate.getMonth()) + 1; 
+        var endYear = Math.round(endDate.getFullYear());
+
+        var bins = [];
+
+        if (startYear != endYear) {
+            for (var i = startMonth; i <= 12; i++) {
+                var month = i.toString()
+                if (i <= 9) {
+                    month = '0' + i.toString()
+                }
+                bins.push({
+                    date: month.toString() + '/' + startYear.toString(),
+                    number: 0
+                })
+            }
+        }
+
+        if (startYear == endYear) {
+            
+            for (var i = startMonth; i <= endMonth; i++) {
+                var month = i.toString()
+                if (i <= 9) {
+                    month = '0' + i.toString()
+                }
+                bins.push({
+                    date: month.toString() + '/' + startYear.toString(),
+                    number: 0
+                })
+            }
+        }
+        
+
+        if (endYear != startYear + 1 && endYear != startYear) {
+            
+            for (var i = startYear + 1; i <= endYear-1; i++) {
+                
+                for(var j = 1; j <= 12; j++) {
+                    var month = j.toString()
+                    if (j <= 9) {
+                        month = '0' + j.toString()
+                    }
+                    bins.push({
+                        date: month.toString() + '/' + i.toString(),
+                        number: 0
+                    })
+                }
+            }
+    
+        }
+
+        if (endYear != startYear) {
+            for (var i = 1; i <= endMonth; i++) {
+                bins.push({
+                    date: i.toString() + '/' + endYear.toString(),
+                    number: 0
+                })
+            }
+        }
+    
+        
+
+        return bins;
 
     }
 
