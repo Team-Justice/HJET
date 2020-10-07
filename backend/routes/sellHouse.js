@@ -86,9 +86,13 @@ router.route('/case/:id').get((req, res) => {
         })
     }
 
-    // SellHouse.find()
-    // .then(decisiontrees => res.status(200).json(decisiontrees))
-    // .catch(err => res.status(400).json(err));
+    
+})
+
+router.route('/cases').get((req, res) => {
+    SellHouse.find()
+    .then(decisiontrees => res.status(200).json(decisiontrees))
+    .catch(err => res.status(400).json(err));
 })
 
 

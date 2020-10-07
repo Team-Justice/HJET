@@ -76,11 +76,14 @@ router.route('/case/:id').get((req, res) => {
         })
     }
 
-    // LegacyWealthBuilding.find()
-    // .then(decisiontrees => res.status(200).json(decisiontrees))
-    // .catch(err => res.status(400).json(err));
+
 })
 
+router.route('/cases').get((req, res) => {
+    LegacyWealthBuilding.find()
+    .then(decisiontrees => res.status(200).json(decisiontrees))
+    .catch(err => res.status(400).json(err));
+})
 
 //get specific decision tree by id 
 router.route('/:id').get((req, res) => {

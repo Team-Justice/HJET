@@ -3,6 +3,8 @@ import { CartesianGrid, LineChart, XAxis, YAxis, Tooltip, Legend, Line } from 'r
 import {Dropdown, DropdownButton} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
+import { number } from 'yup';
 
 const dropDownOptions = ['Legacy Wealth', 'Maintain Home', 'Sell Home'];
 
@@ -20,35 +22,184 @@ class TimeseriesGraph extends React.Component {
             },
             {
                 date: '09/2020', number: 250 
+            }, {
+                date: '10/2020', number: 200
             }],
+            legacyDecisionTrees: [], 
+            maintainDecisionTrees: [],
+            sellDecisionTrees: [],
             categorySelected: dropDownOptions[0],
             startDate: new Date(),
             endDate: new Date()
+
         };
+
+        this.updateData = this.updateData.bind(this);
+        this.generateBins = this.generateBins.bind(this);
     }
 
-    handleSelect(eventKey, event) {
+
+    async componentDidMount() {
+        const legacyDT = await axios.get('http://localhost:5000/legacy-wealth-building/cases');
+        this.setState({
+            legacyDecisionTrees: legacyDT.data
+        });
+
+        const maintainDT = await axios.get('http://localhost:5000/maintain-current-home/cases');
+        this.setState({
+            maintainDecisionTrees: maintainDT.data
+        });
+
+        const sellDT = await axios.get('http://localhost:5000/sell-House/cases');
+        this.setState({
+            sellDecisionTrees: sellDT.data
+        });
+
+    }
+
+    async handleSelect(eventKey, event) {
         var index = eventKey;
         if (eventKey == null) {
             index = 0;
         }
-        this.setState({ categorySelected: dropDownOptions[index]});
-      }
+        await this.setState({ categorySelected: dropDownOptions[index]});
+        this.updateData(dropDownOptions[index]);
+    }
+    
+    async updateData(decisionTreeType) {
+        var dataArray;
+        switch (decisionTreeType) {
+            case 'Legacy Wealth':
+                dataArray = this.state.legacyDecisionTrees;
+                break;
+            case 'Maintain Home':
+                dataArray = this.state.maintainDecisionTrees;
+                break;
+            case 'Sell Home':
+                dataArray = this.state.sellDecisionTrees;
+        }
 
-    handleStartDateChange(event) {
-        this.setState({
-            startDate: event
+        console.log(dataArray);
+        const sortedDataArray = dataArray.sort((a, b) => b.createdAt - a.createdAt);
+        const filteredDataArray = await sortedDataArray.filter(decisionTree => {
+            var decisionTreeDate = decisionTree.createdAt;
+            var date = decisionTreeDate.split("-");
+            var dateYear = date[0];
+            var dateMonth = date[1];
+            var dateDay = date[2].split("T")[0];
+            var decisionTreeNewDate = new Date(dateYear, dateMonth - 1, dateDay)
+            console.log(decisionTreeNewDate); 
+            return decisionTreeNewDate >= this.state.startDate && decisionTreeNewDate <= this.state.endDate;
         });
+
+        var bins = await this.generateBins(this.state.startDate, this.state.endDate);
+        filteredDataArray.forEach(decisionTree => {
+            var decisionTreeDate = decisionTree.createdAt;
+            var date = decisionTreeDate.split("-");
+            var dateYear = date[0];
+            var dateMonth = date[1];
+            var monthYearString = dateMonth + '/' + dateYear;
+            console.log(monthYearString);
+            const binInd = bins.findIndex(bin => bin.date == monthYearString);
+            console.log(binInd);
+            if(binInd != -1) {
+                bins[binInd].number += 1;
+            }
+            
+
+        })
+
+        this.setState({
+            data: bins
+        })
+
+        console.log(bins);
     }
 
-    handleEndDateChange(event) {
-        this.setState({
+    generateBins(startDate, endDate) {
+        var startMonth = Math.round(startDate.getMonth()) + 1; 
+        var startYear = Math.round(startDate.getFullYear());
+        var endMonth = Math.round(endDate.getMonth()) + 1; 
+        var endYear = Math.round(endDate.getFullYear());
+
+        var bins = [];
+
+        if (startYear != endYear) {
+            for (var i = startMonth; i <= 12; i++) {
+                var month = i.toString()
+                if (i <= 9) {
+                    month = '0' + i.toString()
+                }
+                bins.push({
+                    date: month.toString() + '/' + startYear.toString(),
+                    number: 0
+                })
+            }
+        }
+
+        if (startYear == endYear) {
+            
+            for (var i = startMonth; i <= endMonth; i++) {
+                var month = i.toString()
+                if (i <= 9) {
+                    month = '0' + i.toString()
+                }
+                bins.push({
+                    date: month.toString() + '/' + startYear.toString(),
+                    number: 0
+                })
+            }
+        }
+        
+
+        if (endYear != startYear + 1 && endYear != startYear) {
+            
+            for (var i = startYear + 1; i <= endYear-1; i++) {
+                
+                for(var j = 1; j <= 12; j++) {
+                    var month = j.toString()
+                    if (j <= 9) {
+                        month = '0' + j.toString()
+                    }
+                    bins.push({
+                        date: month.toString() + '/' + i.toString(),
+                        number: 0
+                    })
+                }
+            }
+    
+        }
+
+        if (endYear != startYear) {
+            for (var i = 1; i <= endMonth; i++) {
+                bins.push({
+                    date: i.toString() + '/' + endYear.toString(),
+                    number: 0
+                })
+            }
+        }
+    
+        
+
+        return bins;
+
+    }
+
+    async handleStartDateChange(event) {
+        await this.setState({
+            startDate: event
+        });
+        this.updateData(this.state.categorySelected);
+    }
+
+    async handleEndDateChange(event) {
+        await this.setState({
             endDate: event
         });
+        this.updateData(this.state.categorySelected);
     }
 
     render() {
-
         return (
             <div>
                 <h1>Time Analysis</h1>
@@ -74,8 +225,8 @@ class TimeseriesGraph extends React.Component {
                 <div>
                     <label> Start Date</label>
                     <DatePicker
-                    selected={ this.state.startDate }
-                    onChange={ this.handleStartDateChange.bind(this) }
+                    selected={this.state.startDate}
+                    onChange={this.handleStartDateChange.bind(this) }
                     name="startDate"
                     dateFormat="MM/dd/yyyy"
                     />
@@ -89,6 +240,7 @@ class TimeseriesGraph extends React.Component {
                     dateFormat="MM/dd/yyyy"
                     />
                 </div>
+                
             </div>
         );
     }
