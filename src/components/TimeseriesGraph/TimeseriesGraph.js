@@ -4,6 +4,7 @@ import { Container, Row, Dropdown, DropdownButton, Col} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
+import "./TimeseriesGraph.css"
 import { number } from 'yup';
 
 const dropDownOptions = ['Legacy Wealth', 'Maintain Home', 'Sell Home'];
@@ -237,7 +238,7 @@ class TimeseriesGraph extends React.Component {
                             dateFormat="MM/dd/yyyy"
                             /> <br></br>
 
-                            <label> End Date</label>
+                            <label className="end-date"> End Date</label>
                             <DatePicker
                             selected={ this.state.endDate }
                             onChange={ this.handleEndDateChange.bind(this) }
