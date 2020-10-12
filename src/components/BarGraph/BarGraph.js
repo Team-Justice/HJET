@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import {BarChart, XAxis, YAxis, Tooltip, Legend, Bar, CartesianGrid} from 'recharts';
+import {BarChart, XAxis, YAxis, Tooltip, Legend, Bar, CartesianGrid, ResponsiveContainer} from 'recharts';
+import { Container, Row, Col} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
+import "./BarGraph.css"
 
 class BarGraph extends React.Component {
 
@@ -111,34 +113,39 @@ class BarGraph extends React.Component {
     render() {
 
         return (
-            <div>
+            <div style={{height:'100%', width:'80%'}}>
                 <h1>Category Analysis</h1>
-                <BarChart width = {730} height = {250} data = {this.state.data}>
-                    <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey = "name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="number" fill="#82ca9d" />
-                </BarChart>
-                <div>
-                    <label> Start Date</label>
-                    <DatePicker
-                    selected={ this.state.startDate }
-                    onChange={ this.handleStartDateChange.bind(this) }
-                    name="startDate"
-                    dateFormat="MM/dd/yyyy"
-                    />
-                </div>
-                <div>
-                    <label> End Date</label>
-                    <DatePicker
-                    selected={ this.state.endDate }
-                    onChange={ this.handleEndDateChange.bind(this) }
-                    name="endDate"
-                    dateFormat="MM/dd/yyyy"
-                    />
-                </div>
+                <ResponsiveContainer width="100%" height="70%">
+                    <BarChart data = {this.state.data} margin= {{top:100, right:30, left:20, bottom:50,}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey = "name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Bar dataKey="number" fill="#82ca9d" />
+                    </BarChart>
+                </ResponsiveContainer>
+                <Container>
+                    <Row>
+                        <Col>
+                            <h4>Choose time interval:</h4>
+                            <label>Start Date</label>
+                            <DatePicker
+                                selected={ this.state.startDate }
+                                onChange={ this.handleStartDateChange.bind(this) }
+                                name="startDate"
+                                dateFormat="MM/dd/yyyy"
+                            /> <br></br>
+
+                            <label className="end-date">End Date</label>
+                            <DatePicker
+                                selected={ this.state.endDate }
+                                onChange={ this.handleEndDateChange.bind(this) }
+                                name="endDate"
+                                dateFormat="MM/dd/yyyy"
+                            />
+                        </Col>
+                    </Row>
+                </Container>
           </div>
         );
     }
