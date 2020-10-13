@@ -1,0 +1,5 @@
+.greContainer {
+    display: flex;
+    justify-content: center;
+    min-width: 500px !important;
+}

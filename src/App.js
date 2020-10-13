@@ -18,6 +18,7 @@ import SellHouseResourcePage from './components/ResourcePage/SellHouseResourcePa
 import AnalysisMenu from './components/AnalysisMenu/AnalysisMenu';
 import BarGraph from './components/BarGraph/BarGraph';
 import TimeseriesGraph from './components/TimeseriesGraph/TimeseriesGraph';
+import LoginPage from './components/LoginPage/LoginPage'
 
 
 
@@ -28,7 +29,8 @@ function App() {
       <Router>
         <div id="route-container">
         <Switch>
-            <Route path="/" exact component ={MainMenu}/> 
+            <Route path="/" exact component ={MainMenu}/>
+            <Route path="/login" exact component ={LoginPage}/> 
             <Route path="/caseForm" exact component={CaseForm}/>
             <Route path="/caseEdit/:id" component = {CaseEdit}/>
             <Route path="/caseView/:id" exact component={CaseView}/>
