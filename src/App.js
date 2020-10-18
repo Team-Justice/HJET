@@ -26,7 +26,8 @@ function App() {
   return (
       <Router>
         <Switch>
-            <Route exact path="/login" component={LoginContainer}/>
+            <Route path="/" exact component ={LoginPage}/>
+            <Route path="/login" component={LoginContainer}/>
             <Route component={DefaultContainer}/>
           </Switch>
       </Router>
@@ -48,7 +49,7 @@ const DefaultContainer = () => (
       <Router>
         <div id="route-container">
         <Switch>
-            <Route path="/" exact component ={MainMenu}/>
+            <Route path="/mainMenu" exact component ={MainMenu}/>
             <Route path="/caseForm" exact component={CaseForm}/>
             <Route path="/caseEdit/:id" component = {CaseEdit}/>
             <Route path="/caseView/:id" exact component={CaseView}/>
