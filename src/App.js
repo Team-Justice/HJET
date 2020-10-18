@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import LoginPage from './components/LoginPage/LoginPage'
 import CaseForm from './components/CaseForm/CaseForm.js';
 import CaseEdit from './components/CaseEdit/CaseEdit';
 import CaseView from './components/CaseView/CaseView';
@@ -18,19 +19,36 @@ import SellHouseResourcePage from './components/ResourcePage/SellHouseResourcePa
 import AnalysisMenu from './components/AnalysisMenu/AnalysisMenu';
 import BarGraph from './components/BarGraph/BarGraph';
 import TimeseriesGraph from './components/TimeseriesGraph/TimeseriesGraph';
-import LoginPage from './components/LoginPage/LoginPage'
 
 
 
 function App() {
   return (
-    <div id="container">
+      <Router>
+        <Switch>
+            <Route exact path="/login" component={LoginContainer}/>
+            <Route component={DefaultContainer}/>
+          </Switch>
+      </Router>
+  );
+}
+
+// This part does not contain a NavBar
+const LoginContainer = () => (
+  <div className="container">
+    <Route exact path="/" render={() => <Redirect to="/login" />} />
+    <Route path="/login" component={LoginPage} />
+  </div>
+)
+
+// This container includes a top NavBar
+const DefaultContainer = () => (
+  <div id="container">
       <NavBar/>
       <Router>
         <div id="route-container">
         <Switch>
             <Route path="/" exact component ={MainMenu}/>
-            <Route path="/login" exact component ={LoginPage}/> 
             <Route path="/caseForm" exact component={CaseForm}/>
             <Route path="/caseEdit/:id" component = {CaseEdit}/>
             <Route path="/caseView/:id" exact component={CaseView}/>
@@ -50,8 +68,6 @@ function App() {
         </div>
       </Router>
     </div>
-
-  );
-}
+)
 
 export default App;
