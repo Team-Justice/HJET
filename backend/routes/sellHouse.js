@@ -1,9 +1,10 @@
 const router = require('express').Router();
 let SellHouse = require('../models/sellHouse.model');
 const mongoose = require('mongoose');
+const auth = require('../middleware/auth');
 
 //add a new decision tree 
-router.route('/add').put((req, res) => {
+router.route('/add').put(auth, (req, res) => {
     const caseID = mongoose.Types.ObjectId(req.body.caseID);
     const wantHomeWealthGenerationCourse = req.body.wantHomeWealthGenerationCourse;
     const wantFirstTimeBuyersCourse = req.body.wantFirstTimeBuyersCourse;
@@ -54,7 +55,7 @@ router.route('/add').put((req, res) => {
 })
 
 //get a decision tree based on the case id 
-router.route('/').get((req, res) => {
+router.route('/').get(auth, (req, res) => {
     if (req.body.caseID) {
         SellHouse.find( {
             caseID: mongoose.Types.ObjectId(req.body.caseID)
@@ -72,7 +73,7 @@ router.route('/').get((req, res) => {
 })
 
 //get specific decision tree by case id 
-router.route('/case/:id').get((req, res) => {
+router.route('/case/:id').get(auth, (req, res) => {
     if (req.params.id) {
         SellHouse.find( {
             caseID: mongoose.Types.ObjectId(req.params.id)
@@ -89,7 +90,7 @@ router.route('/case/:id').get((req, res) => {
     
 })
 
-router.route('/cases').get((req, res) => {
+router.route('/cases').get(auth, (req, res) => {
     SellHouse.find()
     .then(decisiontrees => res.status(200).json(decisiontrees))
     .catch(err => res.status(400).json(err));
@@ -97,7 +98,7 @@ router.route('/cases').get((req, res) => {
 
 
 //get specific decision tree by id 
-router.route('/:id').get((req, res) => {
+router.route('/:id').get(auth, (req, res) => {
     SellHouse.findById(req.params.id, function (err, docs) { 
         if (err) { 
             console.log(err); 

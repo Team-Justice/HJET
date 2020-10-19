@@ -1,8 +1,9 @@
 const router = require('express').Router();
+const auth = require('../middleware/auth');
 let Case = require('../models/case.model');
 
 //returns all of the cases or specified based on parameters 
-router.route('/').get((req, res) => {
+router.route('/').get(auth, (req, res) => {
     if (req.body.firstName && req.body.lastName && req.body.homeAddress) {
         Case.find( {$and: [{firstName: req.body.firstName},
             {lastName: req.body.lastName},
@@ -67,7 +68,7 @@ router.route('/').get((req, res) => {
 })
 
 //add new case 
-router.route('/add').post((req, res) => {
+router.route('/add').post(auth, (req, res) => {
     //const caseId = mongoose.Types.ObjectId(req.body.caseId);
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
@@ -134,7 +135,7 @@ router.route('/add').post((req, res) => {
 });
 
 //get specific case by id 
-router.route('/:id').get((req, res) => {
+router.route('/:id').get(auth, (req, res) => {
     Case.findById(req.params.id, function (err, docs) { 
         if (err) { 
             console.log(err); 
@@ -146,7 +147,7 @@ router.route('/:id').get((req, res) => {
 })
 
 // update
-router.route('/update/:id').post((req, res) => {
+router.route('/update/:id').post(auth, (req, res) => {
     Case.findById(req.params.id)
         .then(outDatedCase => {
             outDatedCase.firstName = req.body.firstName;
@@ -184,10 +185,10 @@ router.route('/update/:id').post((req, res) => {
 });
 
 //delete
-router.route('/:id').delete((req, res) => {
+router.route('/:id').delete(auth, (req, res) => {
     Case.findByIdAndDelete(req.params.id)
     .then(() => res.json('Case deleted'))
     .catch(err => res.status(400).json(err))
-})
+});
 
 module.exports = router;

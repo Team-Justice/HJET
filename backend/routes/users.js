@@ -44,6 +44,7 @@ router.route('/add').post( async (req, res) => {
     }
 });
 
+// user login
 router.route('/login').post( async (req, res) => {
     try {
         const email = req.body.email;
@@ -76,6 +77,30 @@ router.route('/login').post( async (req, res) => {
             }   
         });
     } catch (err) {
+        res.status(500).json({error: err.message});
+    }
+});
+
+// endpoint to check if token is valid
+router.route('/tokenIsValid').post( async (req, res) => {
+    try {
+        const token = req.header("x-auth-token");
+        if (!token) {
+            return res.json(false);
+        }
+
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        if (!verified) {
+            return res.json(false);
+        }
+
+        const user = await User.findById(verified.id);
+        if (!user) {
+            return res.json(false);
+        }
+
+        return res.json(true);
+    } catch {
 
     }
 });
