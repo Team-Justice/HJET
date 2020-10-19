@@ -36,6 +36,7 @@ class NavBar extends React.Component {
                   <Button href="/" color="inherit">Back To Home</Button>
                
                 <Typography className={classes.title} variant="h6">Welcome to the Housing Justice Evaluation Tool!</Typography>
+                <Button href = "/NewUser">Create New User</Button>
               </Toolbar>
             </AppBar>
           </div>
