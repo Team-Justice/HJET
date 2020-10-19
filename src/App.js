@@ -24,7 +24,7 @@ import NewUserPage from './components/NewUserPage/NewUserPage';
 
 function App() {
   return (
-    <div>
+    <div id="container">
       <NavBar/>
       <Router>
         <div id="route-container">
