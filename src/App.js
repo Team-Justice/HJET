@@ -21,6 +21,7 @@ import SellHouseResourcePage from './components/ResourcePage/SellHouseResourcePa
 import AnalysisMenu from './components/AnalysisMenu/AnalysisMenu';
 import BarGraph from './components/BarGraph/BarGraph';
 import TimeseriesGraph from './components/TimeseriesGraph/TimeseriesGraph';
+import NewUserPage from './components/NewUserPage/NewUserPage';
 
 
 
@@ -104,6 +105,7 @@ const DefaultContainer = () => (
             <Route path="/analysis" exact component = {AnalysisMenu} />
             <Route path="/timeAnalysis" exact component = {TimeseriesGraph} />
             <Route path="/categoryAnalysis" exact component = {BarGraph} />
+            <Route path="/newUser" exact component = {NewUserPage} />
           </Switch>
         </div>
       </Router>

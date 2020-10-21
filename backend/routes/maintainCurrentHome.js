@@ -1,8 +1,9 @@
 const router = require('express').Router();
 let MaintainCurrentHome = require('../models/maintainCurrentHome.model');
 const mongoose = require('mongoose');
+const auth = require('../middleware/auth');
 
-router.route('/add').put((req,res) => {
+router.route('/add').put(auth, (req,res) => {
     const caseID = mongoose.Types.ObjectId(req.body.caseID);
     const needSignificantRepairs = Boolean(req.body.needSignificantRepairs);
     const needHealthyHomeAudit = Boolean(req.body.needHealthyHomeAudit);
@@ -41,7 +42,7 @@ router.route('/add').put((req,res) => {
 })
 
 //get a decision tree based on the case id 
-router.route('/').get((req, res) => {
+router.route('/').get(auth, (req, res) => {
     if (req.body.caseID) {
         MaintainCurrentHome.find( {
             caseID: mongoose.Types.ObjectId(req.body.caseID)
@@ -59,7 +60,7 @@ router.route('/').get((req, res) => {
 })
 
 //get specific decision tree by case id 
-router.route('/case/:id').get((req, res) => {
+router.route('/case/:id').get(auth, (req, res) => {
     if (req.params.id) {
         MaintainCurrentHome.find( {
             caseID: mongoose.Types.ObjectId(req.params.id)
@@ -83,7 +84,7 @@ router.route('/cases').get((req, res) => {
 })
 
 //get specific decision tree by id 
-router.route('/:id').get((req, res) => {
+router.route('/:id').get(auth, (req, res) => {
     MaintainCurrentHome.findById(req.params.id, function (err, docs) { 
         if (err) { 
             console.log(err); 
@@ -93,7 +94,5 @@ router.route('/:id').get((req, res) => {
         } 
     })
 })
-
-
 
 module.exports = router;

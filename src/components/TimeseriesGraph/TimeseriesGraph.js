@@ -109,7 +109,6 @@ class TimeseriesGraph extends React.Component {
             
 
         })
-
         this.setState({
             data: bins
         })

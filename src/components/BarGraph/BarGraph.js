@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import "./BarGraph.css"
 
+
 class BarGraph extends React.Component {
 
 
