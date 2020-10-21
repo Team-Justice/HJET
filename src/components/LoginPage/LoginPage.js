@@ -1,4 +1,4 @@
-import React, { Component, Children } from 'react';
+import React, { Component, Children, useState, useContext } from 'react';
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import { Box, Card, CardContent, TextField, Button } from "@material-ui/core";
 import { object, string} from 'yup';
@@ -6,7 +6,8 @@ import axios from 'axios';
 import './LoginPage.css';
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import Alert from 'react-bootstrap/Alert'
+import Alert from 'react-bootstrap/Alert';
+import UserContext from "../../context/UserContext";
 
 
 const InitialValues = {
@@ -80,21 +81,34 @@ export default class LoginPage extends Component {
                             initialValues={InitialValues}
                             // logic to send form data to the backend
                             onSubmit={(values, formikHelpers) => {
-                                // insert login authentication logic here
-                                // axios.post('http://localhost:5000/cases/add', values)
-                                // .then(res => {
-                                //     console.log(res);
-                                //     console.log(res.data);
-                                //     this.setState({
-                                //         unsuccessfulSubmit: false,
-                                //         showSuccess: true,
-                                //     });
-                                //     // redirect to homepage after 2.5 sec if successful
-                                //     setTimeout(() => {
-                                //         history.push('/');
-                                //     }, 2500);
-                                //     document.body.scrollTop = document.documentElement.scrollTop = 0;
-                                // })
+                            // onSubmit={(values, formikHelpers) => async (e) => {
+                                // e.preventDefault();
+                                try {
+                                    const loginRes = await axios.post(
+                                      "http://localhost:5000/users/login",
+                                      values
+                                    );
+                                    setUserData({
+                                      token: loginRes.data.token,
+                                      user: loginRes.data.user,
+                                    });
+                                    localStorage.setItem("auth-token", loginRes.data.token);
+                                    this.setState({
+                                        unsuccessfulSubmit: false,
+                                        showSuccess: true,
+                                    });
+                                    // redirect to homepage after 2.5 sec if successful
+                                    setTimeout(() => {
+                                        history.push('/');
+                                    }, 2500);
+                                } catch (err) {
+                                    this.setState({
+                                        unsuccessfulSubmit: true,
+                                        showSuccess: false,
+                                    });
+                                    // err.response.data.msg && setError(err.response.data.msg);
+                                }
+                                document.body.scrollTop = document.documentElement.scrollTop = 0;
                             }}>
 
                             {({ values, errors, isSubmitting, isValidating }) => (
