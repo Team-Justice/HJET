@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom
 import Axios from 'axios';
 import UserContext from './context/UserContext';
 import LoginPage from './components/LoginPage/LoginPage'
-import CaseForm from './components/CaseForm/CaseForm.js';
+import CaseForm from './components/CaseForm/CaseForm';
 import CaseEdit from './components/CaseEdit/CaseEdit';
 import CaseView from './components/CaseView/CaseView';
 import CaseSearch from './components/CaseSearch/CaseSearch';
@@ -22,9 +22,6 @@ import AnalysisMenu from './components/AnalysisMenu/AnalysisMenu';
 import BarGraph from './components/BarGraph/BarGraph';
 import TimeseriesGraph from './components/TimeseriesGraph/TimeseriesGraph';
 import NewUserPage from './components/NewUserPage/NewUserPage';
-
-
-
 
 
 function App() {

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 let User = require('../models/user.model');
 const bcrypt = require('bcrypt');
+const auth = require("../middleware/auth");
 const jwt = require('jsonwebtoken');
 
 //add new user (similar to signing up)
@@ -100,8 +101,17 @@ router.route('/tokenIsValid').post( async (req, res) => {
         }
 
         return res.json(true);
-    } catch {
-
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 });
+
+router.get("/", auth, async (req, res) => {
+    const user = await User.findById(req.user);
+    res.json({
+        displayName: user.displayName,
+        id: user._id,
+    });
+});
+
 module.exports = router;
