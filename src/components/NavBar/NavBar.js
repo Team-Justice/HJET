@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from './HJETpiclogo.png';
 import {Link} from 'react-router-dom';
@@ -25,7 +25,7 @@ class NavBar extends React.Component {
         return (
           <div className={classes.root}>
             <AppBar className={classes.appbar} position="static" color="transparent">
-              <Toolbar>
+              <Toolbar >
                   <IconButton href="/">
                     <img src={logo} width="30rem" height="30rem" className="d-inline-block align-top" alt="HJET logo"/>
                   </IconButton>
@@ -33,6 +33,12 @@ class NavBar extends React.Component {
                
                 <Typography className={classes.title} variant="h6">Welcome to the Housing Justice Evaluation Tool!</Typography>
                 <Button href = "/NewUser">Create New User</Button>
+
+                <div style={{position: "absolute", right: 0, paddingRight: "10px"}}>
+                    <Button variant="contained" disableElevation>Logout</Button>
+                </div>
+
+
               </Toolbar>
             </AppBar>
           </div>
