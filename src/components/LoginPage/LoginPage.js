@@ -1,4 +1,4 @@
-import React, { Component, Children, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import { Box, Card, CardContent, TextField, Button } from "@material-ui/core";
 import { object, string} from 'yup';
@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
 import UserContext from "../../context/UserContext";
 // import ErrorNotice from "../misc/ErrorNotice";
-
 
 const InitialValues = {
     // login info
@@ -33,6 +32,10 @@ let showFailed = false;
 export default function LoginPage() {
     const { setUserData } = useContext(UserContext);
     const history = useHistory();
+
+    // tesing hooks for login messages
+    // const [showSuccess, setSuccess ] = useState();
+    // const [showFailed, setFailed ] = useState();
 
     return (
         <div>
@@ -59,14 +62,11 @@ export default function LoginPage() {
                         // initiate form values
                         initialValues={InitialValues}
                         // logic to send form data to the backend
-                        // onSubmit={(values, formikHelpers) => {
-                        onSubmit={async (e) => {
-                            console.log("inside submit function");
-                            e.preventDefault();
+                        onSubmit={async (values) => {
                             try {
                                 const loginRes = await axios.post(
                                     "http://localhost:5000/users/login",
-                                    InitialValues
+                                    values
                                 );
                                 console.log(loginRes);
                                 setUserData({
@@ -74,19 +74,28 @@ export default function LoginPage() {
                                     user: loginRes.data.user,
                                 });
                                 localStorage.setItem("auth-token", loginRes.data.token);
+
+                                // setFailed(false);
+                                // setSuccess(true);
                                 showFailed = false;
                                 showSuccess = true;
+
                                 // redirect to homepage after 2.5 sec if successful
                                 setTimeout(() => {
-                                    history.push('/');
+                                    history.push('/mainMenu');
                                 }, 2500);
                             } catch (err) {
                                 console.log(err);
+
+                                // setSuccess(false);
+                                // setFailed(true);
                                 showSuccess = false;
                                 showFailed = true;
+                                
                                 // err.response.data.msg && setError(err.response.data.msg);
                             }
-                            document.body.scrollTop = document.documentElement.scrollTop = 0;
+
+                            document.body.scrollTop = document.documentElement.scrollTop = 0;                            
                         }}
                     >
 
