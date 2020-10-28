@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
 import UserContext from "../../context/UserContext";
+import HJETpic from '../../HJETpic.png';
 // import ErrorNotice from "../misc/ErrorNotice";
 
 const InitialValues = {
@@ -50,7 +51,7 @@ export default function LoginPage() {
                     Please check your username and password and try again. 
                 </p>
             </Alert>
-
+            <img src={HJETpic} height={250} width={500} class="center"/>
             <Card className="card">
                 <CardContent>
             
@@ -118,10 +119,10 @@ export default function LoginPage() {
                                 </div>
 
                                 {/* allows us to see state of errors in form for validation debugging */}
-                                <pre>{JSON.stringify(errors, null, 4)}</pre>
+                                {/* <pre>{JSON.stringify(errors, null, 4)}</pre> */}
 
                                 {/* allows us to see the state of the form for debugging */}
-                                <pre>{JSON.stringify(values, null, 4)}</pre>
+                                {/* <pre>{JSON.stringify(values, null, 4)}</pre> */}
 
                             </Form>
                         )}

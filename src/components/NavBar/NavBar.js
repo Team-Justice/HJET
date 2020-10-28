@@ -32,9 +32,9 @@ class NavBar extends React.Component {
                   <Button href="/" color="inherit">Back To Home</Button>
                
                 <Typography className={classes.title} variant="h6">Welcome to the Housing Justice Evaluation Tool!</Typography>
-                <Button href = "/NewUser">Create New User</Button>
 
-                <div style={{position: "absolute", right: 0, paddingRight: "10px"}}>
+                <div style={{position: "absolute", right: 0, paddingRight: "10px", display: "flex", justifyContent: "space-between"}}>
+                    <Button href = "/NewUser">Create New User</Button>
                     <Button variant="contained" disableElevation>Logout</Button>
                 </div>
 
