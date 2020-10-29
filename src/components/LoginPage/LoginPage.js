@@ -77,6 +77,7 @@ export default function LoginPage() {
 
                                 // setFailed(false);
                                 // setSuccess(true);
+                                // this.props.loginAuthentication();
                                 showFailed = false;
                                 showSuccess = true;
 

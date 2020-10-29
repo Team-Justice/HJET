@@ -23,8 +23,27 @@ import BarGraph from './components/BarGraph/BarGraph';
 import TimeseriesGraph from './components/TimeseriesGraph/TimeseriesGraph';
 import NewUserPage from './components/NewUserPage/NewUserPage';
 
+const auth = {
+  isAuthenticated: false, 
+  authenticate() {
+    this.isAuthenticated = true
+  },
+  signout(cb) {
+    this.isAuthenticated = false
+    cb()
+  }
+}
+
+const PrivateRoute = ({component: Component, ...rest}) => (
+  <Route {...rest} render={(props) => (
+    localStorage.getItem("auth-token") ? 
+      <Component {...props}/>
+      : <Redirect to='/login'/>
+  )}/>
+) 
 
 function App() {
+  
   const [userData, setUserData] = useState({
     token: undefined, 
     user: undefined,
@@ -45,6 +64,7 @@ function App() {
       );
 
       if (tokenRes.data) {
+        await auth.authenticate();
         const userRes = await Axios.get("http://localhost:5000/users/", {
           headers: { "x-auth-token": token },
         });
@@ -52,11 +72,15 @@ function App() {
           token,
           user: userRes.data,
         });
+
+        
       }
     };
 
     checkLoggedIn();
   }, []);
+
+
 
   return (
       <Router>
@@ -79,30 +103,32 @@ const LoginContainer = () => (
   </div>
 )
 
+
 // This container includes a top NavBar
 const DefaultContainer = () => (
   <div id="container">
-      <NavBar/>
       <Router>
+        <PrivateRoute path="/" component={NavBar}/>
         <div id="route-container">
         <Switch>
-            <Route path="/mainMenu" exact component ={MainMenu}/>
-            <Route path="/caseForm" exact component={CaseForm}/>
-            <Route path="/caseEdit/:id" component = {CaseEdit}/>
-            <Route path="/caseView/:id" exact component={CaseView}/>
-            <Route path="/caseSearch" exact component = {CaseSearch}/>
-            <Route path="/cases" exact component = {Cases}/>
-            <Route path="/decisionTreeCategories/:id" exact component = {DTCategories}/>
-            <Route path="/decisionTreeCategories/legacy/:id" exact component = {LegacyDT}/>
-            <Route path="/decisionTreeCategories/maintain/:id" exact component = {MaintainDT}/>
-            <Route path="/decisionTreeCategories/sell/:id" exact component = {SellDT}/>
-            <Route path="/resources/Legacy Wealth Building/:id" exact component = {LegacyWealthResourcePage} />
-            <Route path="/resources/Maintain Current Home/:id" exact component = {MaintainHouseResourcePage} />
-            <Route path="/resources/Sell House/:id" exact component = {SellHouseResourcePage} />
-            <Route path="/analysis" exact component = {AnalysisMenu} />
-            <Route path="/timeAnalysis" exact component = {TimeseriesGraph} />
-            <Route path="/categoryAnalysis" exact component = {BarGraph} />
-            <Route path="/newUser" exact component = {NewUserPage} />
+            <Route path="/login" component={LoginPage} />
+            <PrivateRoute path="/mainMenu" exact component ={MainMenu}/>
+            <PrivateRoute path="/caseForm" exact component={CaseForm}/>
+            <PrivateRoute path="/caseEdit/:id" component = {CaseEdit}/>
+            <PrivateRoute path="/caseView/:id" exact component={CaseView}/>
+            <PrivateRoute path="/caseSearch" exact component = {CaseSearch}/>
+            <PrivateRoute path="/cases" exact component = {Cases}/>
+            <PrivateRoute path="/decisionTreeCategories/:id" exact component = {DTCategories}/>
+            <PrivateRoute path="/decisionTreeCategories/legacy/:id" exact component = {LegacyDT}/>
+            <PrivateRoute path="/decisionTreeCategories/maintain/:id" exact component = {MaintainDT}/>
+            <PrivateRoute path="/decisionTreeCategories/sell/:id" exact component = {SellDT}/>
+            <PrivateRoute path="/resources/Legacy Wealth Building/:id" exact component = {LegacyWealthResourcePage} />
+            <PrivateRoute path="/resources/Maintain Current Home/:id" exact component = {MaintainHouseResourcePage} />
+            <PrivateRoute path="/resources/Sell House/:id" exact component = {SellHouseResourcePage} />
+            <PrivateRoute path="/analysis" exact component = {AnalysisMenu} />
+            <PrivateRoute path="/timeAnalysis" exact component = {TimeseriesGraph} />
+            <PrivateRoute path="/categoryAnalysis" exact component = {BarGraph} />
+            <PrivateRoute path="/newUser" exact component = {NewUserPage} />
           </Switch>
         </div>
       </Router>
