@@ -23,17 +23,6 @@ import BarGraph from './components/BarGraph/BarGraph';
 import TimeseriesGraph from './components/TimeseriesGraph/TimeseriesGraph';
 import NewUserPage from './components/NewUserPage/NewUserPage';
 
-const auth = {
-  isAuthenticated: false, 
-  authenticate() {
-    this.isAuthenticated = true
-  },
-  signout(cb) {
-    this.isAuthenticated = false
-    cb()
-  }
-}
-
 const PrivateRoute = ({component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
     localStorage.getItem("auth-token") ? 
@@ -64,7 +53,6 @@ function App() {
       );
 
       if (tokenRes.data) {
-        await auth.authenticate();
         const userRes = await Axios.get("http://localhost:5000/users/", {
           headers: { "x-auth-token": token },
         });
