@@ -74,6 +74,7 @@ export default class SellDecisionTree extends Component {
   componentDidMount() {
     const {id} = this.props.match.params;
     this.caseID = id;
+    this.token = localStorage.getItem("auth-token");
   }
 
   checkUnsuccessfulSubmit() {
@@ -132,7 +133,7 @@ export default class SellDecisionTree extends Component {
               onSubmit={(values, formikHelpers) => {
                 values.caseID = this.caseID;
                 console.log(values);
-                axios.put('http://localhost:5000/sell-House/add', values)
+                axios.put('http://localhost:5000/sell-House/add', values, { headers: { "x-auth-token": this.token } })
                                     .then(res => {
                                         console.log(res);
                                         console.log(res.data);

@@ -155,7 +155,6 @@ export default class CaseEdit extends Component {
     }, () => {
         this.checkUnsuccessfulSubmit();
     });
-
   }
 
   /**
@@ -185,10 +184,14 @@ close() {
 }
    
   componentDidMount() {
+    
     console.log(this.props);
     const {id} = this.props.match.params;
     console.log(id);
-    axios.get('http://localhost:5000/cases/' + id) 
+    this.token = localStorage.getItem("auth-token");
+    axios.get('http://localhost:5000/cases/' + id, { 
+        headers: { "x-auth-token": this.token }
+    }) 
     .then(response => {
         console.log(response);
       this.setState({
@@ -272,7 +275,7 @@ close() {
                             initialValues={this.state.case}
                             // logic to send form data to the backend
                             onSubmit={(values, formikHelpers) => {
-                                axios.post(('http://localhost:5000/cases/update/' + id2), values)
+                                axios.post(('http://localhost:5000/cases/update/' + id2), values, { headers: { "x-auth-token": this.token } })
                                     .then(res => {
                                         console.log(res);
                                         console.log(res.data);
