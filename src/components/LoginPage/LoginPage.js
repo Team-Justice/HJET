@@ -27,31 +27,28 @@ const SignupSchema = object().shape({
         .min(8, 'Password must be at least 8 characters')
 });
 
-let showSuccess = false;
-let showFailed = false;
+
 
 export default function LoginPage() {
     const { setUserData } = useContext(UserContext);
     const history = useHistory();
 
     // tesing hooks for login messages
-    // const [showSuccess, setSuccess ] = useState();
-    // const [showFailed, setFailed ] = useState();
-
+    var [showSuccess = false, setSuccess ] = useState();
+    var [showFailed = false,  setFailed ] = useState();
     return (
         <div>
-            
             <Alert show={showSuccess} variant="success">
-                <Alert.Heading>Successfully Logged In</Alert.Heading>
+                <Alert.Heading>Successfully Logged In!</Alert.Heading>
             </Alert>
 
-            <Alert show={showFailed} onClose={showFailed = false} dismissible variant="danger">
+            <Alert show={showFailed} variant="danger">
                 <Alert.Heading>Invalid login name or password</Alert.Heading>
                 <p>
                     Please check your username and password and try again. 
                 </p>
             </Alert>
-            <img src={HJETpic} height={250} width={500} class="center"/>
+            <img src={HJETpic} width={500} class="center"/>
             <Card className="card">
                 <CardContent>
             
@@ -64,6 +61,9 @@ export default function LoginPage() {
                         initialValues={InitialValues}
                         // logic to send form data to the backend
                         onSubmit={async (values) => {
+                            console.log("onsubmit")
+                            console.log(showSuccess)
+
                             try {
                                 const loginRes = await axios.post(
                                     "http://localhost:5000/users/login",
@@ -76,23 +76,24 @@ export default function LoginPage() {
                                 });
                                 localStorage.setItem("auth-token", loginRes.data.token);
 
-                                // setFailed(false);
-                                // setSuccess(true);
+                                setFailed(false);
+                                setSuccess(true);
                                 // this.props.loginAuthentication();
-                                showFailed = false;
-                                showSuccess = true;
+                                // showFailed = false;
+                                // showSuccess = true;
 
                                 // redirect to homepage after 2.5 sec if successful
                                 setTimeout(() => {
                                     history.push('/mainMenu');
                                 }, 2500);
                             } catch (err) {
+                                console.log("error occured");
                                 console.log(err);
 
-                                // setSuccess(false);
-                                // setFailed(true);
-                                showSuccess = false;
-                                showFailed = true;
+                                setSuccess(false);
+                                setFailed(true);
+                                // showSuccess = false;
+                                // showFailed = true;
                                 
                                 // err.response.data.msg && setError(err.response.data.msg);
                             }
