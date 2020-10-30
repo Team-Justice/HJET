@@ -49,7 +49,7 @@ function App() {
       console.log(token)
 
       const tokenRes = await Axios.post(
-        "http://localhost:3000/users/tokenIsValid", 
+        "http://localhost:5000/users/tokenIsValid", 
         null, 
         { headers: { "x-auth-token": token } }
       );
