@@ -5,7 +5,7 @@ const auth = require("../middleware/auth");
 const jwt = require('jsonwebtoken');
 
 //add new user (similar to signing up)
-router.route('/add').post( async (req, res) => {
+router.route('/add').post(auth, async (req, res) => {
     try {
         //const caseId = mongoose.Types.ObjectId(req.body.caseId);
         const firstName = req.body.firstName;

@@ -61,6 +61,7 @@ export default class MaintainHouseDecisionTree extends Component {
   componentDidMount() {
     const {id} = this.props.match.params;
     this.caseID = id;
+    this.token = localStorage.getItem("auth-token");
   }
   
   checkUnsuccessfulSubmit() {
@@ -119,7 +120,7 @@ export default class MaintainHouseDecisionTree extends Component {
               onSubmit={(values, formikHelpers) => {
                 values.caseID = this.caseID;
                 console.log(values);
-                axios.put('http://localhost:5000/maintain-current-home/add', values)
+                axios.put('http://localhost:5000/maintain-current-home/add', values, { headers: { "x-auth-token": this.token } })
                                     .then(res => {
                                         console.log(res);
                                         console.log(res.data);
