@@ -39,19 +39,24 @@ export default function SpacingGrid() {
 
   return (
     // Material UI Grid: https://material-ui.com/components/grid/
-    <Grid container className={classes.root} spacing={0}>
+    // <Grid container className={classes.root} spacing={0}>
       
       <React.Fragment>
+      <Box textAlign="center">
+            <h1> Analysis </h1>
+      </Box>
 
         {/* Grid system = 12 for full length; 12total/2items = 6 --> 6 for 2 items */}
-        <Grid item xs={6}> 
-          <Grid container>
+        {/* <Grid item xs={6}> 
+          <Grid container> */}
+
 
           <div style={{
             position: 'absolute', left: '50%', top: '50%',
             transform: 'translate(-50%, -50%)', display: 'flex', justifyContent: "center",
-            alignItems: "center", margin: 'auto'
+            alignItems: "center", margin: 'auto', textAlign: "center"
           }}>
+
             <div>
               <Link to="/timeAnalysis">
                 <Timeline style={{ fontSize: 300 }} />
@@ -66,12 +71,12 @@ export default function SpacingGrid() {
               </Link>
             </div>
           </div>
-
+{/* 
           </Grid>
-        </Grid>
+        </Grid> */}
     </React.Fragment>
       
-    </Grid>
+    // </Grid>
   );
 
 }
