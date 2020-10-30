@@ -18,7 +18,12 @@ const useStyles = theme => ({
   }
 });
 
+
 class NavBar extends React.Component {
+    logout() {
+        window.localStorage.clear();
+        window.location.href = "/";
+    }
 
     render() {
       const { classes } = this.props;
@@ -35,7 +40,7 @@ class NavBar extends React.Component {
 
                 <div style={{position: "absolute", right: 0, paddingRight: "10px", display: "flex", justifyContent: "space-between"}}>
                     <Button href = "/NewUser">Create New User</Button>
-                    <Button variant="contained" disableElevation>Logout</Button>
+                    <Button onClick={() => this.logout()} variant="contained" disableElevation>Logout</Button>
                 </div>
 
 
