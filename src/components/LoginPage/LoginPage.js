@@ -69,12 +69,15 @@ export default function LoginPage() {
                                     "http://localhost:5000/users/login",
                                     values
                                 );
-                                console.log(loginRes);
+                                // console.log(loginRes);
+                                // console.log("data.email",loginRes.data.user.email);
+                                // console.log("data.admin",loginRes.data.user.admin);
                                 setUserData({
                                     token: loginRes.data.token,
                                     user: loginRes.data.user,
                                 });
                                 localStorage.setItem("auth-token", loginRes.data.token);
+                                localStorage.setItem("isAdmin", loginRes.data.user.admin);
 
                                 setFailed(false);
                                 setSuccess(true);
