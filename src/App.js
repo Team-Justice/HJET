@@ -22,17 +22,20 @@ import AnalysisMenu from './components/AnalysisMenu/AnalysisMenu';
 import BarGraph from './components/BarGraph/BarGraph';
 import TimeseriesGraph from './components/TimeseriesGraph/TimeseriesGraph';
 import NewUserPage from './components/NewUserPage/NewUserPage';
+import decode from 'jwt-decode';
+import { Functions } from '@material-ui/icons';
+
+var isAuthenticated = false; 
 
 const PrivateRoute = ({component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
-    localStorage.getItem("auth-token") ? 
+      isAuthenticated ? 
       <Component {...props}/>
       : <Redirect to='/login'/>
   )}/>
 ) 
 
 function App() {
-  
   const [userData, setUserData] = useState({
     token: undefined, 
     user: undefined,
@@ -47,11 +50,10 @@ function App() {
       }
 
       const tokenRes = await Axios.post(
-        "http://localhost:3000/users/tokenIsValid", 
+        "http://localhost:5000/users/tokenIsValid", 
         null, 
         { headers: { "x-auth-token": token } }
       );
-
       if (tokenRes.data) {
         const userRes = await Axios.get("http://localhost:5000/users/", {
           headers: { "x-auth-token": token },
@@ -60,23 +62,25 @@ function App() {
           token,
           user: userRes.data,
         });
-
-        
       }
     };
 
     checkLoggedIn();
   }, []);
 
-
+  console.log("token: ", userData.token)
+  if(userData.token) {
+    isAuthenticated = true;
+  }
 
   return (
       <Router>
         <UserContext.Provider value={{ userData, setUserData }}>
           <Switch>
-              <Route path="/" exact component ={LoginPage}/>
+           
+              <Route path="/" exact component={LoginPage}/>
               <Route path="/login" component={LoginContainer}/>
-              <Route component={DefaultContainer}/>
+              <PrivateRoute component={DefaultContainer}/>
             </Switch>
         </UserContext.Provider>
       </Router>
@@ -99,7 +103,7 @@ const DefaultContainer = () => (
         <PrivateRoute path="/" component={NavBar}/>
         <div id="route-container">
         <Switch>
-            <Route path="/login" component={LoginPage} />
+            <Route path="/login" component={LoginPage}/>
             <PrivateRoute path="/mainMenu" exact component ={MainMenu}/>
             <PrivateRoute path="/caseForm" exact component={CaseForm}/>
             <PrivateRoute path="/caseEdit/:id" component = {CaseEdit}/>

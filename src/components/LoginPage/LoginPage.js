@@ -74,7 +74,6 @@ export default function LoginPage() {
                                     user: loginRes.data.user,
                                 });
                                 localStorage.setItem("auth-token", loginRes.data.token);
-
                                 // setFailed(false);
                                 // setSuccess(true);
                                 // this.props.loginAuthentication();
