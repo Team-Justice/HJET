@@ -24,7 +24,7 @@ class NavBar extends React.Component {
     render() {
       const { classes } = this.props;
       let isAdmin = localStorage.getItem("isAdmin");
-      if (isAdmin === true) {
+      if (isAdmin === "true") {
         return (
           <div className={classes.root}>
             <AppBar className={classes.appbar} position="static" color="transparent">
