@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
+import UserContext from "../../context/UserContext";
 import axios from 'axios';
 import ReactTable from "react-table-6";
 import "react-table-6/react-table.css";
@@ -12,8 +13,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import './CaseSearch.css';
 
+// const { userData } = useContext(UserContext);
 
 class CaseSearch extends React.Component {
+
+    static contextType = useContext;
 
     constructor(props) {
         super(props);
@@ -23,10 +27,16 @@ class CaseSearch extends React.Component {
             caseDeleteId: '',
             deleteDialogOpen: false
         };
+        this.token = ""
+
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/cases/')
+
+        this.token = localStorage.getItem("auth-token");
+        axios.get('http://localhost:5000/cases/', { 
+            headers: { "x-auth-token": this.token },
+            })
             .then(response => {
                 this.setState({cases: response.data});
             })
@@ -51,7 +61,7 @@ class CaseSearch extends React.Component {
 
 
     deleteCase() {
-        axios.delete('http://localhost:5000/cases/' + this.state.caseDeleteId)
+        axios.delete('http://localhost:5000/cases/' + this.state.caseDeleteId, { headers: { "x-auth-token": this.token } })
             .then(res => {
                 this.handleClose();
                 window.location.reload(false);

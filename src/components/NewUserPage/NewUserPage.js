@@ -58,6 +58,10 @@ export default class NewUserPage extends Component {
         this.close = this.close.bind(this);
     }
 
+    componentDidMount() {
+        this.token = localStorage.getItem("auth-token");
+    }
+
     checkUnsuccessfulSubmit() {
         if (this.state.showSuccess === false) {
             this.setState({
@@ -112,7 +116,7 @@ export default class NewUserPage extends Component {
                                 // disables submit button for 3 seconds
 
 
-                                axios.post('http://localhost:5000/users/add', values) //add the axios post here
+                                axios.post('http://localhost:5000/users/add', values, { headers: { "x-auth-token": this.token } })
                                     .then(res => {
                                         console.log(res);
                                         console.log(res.data);

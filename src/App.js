@@ -25,6 +25,7 @@ import NewUserPage from './components/NewUserPage/NewUserPage';
 import decode from 'jwt-decode';
 import { Functions } from '@material-ui/icons';
 
+
 var isAuthenticated = false; 
 
 const PrivateRoute = ({component: Component, ...rest}) => (
@@ -36,6 +37,7 @@ const PrivateRoute = ({component: Component, ...rest}) => (
 ) 
 
 function App() {
+  
   const [userData, setUserData] = useState({
     token: undefined, 
     user: undefined,
@@ -48,12 +50,16 @@ function App() {
         localStorage.setItem("auth-token", "");
         token = "";
       }
+      console.log("token")
+      console.log(token)
 
       const tokenRes = await Axios.post(
         "http://localhost:5000/users/tokenIsValid", 
         null, 
         { headers: { "x-auth-token": token } }
       );
+
+
       if (tokenRes.data) {
         const userRes = await Axios.get("http://localhost:5000/users/", {
           headers: { "x-auth-token": token },
@@ -62,6 +68,8 @@ function App() {
           token,
           user: userRes.data,
         });
+
+        
       }
     };
 
@@ -73,12 +81,13 @@ function App() {
     isAuthenticated = true;
   }
 
+
   return (
       <Router>
         <UserContext.Provider value={{ userData, setUserData }}>
           <Switch>
-           
-              <Route path="/" exact component={LoginPage}/>
+
+              <Route path="/" exact component ={LoginContainer}/>
               <Route path="/login" component={LoginContainer}/>
               <PrivateRoute component={DefaultContainer}/>
             </Switch>
@@ -103,7 +112,7 @@ const DefaultContainer = () => (
         <PrivateRoute path="/" component={NavBar}/>
         <div id="route-container">
         <Switch>
-            <Route path="/login" component={LoginPage}/>
+            <Route path="/login" component={LoginPage} />
             <PrivateRoute path="/mainMenu" exact component ={MainMenu}/>
             <PrivateRoute path="/caseForm" exact component={CaseForm}/>
             <PrivateRoute path="/caseEdit/:id" component = {CaseEdit}/>

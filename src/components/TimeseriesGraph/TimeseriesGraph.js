@@ -14,18 +14,7 @@ class TimeseriesGraph extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [{
-                date: '07/2020', number: 200 
-            },
-            {
-                date: '08/2020', number: 150 
-
-            },
-            {
-                date: '09/2020', number: 250 
-            }, {
-                date: '10/2020', number: 200
-            }],
+            data: [],
             legacyDecisionTrees: [], 
             maintainDecisionTrees: [],
             sellDecisionTrees: [],
@@ -41,20 +30,27 @@ class TimeseriesGraph extends React.Component {
 
 
     async componentDidMount() {
-        const legacyDT = await axios.get('http://localhost:5000/legacy-wealth-building/cases');
+        var start = new Date();
+        start.setMonth(start.getMonth() - 3);
+        this.setState({
+            startDate: start
+        });
+        this.token = localStorage.getItem("auth-token");
+        const legacyDT = await axios.get('http://localhost:5000/legacy-wealth-building/cases', { headers: { "x-auth-token": this.token } });
         this.setState({
             legacyDecisionTrees: legacyDT.data
         });
 
-        const maintainDT = await axios.get('http://localhost:5000/maintain-current-home/cases');
+        const maintainDT = await axios.get('http://localhost:5000/maintain-current-home/cases', { headers: { "x-auth-token": this.token } });
         this.setState({
             maintainDecisionTrees: maintainDT.data
         });
 
-        const sellDT = await axios.get('http://localhost:5000/sell-House/cases');
+        const sellDT = await axios.get('http://localhost:5000/sell-House/cases', { headers: { "x-auth-token": this.token } });
         this.setState({
             sellDecisionTrees: sellDT.data
         });
+        this.updateData(this.state.categorySelected);
 
     }
 
@@ -104,7 +100,7 @@ class TimeseriesGraph extends React.Component {
             const binInd = bins.findIndex(bin => bin.date == monthYearString);
             console.log(binInd);
             if(binInd != -1) {
-                bins[binInd].number += 1;
+                bins[binInd].cases += 1;
             }
             
 
@@ -132,7 +128,7 @@ class TimeseriesGraph extends React.Component {
                 }
                 bins.push({
                     date: month.toString() + '/' + startYear.toString(),
-                    number: 0
+                    cases: 0
                 })
             }
         }
@@ -146,7 +142,7 @@ class TimeseriesGraph extends React.Component {
                 }
                 bins.push({
                     date: month.toString() + '/' + startYear.toString(),
-                    number: 0
+                    cases: 0
                 })
             }
         }
@@ -163,7 +159,7 @@ class TimeseriesGraph extends React.Component {
                     }
                     bins.push({
                         date: month.toString() + '/' + i.toString(),
-                        number: 0
+                        cases: 0
                     })
                 }
             }
@@ -174,7 +170,7 @@ class TimeseriesGraph extends React.Component {
             for (var i = 1; i <= endMonth; i++) {
                 bins.push({
                     date: i.toString() + '/' + endYear.toString(),
-                    number: 0
+                    cases: 0
                 })
             }
         }
@@ -203,10 +199,10 @@ class TimeseriesGraph extends React.Component {
                 <ResponsiveContainer width="100%" height="70%">
                     <LineChart data={this.state.data} margin= {{top:100, right:30, left:20, bottom:50,}}>
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey = "date" label={{ value: "Month of Year", dy: 10}}/>
+                        <XAxis dataKey = "date" label={{ value: "Month of Year", dy: 20}}/>
                         <YAxis label={{ value: "Number of Cases", angle: -90, dx: -20}} />
                         <Tooltip />
-                        <Line type="monotone" dataKey="number" stroke="#82ca9d" />
+                        <Line type="monotone" dataKey="cases" stroke="#82ca9d" />
                     </LineChart>
                 </ResponsiveContainer>
                 <Container height="30%">

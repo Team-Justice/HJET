@@ -13,18 +13,7 @@ class BarGraph extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [{
-                "name": "Legacy Wealth",
-                "number": 4000,
-              },
-              {
-                "name": "Maintain Home",
-                "number": 3000,
-              },
-              {
-                "name": "Sell Home",
-                "number": 2000,
-              }],
+            data: [],
             startDate: new Date(),
             endDate: new Date(),
             legacyDecisionTrees: [],
@@ -38,20 +27,37 @@ class BarGraph extends React.Component {
     }
 
     async componentDidMount() {
-        const legacyDT = await axios.get('http://localhost:5000/legacy-wealth-building/cases');
+        var start = new Date();
+        start.setMonth(start.getMonth() - 3);
+        this.setState({
+            startDate: start
+        });
+        this.token = localStorage.getItem("auth-token");
+
+        const legacyDT = await axios.get('http://localhost:5000/legacy-wealth-building/cases', { 
+            headers: { "x-auth-token": this.token }
+        });
+
         this.setState({
             legacyDecisionTrees: legacyDT.data
         });
 
-        const maintainDT = await axios.get('http://localhost:5000/maintain-current-home/cases');
+        const maintainDT = await axios.get('http://localhost:5000/maintain-current-home/cases', { 
+            headers: { "x-auth-token": this.token }
+        });
+
         this.setState({
             maintainDecisionTrees: maintainDT.data
         });
 
-        const sellDT = await axios.get('http://localhost:5000/sell-House/cases');
+        const sellDT = await axios.get('http://localhost:5000/sell-House/cases', { 
+            headers: { "x-auth-token": this.token }
+        });
         this.setState({
             sellDecisionTrees: sellDT.data
         });
+        this.updateData();
+
 
     }
 
@@ -80,15 +86,15 @@ class BarGraph extends React.Component {
         var newData = [];
         newData.push({
             "name": "Legacy Wealth",
-            "number": filteredLegacyDT.length,
+            "cases": filteredLegacyDT.length,
         });
         newData.push({
             "name": "Maintain Home",
-            "number": filteredMaintainDT.length,
+            "cases": filteredMaintainDT.length,
         });
         newData.push({
             "name": "Sell Home",
-            "number": filteredSellDT.length,
+            "cases": filteredSellDT.length,
         })
 
         this.setState({
@@ -119,10 +125,10 @@ class BarGraph extends React.Component {
                 <ResponsiveContainer width="100%" height="70%">
                     <BarChart data = {this.state.data} margin= {{top:100, right:30, left:20, bottom:50,}}>
                         <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis dataKey = "name" />
-                        <YAxis />
+                        <XAxis dataKey = "name" label={{value: "Case Category", dy:20}} />
+                        <YAxis label={{ value: "Number of Cases", angle: -90, dx: -0}} />
                         <Tooltip />
-                        <Bar dataKey="number" fill="#82ca9d" />
+                        <Bar dataKey="cases" fill="#82ca9d" />
                     </BarChart>
                 </ResponsiveContainer>
                 <Container>

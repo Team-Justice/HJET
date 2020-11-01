@@ -3,3 +3,12 @@
     justify-content: center;
     min-width: 500px !important;
 }
+
+.center{
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    /* width: 75%; */
+}
