@@ -77,6 +77,7 @@ export default function LoginPage() {
                                     user: loginRes.data.user,
                                 });
                                 localStorage.setItem("auth-token", loginRes.data.token);
+
                                 localStorage.setItem("isAdmin", loginRes.data.user.admin);
 
                                 setFailed(false);
@@ -84,6 +85,7 @@ export default function LoginPage() {
                                 // this.props.loginAuthentication();
                                 // showFailed = false;
                                 // showSuccess = true;
+
 
                                 // redirect to homepage after 2.5 sec if successful
                                 setTimeout(() => {
