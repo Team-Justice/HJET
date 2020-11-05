@@ -51,7 +51,7 @@ class CaseSearch extends React.Component {
         return row[id] !== undefined ? String(row[id].toLowerCase()).startsWith(filter.value.toLowerCase()) : true
     }
 
-    // // brings up the delete dialog
+    // brings up the delete dialog
     handleDelete(id) {
         this.setState({
             deleteDialogOpen: true,
@@ -74,14 +74,29 @@ class CaseSearch extends React.Component {
             deleteDialogOpen: false,
             caseDeleteId: '',
         })
-    }	    
+    }
+
 
     render() {
+        function getFormattedDate(createdAt) {
+            var date = new Date(createdAt);
+            
+            var year = date.getFullYear();
+          
+            var month = (1 + date.getMonth()).toString();
+            month = month.length > 1 ? month : '0' + month;
+          
+            var day = date.getDate().toString();
+            day = day.length > 1 ? day : '0' + day;
+
+            return month + '/' + day + '/' + year ;
+        }
 
         //combines first and last name for readability, stores in name attribute
-        this.state.cases.forEach(
-            c => c.name = c.firstName + ' ' + c.lastName
-        );
+        this.state.cases.forEach(c => {
+            c.name = c.firstName + ' ' + c.lastName;
+            c.createdAt = getFormattedDate(c.createdAt);
+        });
 
         // console.log(this.state.cases.length);
         // console.log(this.state.cases);
