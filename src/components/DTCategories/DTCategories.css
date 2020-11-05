@@ -1,7 +1,5 @@
 .dtcategories-container {
     height: auto;
-    width: 100vw;
-    /* background-color: gray; */
     overflow-y: hidden;
     overflow-x: hidden;
 }
@@ -11,7 +9,6 @@
     margin: 50px auto 0px auto;
     align-content: center;
     padding-bottom: 20px;
-    /* background-color: red; */
 }
 
 .dt-buttons {
@@ -21,7 +18,7 @@
 }
 
 .dt-buttons Button {
-    height: 75px;
+    height: 100px;
     width: 250px !important;
     font-size: large;
     color: black;
