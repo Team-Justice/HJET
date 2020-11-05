@@ -22,15 +22,10 @@ import AnalysisMenu from './components/AnalysisMenu/AnalysisMenu';
 import BarGraph from './components/BarGraph/BarGraph';
 import TimeseriesGraph from './components/TimeseriesGraph/TimeseriesGraph';
 import NewUserPage from './components/NewUserPage/NewUserPage';
-import decode from 'jwt-decode';
-import { Functions } from '@material-ui/icons';
-
-
-var isAuthenticated = false; 
 
 const PrivateRoute = ({component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
-      isAuthenticated ? 
+    localStorage.getItem("auth-token") ? 
       <Component {...props}/>
       : <Redirect to='/login'/>
   )}/>
@@ -58,8 +53,7 @@ function App() {
         null, 
         { headers: { "x-auth-token": token } }
       );
-
-
+    
       if (tokenRes.data) {
         const userRes = await Axios.get("http://localhost:5000/users/", {
           headers: { "x-auth-token": token },
@@ -76,20 +70,15 @@ function App() {
     checkLoggedIn();
   }, []);
 
-  console.log("token: ", userData.token)
-  if(userData.token) {
-    isAuthenticated = true;
-  }
 
 
   return (
       <Router>
         <UserContext.Provider value={{ userData, setUserData }}>
           <Switch>
-
               <Route path="/" exact component ={LoginContainer}/>
               <Route path="/login" component={LoginContainer}/>
-              <PrivateRoute component={DefaultContainer}/>
+              <Route component={DefaultContainer}/>
             </Switch>
         </UserContext.Provider>
       </Router>
