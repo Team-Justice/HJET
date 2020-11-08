@@ -14,9 +14,8 @@ const caseSchema = new Schema({
     gender: {type: String, required: true},
     race: {type: String, required: true},
     ethnicity: {type: String, required: true},
-    veteran: {type: String, required: true},
-    accommodations: {type: String, required: true, trim: true},
-    
+    veteran: {type: Boolean, required: true},
+    accommodations: {type: Boolean, required: true, trim: true},
     preHomeowner: {type: Boolean, required: true},
     ownershipOfHome: {type: String, required: true, trim: true},
     timeInHome: {type: Number, required: true, trim: true, min: 0},
