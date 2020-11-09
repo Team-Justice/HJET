@@ -143,8 +143,8 @@ export default class CaseForm extends Component {
         this.token = localStorage.getItem("auth-token");
     }
 
-    checkUnsuccessfulSubmit() {
-        if (this.state.showSuccess === false) {
+    checkUnsuccessfulSubmit(isValid) {
+        if (!isValid) {
             this.setState({
                 unsuccessfulSubmit: true
             });
@@ -178,7 +178,7 @@ export default class CaseForm extends Component {
 					</div>
 				</Alert>
 
-                <Alert show={this.state.unsuccessfulSubmit} onClose={this.close} dismissible variant="danger">
+                <Alert show={this.state.unsuccessfulSubmit}  onClose={this.close} dismissible variant="danger">
 					<Alert.Heading>Error Submitting Case!</Alert.Heading>
 					<p>
 						There was an error submitting your case, please check through your entries and try again. 
@@ -192,6 +192,7 @@ export default class CaseForm extends Component {
                         <Formik
                             // add form validation through Yup api
                             validationSchema={SignupSchema}
+
                             // initiate form values
                             initialValues={InitialValues}
                             // logic to send form data to the backend
@@ -221,7 +222,10 @@ export default class CaseForm extends Component {
                                 // })
                             }}>
 
-                            {({ values, errors, isSubmitting, isValidating }) => (
+                            
+
+                            {({ values, errors, isSubmitting, isValid, dirty }) => (
+                                
                                 <Form>
                                     {/* Client personal info */}
                                     <div className="greContainer">
@@ -442,7 +446,7 @@ export default class CaseForm extends Component {
 
                                     {/* <Link to="/cases"> */}
                                     <div className="greContainer">
-                                        <Button onClick={this.checkUnsuccessfulSubmit} type="submit" disabled={isValidating}>submit</Button>
+                                        <Button type="submit" disabled={!(isValid && dirty)}>submit</Button>
                                     </div>
 
                                     {/* </Link> */}
