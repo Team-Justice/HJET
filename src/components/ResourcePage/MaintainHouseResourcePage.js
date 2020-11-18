@@ -31,11 +31,15 @@ export default class MaintainHouseResourcePage extends React.Component {
     }
 
     componentDidMount() {
+        
+        this.token = localStorage.getItem("auth-token");
+
         const {id} = this.props.match.params;
 
         // get case info for that decision tree
-        axios.get("http://localhost:5000/maintain-current-home/" + id)
-        .then(response => {
+        axios.get("http://localhost:5000/maintain-current-home/" + id, { 
+            headers: { "x-auth-token": this.token }
+        }).then(response => {
             this.decisionTreeRows = [
                 createData("needSignificantRepairs", response.data.needSignificantRepairs),
                 createData("needHealthyHomeAudit", response.data.needHealthyHomeAudit),
