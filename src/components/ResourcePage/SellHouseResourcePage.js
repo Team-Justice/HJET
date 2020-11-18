@@ -31,11 +31,15 @@ export default class LegacyWealthResourcePage extends React.Component {
     }
 
     componentDidMount() {
+
+        this.token = localStorage.getItem("auth-token");
+
         const {id} = this.props.match.params;
 
         // get case info for that decision tree
-        axios.get("http://localhost:5000/sell-House/" + id)
-        .then(response => {
+        axios.get("http://localhost:5000/sell-House/" + id, { 
+            headers: { "x-auth-token": this.token }
+        }).then(response => {
             this.decisionTreeRows = [
                 createData("wantHomeWealthGenerationCourse", response.data.wantHomeWealthGenerationCourse),
                 createData("wantFirstTimeBuyersCourse", response.data.wantFirstTimeBuyersCourse),
