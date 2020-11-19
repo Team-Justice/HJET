@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let LegacyWealthBuilding = require('../models/legacyWealthBuilding.model');
 const mongoose = require('mongoose');
-const auth = require('../middleware/auth');
+const auth = require('../auth');
 
 //puts a new decision tree into DB 
 router.route('/add').put(auth, (req,res) => {

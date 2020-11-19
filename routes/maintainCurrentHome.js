@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let MaintainCurrentHome = require('../models/maintainCurrentHome.model');
 const mongoose = require('mongoose');
-const auth = require('../middleware/auth');
+const auth = require('../auth');
 
 router.route('/add').put(auth, (req,res) => {
     const caseID = mongoose.Types.ObjectId(req.body.caseID);
