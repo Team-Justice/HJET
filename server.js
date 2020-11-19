@@ -24,11 +24,11 @@ connection.once('open', () => {
 });
 
 // Routers
-const casesRouter = require('./backend/routes/cases');
-const legacyWealthBuildingRouter = require('./backend/routes/legacyWealthBuilding');
-const maintainCurrentHomeRouter = require('./backend/routes/maintainCurrentHome');
-const sellHouseRouter = require('./backend/routes/sellHouse');
-const userRouter = require('./backend/routes/users');
+const casesRouter = require('./routes/cases');
+const legacyWealthBuildingRouter = require('./routes/legacyWealthBuilding');
+const maintainCurrentHomeRouter = require('./routes/maintainCurrentHome');
+const sellHouseRouter = require('./routes/sellHouse');
+const userRouter = require('./routes/users');
 
 app.use('/cases', casesRouter);
 app.use('/legacy-wealth-building', legacyWealthBuildingRouter);
