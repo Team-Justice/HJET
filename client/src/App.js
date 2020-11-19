@@ -22,16 +22,20 @@ import AnalysisMenu from './components/AnalysisMenu/AnalysisMenu';
 import BarGraph from './components/BarGraph/BarGraph';
 import TimeseriesGraph from './components/TimeseriesGraph/TimeseriesGraph';
 import NewUserPage from './components/NewUserPage/NewUserPage';
+// import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 
 const PrivateRoute = ({component: Component, ...rest}) => (
   <Route {...rest} render={(props) => (
-    localStorage.getItem("auth-token") ? 
+    localStorage.getItem("logged-in") == "true" ? 
       <Component {...props}/>
       : <Redirect to='/login'/>
   )}/>
 ) 
 
+
+
 function App() {
+
   
   const [userData, setUserData] = useState({
     token: undefined, 
@@ -62,15 +66,16 @@ function App() {
           token,
           user: userRes.data,
         });
-
-        
+        localStorage.setItem("logged-in", "true")
       }
     };
 
     checkLoggedIn();
   }, []);
 
-
+  const checkLogInStatus = () => {
+    
+  }
 
   return (
       <Router>
@@ -83,6 +88,9 @@ function App() {
         </UserContext.Provider>
       </Router>
   );
+
+ 
+
 }
 
 // This part does not contain a NavBar
