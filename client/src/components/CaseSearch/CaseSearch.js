@@ -34,7 +34,7 @@ class CaseSearch extends React.Component {
     componentDidMount() {
 
         this.token = localStorage.getItem("auth-token");
-        axios.get('http://localhost:5000/cases/', { 
+        axios.get('/cases/', { 
             headers: { "x-auth-token": this.token },
             })
             .then(response => {
@@ -61,7 +61,7 @@ class CaseSearch extends React.Component {
 
 
     deleteCase() {
-        axios.delete('http://localhost:5000/cases/' + this.state.caseDeleteId, { headers: { "x-auth-token": this.token } })
+        axios.delete('/cases/' + this.state.caseDeleteId, { headers: { "x-auth-token": this.token } })
             .then(res => {
                 this.handleClose();
                 window.location.reload(false);

@@ -122,7 +122,7 @@ export default class LegacyDecisionTree extends Component {
               onSubmit={(values, formikHelpers) => {
                 values.caseID = this.caseID;
                 console.log(values);
-                axios.put('http://localhost:5000/legacy-wealth-building/add', values, { headers: { "x-auth-token": this.token } })
+                axios.put('/legacy-wealth-building/add', values, { headers: { "x-auth-token": this.token } })
                                     .then(res => {
                                         console.log(res);
                                         console.log(res.data);

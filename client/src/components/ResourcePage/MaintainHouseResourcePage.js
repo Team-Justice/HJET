@@ -37,7 +37,7 @@ export default class MaintainHouseResourcePage extends React.Component {
         const {id} = this.props.match.params;
 
         // get case info for that decision tree
-        axios.get("http://localhost:5000/maintain-current-home/" + id, { 
+        axios.get("/maintain-current-home/" + id, { 
             headers: { "x-auth-token": this.token }
         }).then(response => {
             this.decisionTreeRows = [

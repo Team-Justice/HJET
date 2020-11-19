@@ -189,7 +189,7 @@ close() {
     const {id} = this.props.match.params;
     console.log(id);
     this.token = localStorage.getItem("auth-token");
-    axios.get('http://localhost:5000/cases/' + id, { 
+    axios.get('/cases/' + id, { 
         headers: { "x-auth-token": this.token }
     }) 
     .then(response => {
@@ -275,7 +275,7 @@ close() {
                             initialValues={this.state.case}
                             // logic to send form data to the backend
                             onSubmit={(values, formikHelpers) => {
-                                axios.post(('http://localhost:5000/cases/update/' + id2), values, { headers: { "x-auth-token": this.token } })
+                                axios.post(('/cases/update/' + id2), values, { headers: { "x-auth-token": this.token } })
                                     .then(res => {
                                         console.log(res);
                                         console.log(res.data);
