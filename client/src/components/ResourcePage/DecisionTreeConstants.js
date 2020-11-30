@@ -3,7 +3,7 @@
 //each answer has the Title to display on the page, and the Answer/Resource to display on the page.
 
 //LEGACY 
-export const needHomeRenovationAnswer = {title: "Home Renovation", answer: "www.habitatpgw.org           www.mrhandyman.com"};
+export const needHomeRenovationAnswer = {title: "Home Renovation", answer: "www.habitatpgw.org   \n\n\n\n\n\n  www.mrhandyman.com"};
 export const wantToAttendWealthSeminarAnswer = {title: "Wealth Seminar", answer: "www.hsh.com           www.eventbrite.com/e/wealth-legacy-building-seminar-tickets-128207079827"};
 export const haveReverseMortgageAnswer =  {title: "Reverse Mortgage", answer: "Paying off a Reverse Mortgage - www.hsh.com           www.hud.gov/program_offices/housing/sfh/hecm/hecmhome"};
 export const needMortgageOrDeedTransferAnswer = {title: "Mortgage/Deed Transfer", answer: "www.deeds.com           www.askalawyeroncall.com/real-estate-law?"};
