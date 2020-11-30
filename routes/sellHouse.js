@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let SellHouse = require('../models/sellHouse.model');
 const mongoose = require('mongoose');
-const auth = require('../middleware/auth');
+const auth = require('../auth');
 
 //add a new decision tree 
 router.route('/add').put(auth, (req, res) => {

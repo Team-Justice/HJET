@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const path = require("path");
 
 const app = express()
 const port = process.env.PORT || 5000;
@@ -9,6 +10,8 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 dotenv.config();
+app.use(express.static(path.join(__dirname, "client", "build")));
+
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true});
@@ -16,6 +19,8 @@ const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("MongoDB connected successfully!");
 });
+
+
 
 // Routers
 const casesRouter = require('./routes/cases');
@@ -29,6 +34,11 @@ app.use('/legacy-wealth-building', legacyWealthBuildingRouter);
 app.use('/maintain-current-home', maintainCurrentHomeRouter);
 app.use('/sell-House', sellHouseRouter);
 app.use('/users', userRouter);
+
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 // Server
 app.listen(port, () => {

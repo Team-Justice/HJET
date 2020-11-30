@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let User = require('../models/user.model');
 const bcrypt = require('bcrypt');
-const auth = require("../middleware/auth");
+const auth = require("../auth");
 const jwt = require('jsonwebtoken');
 
 //add new user (similar to signing up)

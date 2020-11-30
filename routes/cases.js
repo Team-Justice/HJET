@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const auth = require('../middleware/auth');
+const auth = require('../auth');
 let Case = require('../models/case.model');
 
 //returns all of the cases or specified based on parameters 
