@@ -66,7 +66,7 @@ export default function LoginPage() {
 
                             try {
                                 const loginRes = await axios.post(
-                                    "http://localhost:5000/users/login",
+                                    "/users/login",
                                     values
                                 );
                                 // console.log(loginRes);

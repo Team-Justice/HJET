@@ -36,17 +36,17 @@ class TimeseriesGraph extends React.Component {
             startDate: start
         });
         this.token = localStorage.getItem("auth-token");
-        const legacyDT = await axios.get('http://localhost:5000/legacy-wealth-building/cases', { headers: { "x-auth-token": this.token } });
+        const legacyDT = await axios.get('/legacy-wealth-building/cases', { headers: { "x-auth-token": this.token } });
         this.setState({
             legacyDecisionTrees: legacyDT.data
         });
 
-        const maintainDT = await axios.get('http://localhost:5000/maintain-current-home/cases', { headers: { "x-auth-token": this.token } });
+        const maintainDT = await axios.get('/maintain-current-home/cases', { headers: { "x-auth-token": this.token } });
         this.setState({
             maintainDecisionTrees: maintainDT.data
         });
 
-        const sellDT = await axios.get('http://localhost:5000/sell-House/cases', { headers: { "x-auth-token": this.token } });
+        const sellDT = await axios.get('/sell-House/cases', { headers: { "x-auth-token": this.token } });
         this.setState({
             sellDecisionTrees: sellDT.data
         });

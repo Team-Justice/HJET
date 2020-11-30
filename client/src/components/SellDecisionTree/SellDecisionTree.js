@@ -133,7 +133,7 @@ export default class SellDecisionTree extends Component {
               onSubmit={(values, formikHelpers) => {
                 values.caseID = this.caseID;
                 console.log(values);
-                axios.put('http://localhost:5000/sell-House/add', values, { headers: { "x-auth-token": this.token } })
+                axios.put('/sell-House/add', values, { headers: { "x-auth-token": this.token } })
                                     .then(res => {
                                         console.log(res);
                                         console.log(res.data);

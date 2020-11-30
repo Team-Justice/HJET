@@ -37,7 +37,7 @@ export default class LegacyWealthResourcePage extends React.Component {
 
         const {id} = this.props.match.params;
         // get case info for that decision tree
-        axios.get("http://localhost:5000/legacy-wealth-building/" + id, { 
+        axios.get("/legacy-wealth-building/" + id, { 
             headers: { "x-auth-token": this.token }
         }).then(response => {
             console.log(response);

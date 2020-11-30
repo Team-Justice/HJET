@@ -199,7 +199,7 @@ export default class CaseForm extends Component {
                                 // disables submit button for 3 seconds
 
 
-                                axios.post('http://localhost:5000/cases/add', values, { headers: { "x-auth-token": this.token } })
+                                axios.post('/cases/add', values, { headers: { "x-auth-token": this.token } })
                                     .then(res => {
                                         console.log(res);
                                         console.log(res.data);

@@ -53,7 +53,7 @@ export default class CaseView extends Component {
     console.log("constant id is " + id);
     console.log("CaseID is " + this.caseID);
     this.token = localStorage.getItem("auth-token");
-    axios.get('http://localhost:5000/cases/' + id, { headers: { "x-auth-token": this.token } })
+    axios.get('/cases/' + id, { headers: { "x-auth-token": this.token } })
     .then(response => {
       this.rows= [
         createData("First Name", response.data.firstName),
@@ -92,7 +92,7 @@ export default class CaseView extends Component {
     })
 
     // Decision tree 
-    axios.get('http://localhost:5000/legacy-wealth-building/case/' + this.caseID, { headers: { "x-auth-token": this.token } })
+    axios.get('/legacy-wealth-building/case/' + this.caseID, { headers: { "x-auth-token": this.token } })
       .then(response => {
         console.log(response)
         this.setState({legacy: response.data});
@@ -101,7 +101,7 @@ export default class CaseView extends Component {
         console.log("Error: ", error);
       })
     
-    axios.get('http://localhost:5000/maintain-current-home/case/' + this.caseID, { headers: { "x-auth-token": this.token } })
+    axios.get('/maintain-current-home/case/' + this.caseID, { headers: { "x-auth-token": this.token } })
       .then(response => {
         console.log(response)
         this.setState({maintainCurrHomeData: response.data});
@@ -110,7 +110,7 @@ export default class CaseView extends Component {
         console.log("Error: ", error);
       })
 
-    axios.get('http://localhost:5000/sell-House/case/' + this.caseID, { headers: { "x-auth-token": this.token } })
+    axios.get('/sell-House/case/' + this.caseID, { headers: { "x-auth-token": this.token } })
       .then(response => {
         console.log(response)
         this.setState({sellHouse: response.data});
