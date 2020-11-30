@@ -38,7 +38,7 @@ const SignupSchema = object().shape({
         .max(9999999999, 'Invalid phone number!')
         .required('Required'),
     password: string()
-        .min(2, 'Too Short!')
+        .min(8, 'Too Short!')
         .max(50, 'Too Long!')
         .required('Required'),
     admin: string()
