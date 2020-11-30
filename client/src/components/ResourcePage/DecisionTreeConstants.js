@@ -25,16 +25,16 @@ haveOwnershipNeeds: haveOwnershipNeedsAnswer, haveFamilySuccessivePlan: haveFami
 
 
 //MAINTAIN
-export const needSignificantRepairsAnswer = {title:"Significant Repairs", answer: "www.homeadvisor.com"};
-export const needHealthyHomeAuditAnswer = {title: "Health Home Audit", answer: "www.healthyhomefx.com"};
-export const needEnergyEfficiencyAuditAnswer = {title: "Energy Efficiency Audit", answer: "www.htsenterprise.com"};
-export const needRenovationResourcesAnswer = {title: "Renovation Resources", answer: "How to Find Home Improvement Grant - www.realtor.com"};
-export const needFinancingAssistanceAnswer = {title: "Financing Assistance", answer: "www.top10mortgageloanrefinance.com"};
-export const needFinancialAssistanceAnswer = {title: "Financial Assistance", answer: "www.top10mortgageloanrefinance.com"};
-export const needFinancialCounselingAnswer = {title: "Financial Counseing", answer:"TBD need financial counseling"};
-export const needEmploymentCounselingAnswer = {title: "Emploument Counseling", answer: "www.careeronestop.org"};
-export const soleHomeownerAnswer = {title: "Sole Homeowner", answer: "TBD sole homeowner"};
-export const oweBackTaxesAnswer = {title: "Owe Back Taxes", answer: "www.irs.gov"};
+export const needSignificantRepairsAnswer = {title:"Significant Repairs", answer: "www.homeadvisor.com \n www.mrhandyman.com"};
+export const needHealthyHomeAuditAnswer = {title: "Health Home Audit", answer: "www.healthyhomefx.com \n www.nachi.org/healthy-home-inspection"};
+export const needEnergyEfficiencyAuditAnswer = {title: "Energy Efficiency Audit", answer: "www.htsenterprise.com \n domsavings.com/va/rhea"};
+export const needRenovationResourcesAnswer = {title: "Renovation Resources", answer: "How to Find Home Improvement Grant - www.realtor.com \n www.thisoldhouse.com"};
+export const needFinancingAssistanceAnswer = {title: "Financing Assistance", answer: "www.top10mortgageloanrefinance.com \n www.consumer.ftc.gov/articles/0189-shopping-mortgage"};
+export const needFinancialAssistanceAnswer = {title: "Financial Assistance", answer: "www.top10mortgageloanrefinance.com \n www.mortgageloan.com/qualifying-loan-modification-8889"};
+export const needFinancialCounselingAnswer = {title: "Financial Counseing", answer:"www.napfa.org"};
+export const needEmploymentCounselingAnswer = {title: "Emploument Counseling", answer: "www.careeronestop.org \n www.employmentcounseling.org"};
+export const soleHomeownerAnswer = {title: "Sole Homeowner", answer: "www.deeds.com/articles/how-to-prove-ownership-of-real-estate"};
+export const oweBackTaxesAnswer = {title: "Owe Back Taxes", answer: "www.irs.gov \n www.compasslandusa/check-property-back-taxes-liens"};
 export const reverseMortgageAnswer = {title: "Reverse Mortgage", answer: "Paying off a Reverse Mortgage - www.hsh.com"};
 export const comfortableInCommunityAnswer = {title: "Comfortable in Community", answer:"TBD comfortable in community"};
 export const timeInCommunityAnswer = {title:"Time in Community", answer: "TBD time in community"};
