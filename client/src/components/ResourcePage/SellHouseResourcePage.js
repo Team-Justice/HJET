@@ -2,6 +2,7 @@ import React from 'react';
 import * as resources from "./DecisionTreeConstants";
 import axios from 'axios';
 
+
 function createData(field, value) {
     return { field, value };
   }
@@ -49,7 +50,7 @@ export default class LegacyWealthResourcePage extends React.Component {
                 createData("needFinancialCounseling", response.data.needFinancialCounseling),
                 createData("needHomeRenovation", response.data.needHomeRenovation),
                 createData("needKnowledgeOfSellingOptions", response.data.needKnowledgeOfSellingOptions),
-                createData("needManagingAssitance", response.data.needManagingAssistance),
+                createData("needManagingAssistance", response.data.needManagingAssistance),
                 createData("needProfessionalCounselor", response.data.needProfessionalCounselor),
                 createData("needHealthyHomeInspection", response.data.needHealthyHomeInspection),
                 createData("needEnergyEfficiencyInspection", response.data.needEnergyEfficiencyInspection),
@@ -74,17 +75,26 @@ export default class LegacyWealthResourcePage extends React.Component {
     createListOfResources() {
         for (const [keyHere, value] of Object.entries(this.decisionTreeRows)) {
             let value2 = value;
-            if (value2.value == true) {
-                let specificResource = this.decisionTreeResources[value2.field];
-                this.newResources.push(specificResource);
+            console.log(value2);
+            if (value2.field == "sellingHouseReason") {
+                this.newResources.push({title: "Selling House Reason", answer: value2.value});
+            } else {
+                if (value2.value == true) {
+                    let specificResource = this.decisionTreeResources[value2.field];
+                    this.newResources.push(specificResource);
+                }
             }
         }
         this.setState({
             resourcesToRenderState : this.newResources,
-        })
+        });
+        console.log(this.resourcesToRenderState);
+        console.log(this.newResources);
     }
 
     render() {
+        console.log(this.decisionTreeResources);
+        console.log(this.state.resourcesToRenderState);
         return (
             <div>
                 <h1>Resource Page : Sell House</h1>

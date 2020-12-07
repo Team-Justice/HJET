@@ -64,7 +64,7 @@ export const houseDegradationBeyondRepairAnswer = {title: "House Degradation", a
 export const needSignificantRepairsSellAnswer = {title: "Significant Repairs", answer: "The home needs significant repairs."};
 export const SellDecisionTree = {wantHomeWealthGenerationCourse: wantHomeWealthGenerationCourseAnswer, wantFirstTimeBuyersCourse: wantFirstTimeBuyersCourseSellAnswer, wantToSellToInvestor: wantToSellToInvestorAnswer,
 wantToUseBroker: wantToUseBrokerAnswer, needFinancialAssistance: needFinancialAssistanceSellAnswer, needFinancialCounseling: needFinancialCounselingSellAnswer, needHomeRenovation: needHomeRenovationSellAnswer,
-needKnowledgeOfSellingOptionsAnswer, needManagingAssistanceAnswer, needProfessionalCounselorAnswer,
+needKnowledgeOfSellingOptions: needKnowledgeOfSellingOptionsAnswer, needManagingAssistance: needManagingAssistanceAnswer, needProfessionalCounselor: needProfessionalCounselorAnswer,
 needHealthyHomeInspection: needHealthyHomeInspectionSellAnswer, needEnergyEfficiencyInspection: needEnergyEfficiencyInspectionSellAnswer, oweBackTaxes: oweBackTaxesSellAnswer, usedHUDCounselor: usedHUDCounselorAnswer,
 sellingHouseReason: sellingHouseReasonAnswer, familyWillingToTakeOver: familyWillingToTakeOverAnswer, haveReverseMortgage: haveReverseMortgageSellAnswer, houseDegredationBeyondRepair: houseDegradationBeyondRepairAnswer,
 needSignificantRepairs: needSignificantRepairsSellAnswer};
