@@ -61,7 +61,6 @@ export default function LoginPage() {
                         initialValues={InitialValues}
                         // logic to send form data to the backend
                         onSubmit={async (values) => {
-                            console.log("onsubmit")
                             console.log(showSuccess)
 
                             try {

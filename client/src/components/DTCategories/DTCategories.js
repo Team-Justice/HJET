@@ -17,7 +17,6 @@ class DTCategories extends React.Component {
     componentDidMount() {
         const {id} = this.props.match.params;
         this.caseID = id;
-        console.log('props values', this.props);
         this.setState({
             legacyPath: '/decisionTreeCategories/legacy/' + this.caseID,
             maintainPath: '/decisionTreeCategories/maintain/' + this.caseID, 

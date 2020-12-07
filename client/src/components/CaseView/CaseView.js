@@ -50,8 +50,6 @@ export default class CaseView extends Component {
   componentDidMount() {
     const {id} = this.props.match.params;
     this.caseID = id;
-    console.log("constant id is " + id);
-    console.log("CaseID is " + this.caseID);
     this.token = localStorage.getItem("auth-token");
     axios.get('/cases/' + id, { headers: { "x-auth-token": this.token } })
     .then(response => {
@@ -84,8 +82,6 @@ export default class CaseView extends Component {
         createData("Needs Renevation", response.data.needRenovation),
         createData("Home Description", response.data.homeDescription),
       ]
-      console.log("updateing rown", this.rows)
-      console.log("response.data", response.data)
     })
     .catch(error => {
       console.log("Error: ", error);
@@ -94,7 +90,6 @@ export default class CaseView extends Component {
     // Decision tree 
     axios.get('/legacy-wealth-building/case/' + this.caseID, { headers: { "x-auth-token": this.token } })
       .then(response => {
-        console.log(response)
         this.setState({legacy: response.data});
       })
       .catch(error => {
@@ -103,7 +98,6 @@ export default class CaseView extends Component {
     
     axios.get('/maintain-current-home/case/' + this.caseID, { headers: { "x-auth-token": this.token } })
       .then(response => {
-        console.log(response)
         this.setState({maintainCurrHomeData: response.data});
       })
       .catch(error => {
@@ -112,7 +106,6 @@ export default class CaseView extends Component {
 
     axios.get('/sell-House/case/' + this.caseID, { headers: { "x-auth-token": this.token } })
       .then(response => {
-        console.log(response)
         this.setState({sellHouse: response.data});
       })
       .catch(error => {
