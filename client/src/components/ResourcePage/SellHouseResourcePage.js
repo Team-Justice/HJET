@@ -49,7 +49,7 @@ export default class LegacyWealthResourcePage extends React.Component {
                 createData("needFinancialCounseling", response.data.needFinancialCounseling),
                 createData("needHomeRenovation", response.data.needHomeRenovation),
                 createData("needKnowledgeOfSellingOptions", response.data.needKnowledgeOfSellingOptions),
-                createData("needManagingAssitance", response.data.needManagingAssistance),
+                createData("needManagingAssistance", response.data.needManagingAssistance),
                 createData("needProfessionalCounselor", response.data.needProfessionalCounselor),
                 createData("needHealthyHomeInspection", response.data.needHealthyHomeInspection),
                 createData("needEnergyEfficiencyInspection", response.data.needEnergyEfficiencyInspection),
@@ -85,6 +85,7 @@ export default class LegacyWealthResourcePage extends React.Component {
     }
 
     render() {
+        console.log(this.state.resourcesToRenderState)
         return (
             <div>
                 <h1>Resource Page : Sell House</h1>
