@@ -76,7 +76,6 @@ class TimeseriesGraph extends React.Component {
                 dataArray = this.state.sellDecisionTrees;
         }
 
-        console.log(dataArray);
         const sortedDataArray = dataArray.sort((a, b) => b.createdAt - a.createdAt);
         const filteredDataArray = await sortedDataArray.filter(decisionTree => {
             var decisionTreeDate = decisionTree.createdAt;
@@ -85,7 +84,6 @@ class TimeseriesGraph extends React.Component {
             var dateMonth = date[1];
             var dateDay = date[2].split("T")[0];
             var decisionTreeNewDate = new Date(dateYear, dateMonth - 1, dateDay)
-            console.log(decisionTreeNewDate); 
             return decisionTreeNewDate >= this.state.startDate && decisionTreeNewDate <= this.state.endDate;
         });
 
@@ -96,9 +94,7 @@ class TimeseriesGraph extends React.Component {
             var dateYear = date[0];
             var dateMonth = date[1];
             var monthYearString = dateMonth + '/' + dateYear;
-            console.log(monthYearString);
             const binInd = bins.findIndex(bin => bin.date == monthYearString);
-            console.log(binInd);
             if(binInd != -1) {
                 bins[binInd].cases += 1;
             }
@@ -109,7 +105,6 @@ class TimeseriesGraph extends React.Component {
             data: bins
         })
 
-        console.log(bins);
     }
 
     generateBins(startDate, endDate) {

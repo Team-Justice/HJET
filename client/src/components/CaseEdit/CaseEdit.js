@@ -185,15 +185,12 @@ close() {
    
   componentDidMount() {
     
-    console.log(this.props);
     const {id} = this.props.match.params;
-    console.log(id);
     this.token = localStorage.getItem("auth-token");
     axios.get('/cases/' + id, { 
         headers: { "x-auth-token": this.token }
     }) 
     .then(response => {
-        console.log(response);
       this.setState({
           case: { 
             id: id,
@@ -277,8 +274,6 @@ close() {
                             onSubmit={(values, formikHelpers) => {
                                 axios.post(('/cases/update/' + id2), values, { headers: { "x-auth-token": this.token } })
                                     .then(res => {
-                                        console.log(res);
-                                        console.log(res.data);
                                         this.setState({
                                             componentState: {
                                                 showSuccess: true,

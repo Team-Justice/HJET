@@ -75,7 +75,6 @@ export default class LegacyWealthResourcePage extends React.Component {
     createListOfResources() {
         for (const [keyHere, value] of Object.entries(this.decisionTreeRows)) {
             let value2 = value;
-            console.log(value2);
             if (value2.field == "sellingHouseReason") {
                 this.newResources.push({title: "Selling House Reason", answer: value2.value});
             } else {
@@ -88,13 +87,9 @@ export default class LegacyWealthResourcePage extends React.Component {
         this.setState({
             resourcesToRenderState : this.newResources,
         });
-        console.log(this.resourcesToRenderState);
-        console.log(this.newResources);
     }
 
     render() {
-        console.log(this.decisionTreeResources);
-        console.log(this.state.resourcesToRenderState);
         return (
             <div>
                 <h1>Resource Page : Sell House</h1>
