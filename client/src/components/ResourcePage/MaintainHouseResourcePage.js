@@ -68,9 +68,13 @@ export default class MaintainHouseResourcePage extends React.Component {
     createListOfResources() {
         for (const [keyHere, value] of Object.entries(this.decisionTreeRows)) {
             let value2 = value;
-            if (value2.value == true) {
-                let specificResource = this.decisionTreeResources[value2.field];
-                this.newResources.push(specificResource);
+            if (value2.field == "timeInCommunity"){
+                this.newResources.push({title: "Time In Community", answer: value2.value});
+            } else {
+                if (value2.value == true) {
+                    let specificResource = this.decisionTreeResources[value2.field];
+                    this.newResources.push(specificResource);
+                }
             }
         }
         this.setState({
