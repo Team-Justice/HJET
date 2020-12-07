@@ -40,7 +40,6 @@ export default class LegacyWealthResourcePage extends React.Component {
         axios.get("/legacy-wealth-building/" + id, { 
             headers: { "x-auth-token": this.token }
         }).then(response => {
-            console.log(response);
             this.decisionTreeRows = [
                 createData("needHomeRenovation", response.data.needHomeRenovation),
                 createData("wantToAttendWealthSeminar", response.data.wantToAttendWealthSeminar),

@@ -81,7 +81,6 @@ class BarGraph extends React.Component {
         var filteredMaintainDT = this.filterData(this.state.maintainDecisionTrees);
         var filteredSellDT = this.filterData(this.state.sellDecisionTrees);
         
-        console.log(filteredLegacyDT);
 
         var newData = [];
         newData.push({

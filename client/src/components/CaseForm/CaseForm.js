@@ -201,8 +201,6 @@ export default class CaseForm extends Component {
 
                                 axios.post('/cases/add', values, { headers: { "x-auth-token": this.token } })
                                     .then(res => {
-                                        console.log(res);
-                                        console.log(res.data);
                                         this.setState({
                                             unsuccessfulSubmit: false,
                                             showSuccess: true,
